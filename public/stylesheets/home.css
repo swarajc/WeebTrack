@@ -1,0 +1,26 @@
+.navbar-custom{
+  background-color:rgb(47,79,79);
+  z-index: 0.5;
+}
+
+body{
+  background-color:rgb(245,255,250);
+}
+
+h1{
+  text-align: center;
+  padding-top: 30px;
+
+}
+
+.message{
+  text-align: center;
+}
+
+.start{
+  color: rgb(47,79,79);
+}
+
+.btn btn-secondary btn-lg active{
+  align-content: center;
+}
