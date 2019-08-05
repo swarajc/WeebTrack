@@ -1,16 +1,37 @@
-<% include partials/header %>              
-                
-  <div class="container">
-    <div class="row">
-        <div class="col text-center">
-          <div class="message">
-            <h1>Welcome to TrackWeeb!</h1>
-            <p>Browse Anime or Manga and keep track of your episodes and chapters with ease!</p>    
-          </div>
-          <a href="./browse.html" class="btn btn-secondary btn-lg active" aria-pressed="true" role="button">Start Now</a>
-        </div>
-    </div>
-  </div> 
-<%include partials/footer %>
+<% include ./partials/header %> 
+
+  <!-- // Anime Season (Spring, Summer, Fall and Winter) -->
+ 
+  <!-- ===================================== -->
+
+  <%  var currentDate = new Date(),
+      month = currentDate.getMonth();  
+      var season = '';
+      if( month >= 3 && month <= 5)
+      {
+        season = 'Spring';
+      }
+      else if(month >= 6 && month <= 8 )
+      {
+        season  = 'Summer';
+      }
+      else if(month >= 9 && month <= 11)
+      {
+        season = 'Fall';
+      }
+      else
+      {
+        season = 'Winter';
+      }
+  %>
+
+<!-- ======================================== -->
+
+
+  <div>
+    <h1 style="padding-top: 50px; text-align: center;">Trending Anime of the <%=season%> </h1>  
+
+  </div>
+<% include ./partials/footer %>
               
         
