@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function(req, res){
     res.render('home');
 });
+
+app.get('/signup', (req, res)=> {
+    res.render('signup');
+})
 app.listen(3000, ()=>{
     console.log('Server started!');
 });
