@@ -1,0 +1,18 @@
+:root {
+    --active-color: rgba(0,0,0,0.65);    
+}
+  
+  .card-signup {
+    border: 1px solid #dadce0;
+    border-radius: .5rem;
+    background-color:  rgb(240,255,255)
+  }
+  
+  .card-signup .card-body {
+    padding: 48px 40px 36px;
+  }
+  body{
+    background:rgb(107,142,35)
+  }
+
+  
