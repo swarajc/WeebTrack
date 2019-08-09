@@ -12,12 +12,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
     
 
 //====ROUTES=====//
-app.get('/', function(req, res){
+app.get('/', (req, res)=> {
     res.render('home');
 });
 
 app.get('/signup', (req, res)=> {
     res.render('signup');
+})
+
+app.post('/', (req, res)=>{
+    res.redirect('/');
 })
 app.listen(3000, ()=>{
     console.log('Server started!');
