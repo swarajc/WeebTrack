@@ -1,37 +1,45 @@
 <% include ./partials/header %> 
 
   <!-- // Anime Season (Spring, Summer, Fall and Winter) -->
- 
-  <!-- ===================================== -->
 
-  <%  var currentDate = new Date(),
-      month = currentDate.getMonth();  
-      var season = '';
-      if( month >= 3 && month <= 5)
-      {
-        season = 'Spring';
-      }
-      else if(month >= 6 && month <= 8 )
-      {
-        season  = 'Summer';
-      }
-      else if(month >= 9 && month <= 11)
-      {
-        season = 'Fall';
-      }
-      else
-      {
-        season = 'Winter';
-      }
+  <%
+  var currentDate = new Date(),
+  season = '',
+  month = currentDate.getMonth(),
+  year = currentDate.getFullYear();
+  if( month >= 3 && month <= 5)
+  {
+      season = 'Spring';
+  }
+  else if(month >= 6 && month <= 8 )
+  {
+      season  = 'Summer';
+  }
+  else if(month >= 9 && month <= 11)
+  {
+      season = 'Fall';
+  }
+  else
+  {
+      season = 'Winter';  
+  }
   %>
+ 
+<!-- ----------------------------------------   -->
 
-<!-- ======================================== -->
 
-
-  <div>
-    <h1 style="padding: 30px; text-align: center; color: aliceblue">Trending Anime of the <%=season%> </h1>  
-    
-  </div>
+<div>
+    <h1 id = 'header' >Trending Anime of the <%=season%></h1>  
+    <div class="container">
+        <div class="row">
+            <% for (var i = 0; i < 12; i++){%>
+                <div class="col col-md-4">
+                    <img class = 'image'src="<%= data['anime'][i]['image_url']%>">
+                </div>                  
+            <% } %>
+        </div>
+    </div>
+</div>
 <% include ./partials/footer %>
 
         
