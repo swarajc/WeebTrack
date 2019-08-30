@@ -5,11 +5,19 @@
 }
 
 .col{
-    padding-left: 75px;
+    /* padding-left: 75px; */
+    align-content: center;
 }
 
 .image{
-    padding-right: 30px;
+    /* max-width:100%; */
+    /* height:auto; */
     padding-top: 50px;
     padding-bottom: 100px;
 }
+
+img.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
