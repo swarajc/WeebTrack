@@ -1,0 +1,32 @@
+{
+  "name": "weebtrack",
+  "version": "1.0.0",
+  "description": "An app to track your anime and manga. ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "app": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swarajc/WeebTrack.git"
+  },
+  "author": "Swaraj Chavan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swarajc/WeebTrack/issues"
+  },
+  "homepage": "https://github.com/swarajc/WeebTrack#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "config": "^3.2.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.1",
+    "validation": "0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
