@@ -60,8 +60,8 @@ button:hover{
 
 
 body{
-  /* background-color: cornflowerblue; */
-  background-image: url("https://wallpaperplay.com/walls/full/d/f/f/3128.jpg");
+  background-color: mediumpurple;
+  /* background-image: url("https://wallpaperplay.com/walls/full/d/f/f/3128.jpg");111 */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -77,7 +77,7 @@ body{
 
 .input-icon {
   background: white;
-  color: grey
+  color: grey 
 }
 
 .input-icon:hover{
