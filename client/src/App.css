@@ -5,7 +5,7 @@
   text-align: center;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 3%;
+  padding-top: 1%;
   padding-bottom: 3% ;
 }
 
@@ -14,14 +14,14 @@
 }
 
 .card{
-  border: 1px solid lavender;
+  border: 1px solid gainsboro;
   /* opacity: 0.6; */
 }
 
 .card-content{
   padding: 5%;
-  background-color: lavender;
-  opacity: 0.6;
+  background-color: gainsboro ;
+  opacity: 0.8; 
 }
 
 .form-item-divs{
@@ -31,37 +31,70 @@
 input
 {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 60px;
+  /* border-radius: 60px; */
   box-sizing: border-box;
   resize: vertical; 
 }
 
 button{
-  width: 100%;
+  width: 75%;
   padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 60px;
+  border: 1px solid black;
+  /* border-radius: 60px; */
   box-sizing: border-box;
   resize: vertical;
 }
 
 button:hover{
-  background-color: aquamarine;
+  background-color: black;
+  color: white
 }
 .buttonDiv{
   padding-left: 25%;
   padding-right: 25%;
+  text-decoration-color: blue
 
 }
 
 
 body{
   /* background-color: cornflowerblue; */
-  background-image: url("https://images4.alphacoders.com/907/907288.jpg");
+  background-image: url("https://wallpaperplay.com/walls/full/d/f/f/3128.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  overflow: hidden;
 }
 
+/* Material Icon aligning */
+.input-icon-wrap {
+  border: 1px solid #ddd;    
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.input-icon {
+  background: white;
+  color: grey
+}
+
+.input-icon:hover{
+  color: black;
+}
+
+.input-with-icon {
+  border: none;
+  flex: 1;
+}
+
+.input-icon, .input-with-icon {
+  padding: 4px;
+}
+
+label{
+  padding-bottom: 1%;
+  display: flex;
+  flex-direction: row
+}
