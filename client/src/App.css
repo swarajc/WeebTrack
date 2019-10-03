@@ -14,7 +14,7 @@
 }
 
 .card{
-  border: 1px solid gainsboro;
+  border: 1px solid mediumpurple;
   /* opacity: 0.6; */
 }
 
@@ -55,7 +55,6 @@ button:hover{
   padding-left: 25%;
   padding-right: 25%;
   text-decoration-color: blue
-
 }
 
 

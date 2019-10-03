@@ -1,26 +1,26 @@
-const express = require('express');
-const connectDB = require('./config/db');
-var cors = require('cors');
+const   express   = require('express'),
+        cors      = require('cors'),
+        mongoose  = require('mongoose');
 
-// routes
-const books = require('./routes/api/books');
+require('dotenv').config();
 
 const app = express();
+const port = process.env.PORT || 5000;
 
-// Connect Database
-connectDB();
+app.use(cors());
+app.use(express.json());
 
-// cors
-app.use(cors({ origin: true, credentials: true }));
+const uri = process.env.ATLAS_URI;
 
-// Init Middleware
-app.use(express.json({ extended: false }));
+mongoose.connect(uri, {useNewUrlParser:true, useCreateIndex :true, useUnifiedTopology: true });
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+    console.log("MongoDB Connected!");
+})
 
 app.get('/', (req, res) => res.send('Hello world!'));
 
-// use Routes
-app.use('/api/books', books);
-
-const port = process.env.PORT || 8082;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
