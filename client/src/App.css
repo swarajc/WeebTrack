@@ -11,17 +11,20 @@
 
 .homeHeader{
   text-align: center;
+  color:aliceblue;
+  opacity: 0;
+  
 }
 
 .card{
-  border: 1px solid mediumpurple;
+  /* border: 1px solid mediumpurple; */
   /* opacity: 0.6; */
 }
 
 .card-content{
   padding: 5%;
-  background-color: gainsboro ;
-  opacity: 0.8; 
+  background-color: lightgray ;
+  opacity: 0.4; 
 }
 
 .form-item-divs{
@@ -49,7 +52,7 @@ button{
 
 button:hover{
   background-color: black;
-  color: white
+  color: white;
 }
 .buttonDiv{
   padding-left: 25%;
@@ -59,8 +62,8 @@ button:hover{
 
 
 body{
-  background-color: mediumpurple;
-  /* background-image: url("https://wallpaperplay.com/walls/full/d/f/f/3128.jpg");111 */
+  /* background-color: mediumpurple; */
+  background-image: url("https://images4.alphacoders.com/607/thumb-1920-607866.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

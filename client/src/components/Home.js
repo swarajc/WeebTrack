@@ -28,7 +28,7 @@ export default function Home(){
     return(
         <div className="container">
             <div className="homeHeader">
-                <h1>Welcome to WeebTrack!</h1>
+                <h2>Welcome to WeebTrack!</h2>
                 <p>Now track your anime and manga with ease.</p>
             </div>
             <div>
@@ -36,6 +36,8 @@ export default function Home(){
                     
                     <div className = "card">
                         <div className = "card-content">
+                            {/* <h2>Welcome to WeebTrack!</h2>
+                            <p>Now track your anime and manga with ease.</p> */}
                             <h2>Create an account</h2>
 
                             <div className = "form-item-divs">
