@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../styles/SignUp.css';
 // import { makeStyles } from '@material-ui/core/styles';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 // import { IconButton } from '@material-ui/core';    
