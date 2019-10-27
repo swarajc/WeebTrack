@@ -2,3 +2,15 @@ h1{
     font-family: 'Lobster Two', cursive;
     text-align: center;
 }
+
+.item-row{
+    display: flex;
+}
+
+.item-col{
+    flex: 50%;
+}
+
+.container{ 
+
+}
