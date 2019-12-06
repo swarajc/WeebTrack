@@ -3,14 +3,14 @@ h1{
     text-align: center;
 }
 
-.item-row{
+.wrapper{ 
     display: flex;
+    flex-wrap: wrap;
+    padding: 3%;
+    padding-left: 9%;
+    justify-content: center;
 }
 
-.item-col{
-    flex: 50%;
-}
-
-.container{ 
-
-}
+ .spacer{
+    margin-bottom: 4%;
+} 

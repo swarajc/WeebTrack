@@ -2,7 +2,7 @@ import React from 'react';
 import season from './Season.js'
 import '../styles/Home.css'
 import {useState, useEffect} from 'react'
-import {Row, Col} from 'react-simple-flex-grid';
+// import {Row, Col} from 'react-simple-flex-grid';
 
 const Home = () => {
     const [AnimeItems, setAnimeItems] = useState();
@@ -21,12 +21,17 @@ const Home = () => {
         )
 
     return AnimeItems ? (
-        <div className = 'container'>
+        <div className='content'>
             <h1>Trending Anime Of The {season}</h1>
             <div className = 'wrapper'>       
             {
                 AnimeItems.map(animeItem => (
-                        <img src={animeItem.image_url} width="" alt=""/>        
+                    <div className = 'spacer' key = {animeItem.mal_id}>
+                        <img src={animeItem.image_url} width="60%" alt=""/>
+                    </div>
+                        
+                    
+
                 ))
             }
         </div> 
