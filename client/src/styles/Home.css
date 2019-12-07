@@ -21,7 +21,7 @@ h1{
 }
 
  .spacer{
-    display: inline;
+    display: inline-block;
     margin: 3%;
     background-color: white;
 } 
