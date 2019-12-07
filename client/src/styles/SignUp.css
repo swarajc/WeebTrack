@@ -15,6 +15,11 @@
     opacity: 0;
     
   }
+
+  h2{
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
   
   .card{
     /* border: 1px solid mediumpurple; */
@@ -22,7 +27,7 @@
   }
   
   .card-content{
-    padding: 5%;
+    padding: 7%;
     background-color: lightgray ;
     opacity: 0.4; 
   }
