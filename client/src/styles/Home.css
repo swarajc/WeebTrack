@@ -1,16 +1,27 @@
+* {
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+  }
 h1{
     font-family: 'Lobster Two', cursive;
     text-align: center;
+    margin: 2%;
 }
 
+.thumbnail {
+    width: 96px;
+    height: 133.3px;
+}
 .wrapper{ 
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3%;
-    padding-left: 9%;
-    justify-content: center;
+    margin-top: 4%;
+    margin-left: 7%;
+    margin-right: 7%;
+    text-align: center;
 }
 
  .spacer{
-    margin-bottom: 4%;
+    display: inline;
+    margin: 3%;
+    background-color: white;
 } 
