@@ -27,7 +27,7 @@ const Home = () => {
                 {
                     AnimeItems.map(animeItem => (
                         <div className="spacer" key={animeItem.mal_id}>
-                            <a href="#">
+                            <a href={"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title}>
                                 <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                             </a>
                         </div>
@@ -36,7 +36,7 @@ const Home = () => {
                 }
             </div>
         </div>
-    ) : (<p>There are no items.</p>)
+    ) : (<p>Loading...</p>)
 }
 
 export default Home;
