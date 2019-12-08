@@ -27,7 +27,8 @@ const Home = () => {
                 {
                     AnimeItems.map(animeItem => (
                         <div className="spacer" key={animeItem.mal_id}>
-                            <a href={"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title}>
+                            {/* <a href={"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title}> */}
+                            <a href="/signup">
                                 <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                             </a>
                         </div>
