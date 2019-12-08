@@ -14,6 +14,10 @@ h1{
     height: 133.3px;
 }
 
+.thumbnail:hover{
+    opacity: 0.5;
+}
+
 .wrapper{ 
     padding-top: 4%;
     padding-left: 7%;
