@@ -13,14 +13,23 @@ h1{
     width: 96px;
     height: 133.3px;
 }
+
 .wrapper{ 
-    margin-top: 4%;
-    margin-left: 7%;
-    margin-right: 7%;
+    padding-top: 4%;
+    padding-left: 7%;
+    padding-right: 7%;
     text-align: center;
 }
 
  .spacer{
     display: inline-block;
-    margin: 3%;
+    padding: 3%;
 } 
+.thumbnail-wrapper{
+    
+}
+
+.thumbnail-title{
+    width: 96px;
+    font-size: 85%;
+}

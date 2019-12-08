@@ -1,7 +1,7 @@
 import React from 'react';
 import season from './Season.js'
 import '../styles/Home.css'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 // import {Row, Col} from 'react-simple-flex-grid';
 
 const Home = () => {
@@ -18,22 +18,26 @@ const Home = () => {
             })
             .catch(error => console.log(error));
     }
-        )
+    )
 
     return AnimeItems ? (
         <div className='content'>
             <h1>Trending Anime Of The {season}</h1>
-            <div className = 'wrapper'>       
-            {
-                AnimeItems.map(animeItem => (
-                    <div className = 'spacer' key = {animeItem.mal_id}>
-                        <img className='thumbnail'src={animeItem.image_url} alt=""/>
-                    </div>
-                ))
-            }
-        </div> 
+            <div className='wrapper'>
+                {
+                    AnimeItems.map(animeItem => (
+                        <div className="spacer" key={animeItem.mal_id}>
+                            <div className='thumbnail-wrapper'>
+                                <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
+                            </div>
+                            <p className='thumbnail-title'>{animeItem.title}</p>
+                        </div>
+
+                    ))
+                }
+            </div>
         </div>
-    ): (<p>There are no items.</p>)
+    ) : (<p>There are no items.</p>)
 }
 
-export default Home ;
+export default Home;
