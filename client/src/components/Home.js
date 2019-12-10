@@ -32,9 +32,9 @@ const Home = () => {
                                 <a href="/signup">
                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                 </a>
-                                <p className = 'thumbnail-title'>
+                                <a href= {"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title} className = 'thumbnail-title'>
                                     {animeItem.title}
-                                </p>
+                                </a>
                             </div>
                         </div>
 

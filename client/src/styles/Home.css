@@ -12,7 +12,7 @@ h1{
 .thumbnail {
     width: 96px;
     height: 133.3px;
-    border: 2px snow solid;
+    border: 2px blanchedalmond solid;
     border-radius: 10px;
 
 }
@@ -46,6 +46,10 @@ h1{
     align-self:auto;
     justify-content: center;
     color: black;
+    text-decoration-line: none;
 }
 
+.thumbnail-title:hover{
+    color: blanchedalmond;
+}
 
