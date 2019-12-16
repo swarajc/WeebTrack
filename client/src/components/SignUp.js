@@ -13,7 +13,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 
 // });
 
-export default function Home(){
+export default function SignUp(){
 
     // const classes = useStyles();
     const handleClick = (e) => {
@@ -26,11 +26,11 @@ export default function Home(){
       }
     
     return(
-        <div className="container">
-            <div className="homeHeader">
+        <div className="scontainer">
+            {/* <div className="homeHeader">
                 <h2>Welcome to WeebTrack!</h2>
                 <p>Now track your anime and manga with ease.</p>
-            </div>
+            </div> */}
             <div>
                 <form action = "" method = "POST">
                     
@@ -38,7 +38,7 @@ export default function Home(){
                         <div className = "card-content">
                             {/* <h2>Welcome to WeebTrack!</h2>
                             <p>Now track your anime and manga with ease.</p> */}
-                            <h2>Create an account</h2>
+                            <h1>Create an account</h1>
 
                             <div className = "form-item-divs">
                                 <label htmlFor = "username">

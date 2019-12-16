@@ -1,0 +1,21 @@
+.container{
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 35%;
+    padding-right: 35%;
+    padding-top: 10%;
+}
+
+.forgot-password{
+    display: flex;
+    flex-direction: row;
+    text-decoration-line: none;
+    color: darkblue;
+    font-weight: bold;
+}
+
+.forgot-password:hover{
+    color: blue
+}
+

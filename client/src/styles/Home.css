@@ -2,8 +2,8 @@
     box-sizing:border-box;
     margin-bottom: 2%;
     padding:0;
-    
   }
+
 h1{
     font-family: 'Lobster Two', cursive;
     text-align: center;
@@ -33,7 +33,7 @@ h1{
     margin-right: 7%;
     text-align: center;
     font-family: 'Roboto Slab', serif;
-    font-size: 95%;
+    font-size: 95%;  
 }
 
 .child-wrapper{
