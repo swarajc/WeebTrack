@@ -40,9 +40,13 @@ export default function SignIn() {
                             </div>
                         </div>
 
-                        <a href='#' className = 'forgot-password form-item-divs'>
+                        <a href='/forgotpassword' className = 'forgot-pass-create form-item-divs'>
                             Forgot Password?
-                        </a>                           
+                        </a>
+
+                        <a href='/signup' className = 'forgot-pass-create form-item-divs'>
+                            New to WeebTrack? Create an account.    
+                        </a>                              
 
                         <div className="buttonDiv form-item-divs">
                             <button>Sign In</button>

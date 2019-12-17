@@ -27,12 +27,14 @@ const Home = () => {
                 {
                     AnimeItems.map(animeItem => (
                         <div className="child-wrapper" key={animeItem.mal_id}>
-                            {/* <a href={"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title}> */}
                             <div className="spacer">
-                                <a href="/signup">
+                                <a href="/signin">
                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                 </a>
-                                <a href= {"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title} className = 'thumbnail-title'>
+                                {/* <a href= {"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title} className = 'thumbnail-title'>
+                                    {animeItem.title}
+                                </a> */}
+                                <a href= '/signin' className = 'thumbnail-title'>
                                     {animeItem.title}
                                 </a>
                             </div>
