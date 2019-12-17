@@ -38,7 +38,7 @@ export default function SignUp(){
                         <div className = "card-content">
                             {/* <h2>Welcome to WeebTrack!</h2>
                             <p>Now track your anime and manga with ease.</p> */}
-                            <h1>Create an account</h1>
+                            <h1 className = 'header'>Create an account</h1>
 
                             <div className = "form-item-divs">
                                 <label htmlFor = "username">

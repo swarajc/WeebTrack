@@ -4,10 +4,10 @@
     padding:0;
   }
 
-h1{
+.header{
     font-family: 'Lobster Two', cursive;
     text-align: center;
-    margin: 2%;
+    margin: 5%;
 }
 
 .thumbnail {
@@ -28,7 +28,7 @@ h1{
 
 .wrapper{ 
     border-radius: 2%;
-    margin-top: 6%;
+    margin-top: 3%;
     margin-left: 7%;
     margin-right: 7%;
     text-align: center;

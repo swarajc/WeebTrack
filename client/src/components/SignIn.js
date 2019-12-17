@@ -20,7 +20,7 @@ export default function SignIn() {
                     <div className="card-content">
                         {/* <h2>Welcome to WeebTrack!</h2>
                             <p>Now track yo ur anime and manga with ease.</p> */}
-                        <h1>Sign in</h1>
+                        <h1 className = 'header'>Sign in</h1>
                         <div className="form-item-divs">
                             <label htmlFor="emailid">
                                 Email address

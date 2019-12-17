@@ -22,8 +22,10 @@ const Home = () => {
 
     return AnimeItems ? (
         <div className='content'>
-            <h1>Trending Anime Of The {season}</h1>
             <div className='wrapper'>
+                <div className="header">
+                    <h1>Trending Anime Of The {season}</h1>
+                </div>
                 {
                     AnimeItems.map(animeItem => (
                         <div className="child-wrapper" key={animeItem.mal_id}>

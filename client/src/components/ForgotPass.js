@@ -10,7 +10,7 @@ const ForgotPass = () => {
                     <div className="card-content">
                         {/* <h2>Welcome to WeebTrack!</h2>
                             <p>Now track yo ur anime and manga with ease.</p> */}
-                        <h1>Forgot Password</h1>
+                        <h1 className = 'header'>Forgot Password</h1>
                         <div>
                             <label htmlFor="emailid">
                                 Email address
