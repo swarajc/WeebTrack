@@ -1,6 +1,7 @@
 import React from 'react';
-import '../styles/forgotpass.css';
-const forgotpass = () => {
+import '../styles/ForgotPass.css';
+
+const ForgotPass = () => {
 
     return (
         <div className = 'fcontainer'>
@@ -29,4 +30,4 @@ const forgotpass = () => {
     )
 }
 
-export default forgotpass;
+export default ForgotPass;
