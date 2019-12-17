@@ -34,7 +34,7 @@ const Home = () => {
                                 {/* <a href= {"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title} className = 'thumbnail-title'>
                                     {animeItem.title}
                                 </a> */}
-                                <a href= '/signin' className = 'thumbnail-title'>
+                                <a href='/signin' className='thumbnail-title'>
                                     {animeItem.title}
                                 </a>
                             </div>

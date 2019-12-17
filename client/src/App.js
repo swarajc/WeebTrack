@@ -15,7 +15,7 @@ function App(){
                     <Route exact path = '/home' component = {Home} />   
                     <Route path = '/signin' component = {SignIn} />
                     <Route path = '/signup' component = {SignUp} />
-                    <Route path = '/forgotpassword' component = {ForgotPass} />
+                    <Route path = '/forgotpassword' component = {ForgotPass} />cd cli   
                     {/* <Routh path = '/' component = {moreInfo}/> */}
                 </Switch>
             </div>
