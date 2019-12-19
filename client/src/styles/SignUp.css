@@ -104,4 +104,10 @@
     display: flex;
     flex-direction: row
   }
-  
+
+  #message{
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    font-size: 98%;
+  }

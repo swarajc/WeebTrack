@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/SignIn.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import { Link } from 'react-router-dom';
+
 
 export default function SignIn() {
 
@@ -39,13 +41,13 @@ export default function SignIn() {
                             </div>
                         </div>
 
-                        <a href='/forgotpassword' className = 'forgot-pass-create form-item-divs'>
+                        <Link to='/forgotpassword' className = 'forgot-pass-create form-item-divs'>
                             Forgot Password?
-                        </a>
+                        </Link>
 
-                        <a href='/signup' className = 'forgot-pass-create form-item-divs'>
+                        <Link to='/signup' className = 'forgot-pass-create form-item-divs'>
                             New to WeebTrack? Create an account.    
-                        </a>                              
+                        </Link>                              
 
                         <div className="buttonDiv form-item-divs">
                             <button>Sign In</button>
