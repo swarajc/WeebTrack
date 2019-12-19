@@ -3,11 +3,9 @@ import season from './Season.js';
 import '../styles/Home.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import {Row, Col} from 'react-simple-flex-grid';
 
 const Home = () => {
     const [AnimeItems, setAnimeItems] = useState();
-    // var page = 1;
     useEffect(() => {
         fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
             .then(res => res.json())

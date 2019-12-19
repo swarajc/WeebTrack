@@ -1,21 +1,9 @@
 import React from 'react';
 import '../styles/SignUp.css';
-// import { makeStyles } from '@material-ui/core/styles';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-// import { IconButton } from '@material-ui/core';    
-  
-
-// const useStyles = makeStyles({
-//     EyeIconButton:{
-//         padding: "10%",
-//     },
-
-
-// });
 
 export default function SignUp(){
 
-    // const classes = useStyles();
     const handleClick = (e) => {
         var x = document.getElementById("password");
         if (x.type === "password") {
@@ -27,17 +15,11 @@ export default function SignUp(){
     
     return(
         <div className="scontainer">
-            {/* <div className="homeHeader">
-                <h2>Welcome to WeebTrack!</h2>
-                <p>Now track your anime and manga with ease.</p>
-            </div> */}
             <div>
                 <form action = "" method = "POST">
                     
                     <div className = "card">
                         <div className = "card-content">
-                            {/* <h2>Welcome to WeebTrack!</h2>
-                            <p>Now track your anime and manga with ease.</p> */}
                             <h1 className = 'header'>Create an account</h1>
 
                             <div className = "form-item-divs">

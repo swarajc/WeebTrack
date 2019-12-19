@@ -35,7 +35,6 @@ export default function SignIn() {
                                 </label>
                             <div className="input-icon-wrap">
                                 <span className="input-icon" type="button" onClick={handleClick}><VisibilityIcon className="Icon"></VisibilityIcon></span>
-                                {/* <span className = "input-icon"><IconButton className = {classes.EyeIconButton} onClick = {handleClick}><VisibilityIcon className= "Icon"/></IconButton></span> */}
                                 <input className="input-with-icon" id="password" type="password" required />
                             </div>
                         </div>
