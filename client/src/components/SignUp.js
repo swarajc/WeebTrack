@@ -1,64 +1,74 @@
 import React from 'react';
 import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useInput } from '../hooks/input-hook';
 
 
 export default function SignUp() {
 
-    const [Username, setUsername] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Pass, setPass] = useState('');
-    const [Cpass, setCpass] = useState('');
+    const {value: username, bind: bindUsername, reset: resetUsername} = useInput('');
+    const {value: email, bind: bindEmail, reset: resetEmail} = useInput('');
+    const {value: pass, bind: bindPass, reset: resetPass} = useInput('');
+    const {value: cpass, bind: bindCpass, reset: resetCpass} = useInput('');
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(username);
+        console.log(email);
+        console.log(pass);
+        console.log(cpass);
+        resetUsername();
+        resetEmail();
+        resetPass();
+        resetCpass();
     }
 
-    const handleChange = (e) => {
+    // const handleChange = (e) => {
 
 
-        let message = document.getElementById('message');
-        switch (e.target.id) {
-            case 'username': setUsername(e.target.value);
+    //     let message = document.getElementById('message');
+    //     switch (e.target.id) {
+    //         case 'username': setUsername(e.target.value);
 
-                break;
+    //             break;
 
-            case 'emailid': setEmail(e.target.value);
+    //         case 'emailid': setEmail(e.target.value);
 
-                break;
+    //             break;
 
-            case 'password': setPass(e.target.value);
-                let element = document.getElementById('cpassword');
-                element.disabled = false;
-                if (e.target.value === '') {
-                    element.value = '';
-                    element.disabled = true;
-                    message.textContent = '';
-                }
-                break;
+    //         case 'password': setPass(e.target.value);
+    //             let element = document.getElementById('cpassword');
+    //             element.disabled = false;
+    //             if (e.target.value === '') {
+    //                 element.value = '';
+    //                 element.disabled = true;
+    //                 message.textContent = '';
+    //             }
+    //             break;
 
-            case 'cpassword': setCpass(e.target.value);
-                if (e.target.value !== Pass)
-                {
-                    message.textContent = 'Passwords do not match';
-                    message.style.cssText = "color: red";
-                }
+    //         case 'cpassword': setCpass(e.target.value);
+    //             if (e.target.value !== Pass)
+    //             {
+    //                 message.textContent = 'Passwords do not match';
+    //                 message.style.cssText = "color: red";
+    //             }
                     
-                else
-                {
-                    message.textContent = 'Passwords match';
-                    message.style.cssText = "color: green";
-                }
+    //             else
+    //             {
+    //                 message.textContent = 'Passwords match';
+    //                 message.style.cssText = "color: green";
+    //             }
                     
                 
-                break;
+    //             break;
 
-            default: console.log('invalid id');
+    //         default: console.log('invalid id');
 
-                break;
-        }
-    }
+    //             break;
+    //     }
+    // }
 
     const handleClick = (e) => {
         var x = document.getElementById("password");
@@ -83,7 +93,7 @@ export default function SignUp() {
                                     Username
                                 </label>
                                 <div>
-                                    <input id="username" type="text" onChange={handleChange} required />
+                                    <input id="username" type="text" {...bindUsername} required />
                                 </div>
                             </div>
 
@@ -92,7 +102,7 @@ export default function SignUp() {
                                     Email address
                                 </label>
                                 <div>
-                                    <input id="emailid" type="email" onChange={handleChange} required />
+                                    <input id="emailid" type="email" {...bindEmail} required />
                                 </div>
                             </div>
 
@@ -102,7 +112,7 @@ export default function SignUp() {
                                 </label>
                                 <div className="input-icon-wrap">
                                     <span className="input-icon" type="button" onClick={handleClick}><VisibilityIcon className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" id="password" type="password" onChange={handleChange} required />
+                                    <input className="input-with-icon" id="password" type="password" {...bindPass} required />
                                 </div>
                             </div>
 
@@ -111,7 +121,7 @@ export default function SignUp() {
                                     Confirm password
                                 </label>
                                 <div>
-                                    <input id="cpassword" type="password" disabled onChange={handleChange} required />
+                                    <input id="cpassword" type="password"  {...bindCpass} required />
                                 </div>
                             </div>
 
