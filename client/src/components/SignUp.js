@@ -39,19 +39,21 @@ export default function SignUp() {
                 break;
 
             case 'cpassword': setCpass(e.target.value);
-                if (e.target.value !== Pass)
+                if (e.target.value !== Pass && e.target.value!=='') 
                 {
                     message.textContent = 'Passwords do not match';
                     message.style.cssText = "color: red";
                 }
-                    
+                else if(e.target.value === '')
+                {
+                    message.textContent = '';
+                }
                 else
                 {
                     message.textContent = 'Passwords match';
                     message.style.cssText = "color: green";
                 }
                     
-                
                 break;
 
             default: console.log('invalid id');
