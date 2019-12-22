@@ -1,11 +1,20 @@
 import React from 'react';
 import '../styles/ForgotPass.css';
+import { useInput } from '../hooks/input-hook';
 
 const ForgotPass = () => {
 
+    const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email);
+        resetEmail();    
+    }
+
     return (
         <div className = 'fcontainer'>
-            <form action="" method = "POST">
+            <form action="" method = "POST" onSubmit = {handleSubmit}>
                 <div className="card">
                     <div className="card-content">
                         {/* <h2>Welcome to WeebTrack!</h2>
@@ -16,7 +25,7 @@ const ForgotPass = () => {
                                 Email address
                                 </label>
                             <div>
-                                <input id="emailid" type="email" required />
+                                <input id="emailid" type="email" {...bindEmail}required />
                             </div>
                         </div>
                         <div className="buttonDiv form-item-divs">

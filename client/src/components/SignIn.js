@@ -2,22 +2,34 @@ import React from 'react';
 import '../styles/SignIn.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Link } from 'react-router-dom';
+import { useInput } from '../hooks/input-hook';
+import { useShow } from '../hooks/show-hook';
+
 
 
 export default function SignIn() {
 
+    const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
+    const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
+    const { value: inputType, show: showinputType } = useShow('password');
+
     const handleClick = (e) => {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-          x.type = "text";
-        } else {
-          x.type = "password";
+        if (e.target.className.baseVal === "MuiSvgIcon-root Icon" || e.target.className.baseVal === "") {
+            showinputType(inputType);
         }
-      }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(email);
+        console.log(pass);   
+        resetEmail();    
+        resetPass();
+    }
 
     return (
         <div className = 'container'>
-            <form action="" method="GET">
+            <form action="" method="GET" onSubmit={handleSubmit}>
                 <div className="card">
                     <div className="card-content">
                         {/* <h2>Welcome to WeebTrack!</h2>
@@ -28,17 +40,17 @@ export default function SignIn() {
                                 Email address
                                 </label>
                             <div>
-                                <input id="emailid" type="email" required />
+                                <input id="emailid" type="email" {...bindEmail} required />
                             </div>
                         </div>
                         <div className="form-item-divs">
-                            <label htmlFor="password">
-                                Password
+                                <label htmlFor="password">
+                                    Password
                                 </label>
-                            <div className="input-icon-wrap">
-                                <span className="input-icon" type="button" onClick={handleClick}><VisibilityIcon className="Icon"></VisibilityIcon></span>
-                                <input className="input-with-icon" id="password" type="password" required />
-                            </div>
+                                <div className="input-icon-wrap">
+                                    <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
+                                    <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
+                                </div>
                         </div>
 
                         <Link to='/forgotpassword' className = 'forgot-pass-create form-item-divs'>

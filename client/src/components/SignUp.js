@@ -16,7 +16,6 @@ export default function SignUp() {
 
     const { value: inputType, show: showinputType } = useShow('password');
 
-    const {}
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -78,7 +77,7 @@ export default function SignUp() {
 
     const handleClick = (e) => {
         if (e.target.className.baseVal === "MuiSvgIcon-root Icon" || e.target.className.baseVal === "") {
-            showinputType();
+            showinputType(inputType);
         }
     }
 
