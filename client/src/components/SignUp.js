@@ -3,15 +3,20 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 // import { useState } from 'react';
 import { useInput } from '../hooks/input-hook';
+import { useShow } from '../hooks/show-hook';
 
 
 export default function SignUp() {
 
-    const {value: username, bind: bindUsername, reset: resetUsername} = useInput('');
-    const {value: email, bind: bindEmail, reset: resetEmail} = useInput('');
-    const {value: pass, bind: bindPass, reset: resetPass} = useInput('');
-    const {value: cpass, bind: bindCpass, reset: resetCpass} = useInput('');
-    
+    // let inputType = 'password';
+    const { value: username, bind: bindUsername, reset: resetUsername } = useInput('');
+    const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
+    const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
+    const { value: cpass, bind: bindCpass, reset: resetCpass } = useInput('');
+
+    const { value: inputType, show: showinputType } = useShow('password');
+
+    const {}
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -54,14 +59,14 @@ export default function SignUp() {
     //                 message.textContent = 'Passwords do not match';
     //                 message.style.cssText = "color: red";
     //             }
-                    
+
     //             else
     //             {
     //                 message.textContent = 'Passwords match';
     //                 message.style.cssText = "color: green";
     //             }
-                    
-                
+
+
     //             break;
 
     //         default: console.log('invalid id');
@@ -69,13 +74,11 @@ export default function SignUp() {
     //             break;
     //     }
     // }
+    // MuiSvgIcon-root Icon
 
     const handleClick = (e) => {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
+        if (e.target.className.baseVal === "MuiSvgIcon-root Icon" || e.target.className.baseVal === "") {
+            showinputType();
         }
     }
 
@@ -111,8 +114,8 @@ export default function SignUp() {
                                     Password
                                 </label>
                                 <div className="input-icon-wrap">
-                                    <span className="input-icon" type="button" onClick={handleClick}><VisibilityIcon className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" id="password" type="password" {...bindPass} required />
+                                    <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
+                                    <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
                                 </div>
                             </div>
 
