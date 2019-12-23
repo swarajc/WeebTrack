@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-// import { useState } from 'react';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
 
@@ -23,6 +22,28 @@ export default function SignUp() {
         console.log(email);
         console.log(pass);
         console.log(cpass);
+
+        // let data = {
+        //     username: username,
+        //     emailId: email
+        // }
+
+        // console.log(data);
+        let url = "http://localhost:5000/signup/add";
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json'
+              },    
+            body: JSON.stringify({
+                username: username,
+                emailId: email
+            })
+        })
+        .then((result) => result.json())
+        .then((info) => { console.log(info); })
+
+        // .then();
         resetUsername();
         resetEmail();
         resetPass();
@@ -38,7 +59,7 @@ export default function SignUp() {
     return (
         <div className="scontainer">
             <div>
-                <form action="" method="POST" onSubmit={handleSubmit}>
+                <form action="http://localhost:5000/signup/add" method="post" onSubmit={handleSubmit}>
 
                     <div className="card">
                         <div className="card-content">
