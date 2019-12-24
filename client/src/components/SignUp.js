@@ -5,9 +5,10 @@ import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
 
 
-export default function SignUp() {
+export default function SignUp(props) {
 
-    // let inputType = 'password';
+    console.log(props);
+
     const { value: username, bind: bindUsername, reset: resetUsername } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
@@ -28,19 +29,21 @@ export default function SignUp() {
             method: 'post',
             headers: {
                 'Content-type': 'application/json'
-              },    
+            },
             body: JSON.stringify({
                 username: username,
                 emailId: email
             })
         })
-        .then((result) => result.json())
-        .then((info) => { console.log(info); })
+            .then((result) => result.json())
+            .then((info) => { console.log(info); })
 
         resetUsername();
         resetEmail();
         resetPass();
         resetCpass();
+
+        props.history.push('/signin');
     }
 
     const handleClick = (e) => {
@@ -100,7 +103,6 @@ export default function SignUp() {
                             <div className="buttonDiv form-item-divs">
                                 <button>Sign Up</button>
                             </div>
-
 
                         </div>
                     </div>
