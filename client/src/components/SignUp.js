@@ -32,11 +32,11 @@ export default function SignUp(props) {
             },
             body: JSON.stringify({
                 username: username,
-                emailId: email
+                emailId: email,
+                password: pass
             })
         })
-            .then((result) => result.json())
-            .then((info) => { console.log(info); })
+            .then((result) => result.json());
 
         resetUsername();
         resetEmail();
