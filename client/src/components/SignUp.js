@@ -20,9 +20,6 @@ export default function SignUp(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(username);
-        console.log(email);
-        console.log(pass);
-        console.log(cpass);
 
         let url = "http://localhost:5000/signup/add";
         fetch(url, {

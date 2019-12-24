@@ -1,21 +1,11 @@
-const router = require('express').Router();
-const User = require('../../models/user');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs')
+const router = require('express').Router(),
+    User = require('../../models/user'),
+    bcrypt = require('bcryptjs'),
+    jwt = require('jsonwebtoken');
 
 
-require('dotenv').config();
 
 router.route('/add').post((req, res) => {
-
-    let uri = process.env.ATLAS_URI,
-        connection = mongoose.connection;
-
-    mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
-
-    connection.once('open', () => {
-        console.log("MongoDB Connected!");
-    })
 
     let username = req.body.username,
         emailId = req.body.emailId,
@@ -28,7 +18,10 @@ router.route('/add').post((req, res) => {
 
     newUser.save()
         .then(() => console.log(newUser))
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => res.status(400).json('Error: ' + err)); 
+
 });
+
+
 
 module.exports = router;    
