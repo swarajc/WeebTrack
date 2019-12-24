@@ -23,12 +23,6 @@ export default function SignUp() {
         console.log(pass);
         console.log(cpass);
 
-        // let data = {
-        //     username: username,
-        //     emailId: email
-        // }
-
-        // console.log(data);
         let url = "http://localhost:5000/signup/add";
         fetch(url, {
             method: 'post',
@@ -43,7 +37,6 @@ export default function SignUp() {
         .then((result) => result.json())
         .then((info) => { console.log(info); })
 
-        // .then();
         resetUsername();
         resetEmail();
         resetPass();
