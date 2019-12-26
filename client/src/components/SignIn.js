@@ -7,7 +7,7 @@ import { useShow } from '../hooks/show-hook';
 
 
 
-export default function SignIn() {
+export default function SignIn(props) {
 
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
@@ -21,20 +21,33 @@ export default function SignIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
-        console.log(pass);   
-        resetEmail();    
+
+        let url = "http://localhost:5000/signup/add";
+        fetch(url, {
+            method: 'get',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                emailId: email,
+                password: pass
+            })
+        })
+            .then((result) => result.json());
+
+        resetEmail();
         resetPass();
+
     }
 
     return (
-        <div className = 'container'>
+        <div className='container'>
             <form action="" method="GET" onSubmit={handleSubmit}>
                 <div className="card">
                     <div className="card-content">
                         {/* <h2>Welcome to WeebTrack!</h2>
                             <p>Now track yo ur anime and manga with ease.</p> */}
-                        <h1 className = 'header'>Sign in</h1>
+                        <h1 className='header'>Sign in</h1>
                         <div className="form-item-divs">
                             <label htmlFor="emailid">
                                 Email address
@@ -44,27 +57,27 @@ export default function SignIn() {
                             </div>
                         </div>
                         <div className="form-item-divs">
-                                <label htmlFor="password">
-                                    Password
+                            <label htmlFor="password">
+                                Password
                                 </label>
-                                <div className="input-icon-wrap">
-                                    <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
-                                </div>
+                            <div className="input-icon-wrap">
+                                <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
+                                <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
+                            </div>
                         </div>
 
-                        <Link to='/forgotpassword' className = 'forgot-pass-create form-item-divs'>
+                        <Link to='/forgotpassword' className='forgot-pass-create form-item-divs'>
                             Forgot Password?
                         </Link>
 
-                        <Link to='/signup' className = 'forgot-pass-create form-item-divs'>
-                            New to WeebTrack? Create an account.    
-                        </Link>                              
+                        <Link to='/signup' className='forgot-pass-create form-item-divs'>
+                            New to WeebTrack? Create an account.
+                        </Link>
 
                         <div className="buttonDiv form-item-divs">
                             <button>Sign In</button>
                         </div>
-                        
+
                     </div>
                 </div>
             </form>

@@ -19,7 +19,6 @@ export default function SignUp(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(username);
 
         let url = "http://localhost:5000/signup/add";
         fetch(url, {
@@ -52,7 +51,7 @@ export default function SignUp(props) {
     return (
         <div className="scontainer">
             <div>
-                <form action="http://localhost:5000/signup/add" method="post" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
 
                     <div className="card">
                         <div className="card-content">
