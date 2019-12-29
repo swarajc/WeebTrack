@@ -42,11 +42,10 @@ export default function SignIn(props) {
 
     return (
         <div className='container'>
-            <form action="" method="GET" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className="card">
                     <div className="card-content">
-                        {/* <h2>Welcome to WeebTrack!</h2>
-                            <p>Now track yo ur anime and manga with ease.</p> */}
+                        
                         <h1 className='header'>Sign in</h1>
                         <div className="form-item-divs">
                             <label htmlFor="emailid">

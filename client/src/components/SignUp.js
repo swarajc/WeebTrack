@@ -7,8 +7,6 @@ import { useShow } from '../hooks/show-hook';
 
 export default function SignUp(props) {
 
-    console.log(props);
-
     const { value: username, bind: bindUsername, reset: resetUsername } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
@@ -20,7 +18,7 @@ export default function SignUp(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let url = "http://localhost:5000/signup/add";
+        let url = "http://localhost:5000/users/add";
         fetch(url, {
             method: 'post',
             headers: {
@@ -32,7 +30,8 @@ export default function SignUp(props) {
                 password: pass
             })
         })
-            .then((result) => result.json());
+            .then((result) => result.json())
+            .then((info) => console.log(info));
 
         resetUsername();
         resetEmail();
