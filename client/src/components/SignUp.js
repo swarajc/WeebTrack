@@ -55,7 +55,7 @@ export default function SignUp(props) {
                     resetUsername();
                     resetEmail();
                     resetPass();
-                    resetCpass();
+                    resetCpass();   
                 }
                 
             });

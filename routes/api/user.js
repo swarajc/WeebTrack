@@ -21,14 +21,42 @@ router.route('/add').post((req, res) => {
             console.log(newUser);
             res.json('user created');
         })
-        .catch(err => res.json('Error: ' + err)); 
+        .catch(err => res.json('Error: ' + err));
 
 });
 
-router.route('/validate').get((req, res) => {
+router.route('/validate').post((req, res) => {
 
     let emailId = req.body.emailId,
         password = req.body.password;
+
+    User.findOne({
+        
+        emailId: emailId
+    
+    }).then((user) => {
+
+        if (!user) {
+
+            res.json();
+        
+        }
+        else {
+
+            console.log(user);
+            if (bcrypt.compareSync(password, user.hash)) {
+
+                const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+                res.json({ status: "success", message: "user found!!!", data: { user: user, token: token } });
+
+            }
+            else {
+
+                res.json({ status: "error", message: "Invalid email/password!!!", data: null });
+
+            }
+        }
+    });
 
 
 });

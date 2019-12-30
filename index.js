@@ -2,13 +2,16 @@ const express = require('express'),
     cors = require('cors'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
-    logger = require('morgan');
+    logger = require('morgan'),
+    jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+app.set('secretKey', 'nodeRestApi');
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());

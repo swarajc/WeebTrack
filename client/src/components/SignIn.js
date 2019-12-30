@@ -24,7 +24,7 @@ export default function SignIn(props) {
 
         let url = "http://localhost:5000/users/validate";
         fetch(url, {
-            method: 'get',
+            method: 'post',
             headers: {
                 'Content-type': 'application/json'
             },
@@ -33,7 +33,8 @@ export default function SignIn(props) {
                 password: pass
             })
         })
-            .then((result) => result.json());
+            .then((result) => result.json())
+            .then((info) => console.log(info));
 
         resetEmail();
         resetPass();
