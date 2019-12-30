@@ -17,8 +17,19 @@ router.route('/add').post((req, res) => {
     const newUser = new User({ username, emailId, hash });
 
     newUser.save()
-        .then(() => console.log(newUser))
+        .then(() => {
+            console.log(newUser);
+            res.json('user created');
+        })
         .catch(err => res.json('Error: ' + err)); 
+
+});
+
+router.route('/validate').get((req, res) => {
+
+    let emailId = req.body.emailId,
+        password = req.body.password;
+
 
 });
 

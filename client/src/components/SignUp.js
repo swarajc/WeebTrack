@@ -3,19 +3,25 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
+import { useState } from 'react';
 
 
 export default function SignUp(props) {
 
+    //INPUT HOOKS
     const { value: username, bind: bindUsername, reset: resetUsername } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
     const { value: cpass, bind: bindCpass, reset: resetCpass } = useInput('');
 
+    //SHOW HOOK FOR PWD
     const { value: inputType, show: showinputType } = useShow('password');
 
-
+    //FUNCTION INVOKED AFTER SUBMIT
     const handleSubmit = (e) => {
+
+        var redirect = '/signup'
+
         e.preventDefault();
 
         let url = "http://localhost:5000/users/add";
@@ -31,16 +37,31 @@ export default function SignUp(props) {
             })
         })
             .then((result) => result.json())
-            .then((info) => console.log(info));
+            .then((info) => {
+                console.log(info);
+                if (info === 'user created') {
 
-        resetUsername();
-        resetEmail();
-        resetPass();
-        resetCpass();
-
-        props.history.push('/signin');
+                    resetUsername();
+                    resetEmail();
+                    resetPass();
+                    resetCpass();
+                    redirect = '/signin'
+                    console.log(redirect);
+                    props.history.push(redirect);
+                
+                }
+                else
+                {
+                    resetUsername();
+                    resetEmail();
+                    resetPass();
+                    resetCpass();
+                }
+                
+            });
     }
 
+    //INVOKED AT CLICK ACTION ON EYE ICON
     const handleClick = (e) => {
         if (e.target.className.baseVal === "MuiSvgIcon-root Icon" || e.target.className.baseVal === "") {
             showinputType(inputType);

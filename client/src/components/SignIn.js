@@ -22,7 +22,7 @@ export default function SignIn(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let url = "http://localhost:5000/signup/add";
+        let url = "http://localhost:5000/users/validate";
         fetch(url, {
             method: 'get',
             headers: {
