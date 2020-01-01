@@ -11,17 +11,18 @@ router.route('/add').post((req, res) => {
         emailId = req.body.emailId,
         password = req.body.password;
 
+
     let salt = bcrypt.genSaltSync(10),
         hash = bcrypt.hashSync(password, salt);
 
     const newUser = new User({ username, emailId, hash });
 
-    newUser.save()
+    newUser.save()  
         .then(() => {
             console.log(newUser);
             res.json('user created');
         })
-        .catch(err => res.json('Error: ' + err));
+        .catch(err => res.json(err));
 
 });
 

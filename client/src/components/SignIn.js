@@ -47,7 +47,7 @@ export default function SignIn(props) {
             .then((info) => {
 
                 console.log(info);
-                if (info.status == 'failure') {
+                if (info.status === 'failure' || info.status === 'error') {
                     resetEmail();
                     resetPass();
                 }
