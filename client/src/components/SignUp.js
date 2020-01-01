@@ -3,16 +3,23 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
-import { useState } from 'react';
-
+import { useState, useRef, useEffect } from 'react';
 
 export default function SignUp(props) {
+
+    const myInput = useRef(null);
+
+    useEffect(() => {
+
+        myInput.current.focus();
+    
+    }, []);
 
     //INPUT HOOKS
     const { value: username, bind: bindUsername, reset: resetUsername } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
-    const { value: cpass, bind: bindCpass, reset: resetCpass } = useInput('');
+    // const { value: cpass, bind: bindCpass, reset: resetCpass } = useInput('');
 
     //SHOW HOOK FOR PWD
     const { value: inputType, show: showinputType } = useShow('password');
@@ -44,20 +51,19 @@ export default function SignUp(props) {
                     resetUsername();
                     resetEmail();
                     resetPass();
-                    resetCpass();
+                    // resetCpass();
                     redirect = '/signin'
                     console.log(redirect);
                     props.history.push(redirect);
-                
+
                 }
-                else
-                {
+                else {
                     resetUsername();
                     resetEmail();
                     resetPass();
-                    resetCpass();   
+                    // resetCpass();
                 }
-                
+
             });
     }
 
@@ -82,7 +88,7 @@ export default function SignUp(props) {
                                     Username
                                 </label>
                                 <div>
-                                    <input id="username" type="text" {...bindUsername} required />
+                                    <input id="username" type="text" ref={myInput}{...bindUsername} required />
                                 </div>
                             </div>
 
@@ -105,16 +111,16 @@ export default function SignUp(props) {
                                 </div>
                             </div>
 
-                            <div className="form-item-divs">
+                            {/* <div className="form-item-divs">
                                 <label htmlFor="cpassword">
                                     Confirm password
                                 </label>
                                 <div>
                                     <input id="cpassword" type="password"  {...bindCpass} required />
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <span id='message'></span>
+                            {/* <span id='message'></span> */}
 
                             <div className="buttonDiv form-item-divs">
                                 <button>Sign Up</button>

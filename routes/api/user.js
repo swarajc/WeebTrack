@@ -38,7 +38,7 @@ router.route('/validate').post((req, res) => {
 
         if (!user) {
 
-            res.json();
+            res.json({ status: "failure", message: "not registered" });
         
         }
         else {
@@ -47,7 +47,7 @@ router.route('/validate').post((req, res) => {
             if (bcrypt.compareSync(password, user.hash)) {
 
                 const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-                res.json({ status: "success", message: "user found!!!", data: { user: user, token: token } });
+                res.json({ status: "success", message: "user found!!!", data: { user: user, token: token } });  
 
             }
             else {
@@ -56,7 +56,7 @@ router.route('/validate').post((req, res) => {
 
             }
         }
-    });
+    })
 
 
 });

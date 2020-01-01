@@ -4,10 +4,20 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Link } from 'react-router-dom';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
+import { useRef, useEffect } from 'react';
 
 
 
 export default function SignIn(props) {
+
+    const myInput = useRef(null);
+
+    useEffect(() => {
+
+        myInput.current.focus();
+
+    }, []);
+
 
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
@@ -34,7 +44,15 @@ export default function SignIn(props) {
             })
         })
             .then((result) => result.json())
-            .then((info) => console.log(info));
+            .then((info) => {
+
+                console.log(info);
+                if (info.status == 'failure') {
+                    resetEmail();
+                    resetPass();
+                }
+
+            });
 
         resetEmail();
         resetPass();
@@ -46,14 +64,14 @@ export default function SignIn(props) {
             <form onSubmit={handleSubmit}>
                 <div className="card">
                     <div className="card-content">
-                        
+
                         <h1 className='header'>Sign in</h1>
                         <div className="form-item-divs">
                             <label htmlFor="emailid">
                                 Email address
                                 </label>
                             <div>
-                                <input id="emailid" type="email" {...bindEmail} required />
+                                <input id="emailid" type="email" ref={myInput}{...bindEmail} required />
                             </div>
                         </div>
                         <div className="form-item-divs">
