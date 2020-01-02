@@ -45,11 +45,14 @@ export default function SignIn(props) {
         })
             .then((result) => result.json())
             .then((info) => {
-
                 console.log(info);
-                if (info.status === 'failure' || info.status === 'error') {
+                if (info.user) {
                     resetEmail();
                     resetPass();
+                }
+                else
+                {
+                    console.log(info.error);
                 }
 
             });

@@ -47,8 +47,8 @@ export default function SignUp(props) {
         })
             .then((result) => result.json())
             .then((info) => {
-                console.log(info);
-                if (info === 'user created') {
+            
+                if (info.newUser) {
 
                     resetUsername();
                     resetEmail();

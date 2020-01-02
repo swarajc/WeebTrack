@@ -1,67 +1,80 @@
 const router = require('express').Router(),
     User = require('../../models/user'),
-    bcrypt = require('bcryptjs'),
-    jwt = require('jsonwebtoken');
+    auth = require('../../middleware/auth');
 
 
+router.route('/add').post(async (req, res) => {
 
-router.route('/add').post((req, res) => {
+    try {
 
-    let username = req.body.username,
-        emailId = req.body.emailId,
-        password = req.body.password;
+        let { username, emailId, password } = req.body
 
+        let newUser = new User({ username, emailId, password });
 
-    let salt = bcrypt.genSaltSync(10),
-        hash = bcrypt.hashSync(password, salt);
+        await newUser.save()
 
-    const newUser = new User({ username, emailId, hash });
+        const token = await newUser.generateAuthToken();
+        res.status(201).send({ newUser, token })
 
-    newUser.save()  
-        .then(() => {
-            console.log(newUser);
-            res.json('user created');
-        })
-        .catch(err => res.json(err));
-
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
-router.route('/validate').post((req, res) => {
+router.route('/validate').post(async (req, res) => {
 
-    let emailId = req.body.emailId,
-        password = req.body.password;
+    try {
 
-    User.findOne({
+        let { emailId, password } = req.body;
         
-        emailId: emailId
-    
-    }).then((user) => {
+        let user = await User.findByCredentials(emailId, password);
 
         if (!user) {
-
-            res.json({ status: "failure", message: "not registered" });
-        
+            return res.status(401).send({ error: 'Login Failed! Check authentication credentials' });
         }
-        else {
 
-            console.log(user);
-            if (bcrypt.compareSync(password, user.hash)) {
+        const token = await user.generateAuthToken();
+        res.send({ user, token });
 
-                const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-                res.json({ status: "success", message: "user found!!!", data: { user: user, token: token } });  
-
-            }
-            else {
-
-                res.json({ status: "error", message: "Invalid email/password!!!", data: null });
-
-            }
-        }
-    })
-
+    } catch (error) {
+        res.status(400).send(error);
+    }
 
 });
 
+
+router.get('/users/me', auth, async (req, res) => {
+    // View logged in user profile
+    res.send(req.user)
+})
+
+
+
+router.post('/users/me/logout', auth, async (req, res) => {
+    // Log user out of the application
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token != req.token
+        })
+        await req.user.save()
+        res.send()
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
+
+
+
+router.post('/users/me/logoutall', auth, async (req, res) => {
+    // Log user out of all devices
+    try {
+        req.user.tokens.splice(0, req.user.tokens.length)
+        await req.user.save()
+        res.send()
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
 
 
 module.exports = router;    
