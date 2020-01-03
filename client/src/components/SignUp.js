@@ -113,7 +113,7 @@ export default function SignUp(props) {
                                 </label>
                                 <div className="input-icon-wrap">
                                     <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
+                                    <input className="input-with-icon" pattern = ".{8,}" title = "8 characters minimum" id="password" type={inputType} {...bindPass} required />
                                 </div>
                             </div>
 

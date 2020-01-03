@@ -26,7 +26,7 @@ router.route('/validate').post(async (req, res) => {
     try {
 
         let { emailId, password } = req.body;
-        
+
         let user = await User.findByCredentials(emailId, password);
 
         if (!user) {
@@ -43,14 +43,14 @@ router.route('/validate').post(async (req, res) => {
 });
 
 
-router.get('/users/me', auth, async (req, res) => {
+router.route('/me').get(auth, async (req, res) => {
     // View logged in user profile
     res.send(req.user)
-})
+});
 
 
 
-router.post('/users/me/logout', auth, async (req, res) => {
+router.post('me/logout', auth, async (req, res) => {
     // Log user out of the application
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -65,7 +65,7 @@ router.post('/users/me/logout', auth, async (req, res) => {
 
 
 
-router.post('/users/me/logoutall', auth, async (req, res) => {
+router.post('me/logoutall', auth, async (req, res) => {
     // Log user out of all devices
     try {
         req.user.tokens.splice(0, req.user.tokens.length)

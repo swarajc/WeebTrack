@@ -9,9 +9,7 @@ require('dotenv').config();
 
 
 const app = express();
-const port = process.env.PORT || 5000;
-
-app.set('secretKey', 'nodeRestApi');
+const port = process.env.PORT;
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
