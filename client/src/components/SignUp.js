@@ -3,7 +3,7 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function SignUp(props) {
 

@@ -1,19 +1,33 @@
 import React from 'react';
 import season from './Season.js';
 import '../styles/Home.css';
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [AnimeItems, setAnimeItems] = useState();
+    const isMounted = useRef(true);
+
     useEffect(() => {
-        fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
+
+        // isMounted.current = true;
+
+        if(isMounted.current === true){
+            fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
             .then(res => res.json())
             .then(response => {
                 let items = response.top;
                 setAnimeItems(items);   
             })
             .catch(error => console.log(error));
+        }    
+        
+        return () => {
+
+            isMounted.current = false;
+        
+        }
+    
     }
     )
 

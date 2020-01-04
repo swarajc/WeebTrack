@@ -13,10 +13,13 @@ export default function SignIn(props) {
     const myInput = useRef(null);
 
     useEffect(() => {
-
+        
         myInput.current.focus();
 
-    }, []);
+        return () => {
+            
+        }
+    }, []);     
 
 
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
