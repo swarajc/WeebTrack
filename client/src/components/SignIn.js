@@ -13,13 +13,11 @@ export default function SignIn(props) {
     const myInput = useRef(null);
 
     useEffect(() => {
-        
+
         myInput.current.focus();
 
-        return () => {
-            
-        }
-    }, []);     
+
+    }, []);
 
 
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
@@ -48,15 +46,26 @@ export default function SignIn(props) {
         })
             .then((result) => result.json())
             .then((info) => {
-                console.log(info);
+
                 if (info.user) {
                     resetEmail();
                     resetPass();
+                    let token = info.token;
+                    fetch("http://localhost:5000/users/u", {
+                        method: 'get',
+                        headers: {
+                            'Authorization' : `Bearer ${token}`  
+                        }
+                    })
+                        .then((response) => response.json())
+                        .then((infom) => {
+                            console.log(infom);
+                        })
                 }
                 else
-                {
-                    console.log(info.error);
-                }
+                    if (info.error) {
+                        console.log(info.error);
+                    }
 
             });
 

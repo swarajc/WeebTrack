@@ -37,20 +37,20 @@ router.route('/validate').post(async (req, res) => {
         res.send({ user, token });
         
     } catch (error) {
-        res.status(400).send(error);
+        res.send({error});
     }
 
 });
 
 
-router.route('/me').get(auth, async (req, res) => {
+router.route('/u').get(auth, async (req, res) => {
     // View logged in user profile
-    res.send(req.user)
+    res.send(req.user)  
 });
 
 
 
-router.post('me/logout', auth, async (req, res) => {
+router.post('/u/logout', auth, async (req, res) => {
     // Log user out of the application
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
@@ -65,7 +65,7 @@ router.post('me/logout', auth, async (req, res) => {
 
 
 
-router.post('me/logoutall', auth, async (req, res) => {
+router.post('/me/logoutall', auth, async (req, res) => {
     // Log user out of all devices
     try {
         req.user.tokens.splice(0, req.user.tokens.length)

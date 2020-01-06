@@ -10,8 +10,6 @@ const Home = () => {
 
     useEffect(() => {
 
-        // isMounted.current = true;
-
         if(isMounted.current === true){
             fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
             .then(res => res.json())
@@ -44,9 +42,6 @@ const Home = () => {
                                 <Link to="/signin">
                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                 </Link>
-                                {/* <Link to = {"https://myanimelist.net/anime/" + animeItem.mal_id + "/" + animeItem.title} className = 'thumbnail-title'>
-                                    {animeItem.title}
-                                </Link> */}
 
                                 <Link to='/signin' className='thumbnail-title'>
                                     {animeItem.title}
