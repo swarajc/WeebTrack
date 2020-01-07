@@ -5,16 +5,22 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import ForgotPass from './components/ForgotPass';
 import Landing from './components/Landing';
+import {useState} from 'react';
 
 function App() {
+
+    const propData = useState({
+        caughtToken: ''
+    });
+
     return (
         <BrowserRouter>
             <div className="App">
                 <Switch>
                     <Route exact path='/' component={Landing} />
                     <Route exact path='/home' component={Home} />
-                    <Route path='/signin' component={SignIn} />
-                    <Route path='/signup' component={SignUp} />
+                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} {...propData} />)} /> 
+                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} {...propData} />)} />
                     <Route path='/forgotpassword' component={ForgotPass} />
                 </Switch>
             </div>

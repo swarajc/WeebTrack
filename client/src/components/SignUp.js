@@ -7,6 +7,7 @@ import { useRef, useEffect } from 'react';
 
 export default function SignUp(props) {
 
+    console.log(props[0]);
     const myInput = useRef(null);
 
     const message = '';
@@ -53,11 +54,12 @@ export default function SignUp(props) {
                     resetUsername();
                     resetEmail();
                     resetPass();
-
+                    props[0].caughtToken = info.token;
+                    console.log(props[0].caughtToken);
                     redirect = '/signin'
                     console.log(redirect);
                     props.history.push(redirect);
-
+                    
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {
                     console.log('Success?');
