@@ -7,11 +7,11 @@ import { useShow } from '../hooks/show-hook';
 import { useRef, useEffect } from 'react';
 
 
-
 export default function SignIn(props) {
 
     const myInput = useRef(null);
     console.log(props[0].caughtToken);
+    
     useEffect(() => {
 
         myInput.current.focus();
@@ -33,7 +33,6 @@ export default function SignIn(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        var taken;
         let url = "http://localhost:5000/users/validate";
         fetch(url, {
             method: 'post',
@@ -49,23 +48,12 @@ export default function SignIn(props) {
             .then((info) => {
 
                 if (info.user) {
+
                     resetEmail();
                     resetPass();
+
                     console.log(info.user);
-                    const token = info.token;
-                    taken = info.token;
-                    console.log(taken);
-                    fetch("http://localhost:5000/users/u", {
-                        method: 'get',
-                        headers: {
-                            'Authorization' : `Bearer ${token}`  
-                        }
-                    })
-                        .then((response) => response.json())
-                        .then((infom) => {
-                            console.log(infom);
-                        })
-                    // props.history.push('/u');
+                    props.history.push('/u/dashboard');                    
                 }
                 else
                     if (info.error) {

@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import ForgotPass from './components/ForgotPass';
 import Landing from './components/Landing';
+import Dashboard from './components/Dashboard';
 import {useState} from 'react';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} {...propData} />)} /> 
                     <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} {...propData} />)} />
                     <Route path='/forgotpassword' component={ForgotPass} />
+                    <Route path='/u/dashboard' render={(routeProps) => (<Dashboard {...routeProps} {...propData} />)} />
                 </Switch>
             </div>
         </BrowserRouter>
