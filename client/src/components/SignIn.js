@@ -10,8 +10,7 @@ import { useRef, useEffect } from 'react';
 export default function SignIn(props) {
 
     const myInput = useRef(null);
-    console.log(props[0].caughtToken);
-    
+        
     useEffect(() => {
 
         myInput.current.focus();
@@ -51,7 +50,8 @@ export default function SignIn(props) {
 
                     resetEmail();
                     resetPass();
-
+                    props[0].caughtToken = info.token ;
+                    console.log(props[0].caughtToken);
                     console.log(info.user);
                     props.history.push('/u/dashboard');                    
                 }

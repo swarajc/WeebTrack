@@ -13,15 +13,18 @@ export default function Dashboard(props){
     useEffect(() => {
 
         if(isMounted.current === true){
-            let url = "http://localhost:5000/u";
+            let url = "http://localhost:5000/users/u";
             fetch(url, {
                 method: 'get',
                 headers: {
                     'Content-type': 'application/json',
+                    'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
-                }
+                },
+                user: {},
+                token: ''
             })
-                .then((result) => result.json())
+                // .then((result) => result.json())
                 .then((info) => {
     
                     if (info.user) {

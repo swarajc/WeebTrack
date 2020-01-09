@@ -43,9 +43,10 @@ router.route('/validate').post(async (req, res) => {
 });
 
 
-router.route('/u').get(auth, async (req, res) => {
+router.route('/u/').get(auth, async (req, res) => {
     // View logged in user profile
-    res.send(req.user)  
+    res.send(req.user)
+
 });
 
 
