@@ -1,10 +1,11 @@
 import React from 'react';
 import '../styles/Dashboard.css';
-import {Link} from 'react-router-dom';
-import {useState, useEffect, useRef} from 'react';
+import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { browserHistory } from 'react-router';
 
 
-export default function Dashboard(props){
+export default function Dashboard(props) {
 
     const isMounted = useRef(true);
     console.log(props);
@@ -12,7 +13,7 @@ export default function Dashboard(props){
 
     useEffect(() => {
 
-        if(isMounted.current === true){
+        if (isMounted.current === true) {
             let url = "http://localhost:5000/users/u";
             fetch(url, {
                 method: 'get',
@@ -26,21 +27,25 @@ export default function Dashboard(props){
             })
                 // .then((result) => result.json())
                 .then((info) => {
-    
+
                     if (info.user) {
-                        console.log(info.user);                    
+                        console.log(info.user);
                     }
                     else
                         if (info.error) {
                             console.log(info.error);
                         }
-    
-                });
-            
-            }
-        })
 
-    return(
+                });
+
+        }
+
+        window.onpopstate = (e) => {
+            props.history.push('/u/dashboard');
+        }
+    })
+
+    return (
         <div>YO</div>
     )
 }
