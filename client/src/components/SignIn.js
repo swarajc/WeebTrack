@@ -52,7 +52,6 @@ export default function SignIn(props) {
                     resetPass();
                     props[0].caughtToken = info.token ;
                     console.log(props[0].caughtToken);
-                    console.log(info.user);
                     props.history.push('/u/dashboard');                    
                 }
                 else

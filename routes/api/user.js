@@ -45,21 +45,20 @@ router.route('/validate').post(async (req, res) => {
 
 router.route('/u/').get(auth, async (req, res) => {
     // View logged in user profile
-    res.send(req.user)
-
+    res.send(req.user);
 });
 
 
 
 router.post('/u/logout', auth, async (req, res) => {
-    // Log user out of the application
+    
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
-            return token.token != req.token
+            return token.token != req.token;
         })
         await req.user.save()
         res.send()
-    } catch (error) {
+    } catch (error) {   
         res.status(500).send(error)
     }
 })

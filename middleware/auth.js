@@ -8,10 +8,20 @@ const auth = async(req, res, next) => {
     console.log(data);
     try {
         const user = await User.findOne({ _id: data._id, 'tokens.token': token })
+
         if (!user) {
             throw new Error()
         }
-        req.user = user
+
+        const sendUser = {
+            _id: user._id,
+            username: user.username,
+            emailId: user.emailId
+        }
+
+        console.log(sendUser)
+
+        req.user = sendUser
         req.token = token
         next();
     } catch (error) {

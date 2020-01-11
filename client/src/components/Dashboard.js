@@ -25,12 +25,13 @@ export default function Dashboard(props) {
                 user: {},
                 token: ''
             })
-                // .then((result) => result.json())
+                .then((result) => result.json())
                 .then((info) => {
 
-                    if (info.user) {
-                        console.log(info.user);
+                    if (info) {
+                        console.log(info);
                     }
+                    
                     else
                         if (info.error) {
                             console.log(info.error);
@@ -46,6 +47,10 @@ export default function Dashboard(props) {
     })
 
     return (
-        <div>YO</div>
+        <div>
+            <div>
+
+            </div>
+        </div>
     )
 }
