@@ -40,10 +40,11 @@ function App() {
                     <Route path='/forgotpassword' component={ForgotPass} />
                     <AuthenticatedRoute
                         path="/u/dashboard"
-                        component = {Dashboard}
+                        Component = {Dashboard}
                     appProps={ isAuthenticated }
                     caughtToken = {caughtToken}
                     />
+
                 </Switch>
             </div>
         </BrowserRouter>
