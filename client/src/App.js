@@ -13,25 +13,21 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 function App() {
 
     const [isAuthenticated, userHasAuthenticated] = useState(false);
-
-    const propData = useState({
-        caughtToken: ''
-    });
-
+    const [caughtToken, updateCaughtToken] = useState('');
     useEffect(() => {
 
-        whenLoad();
-
-    });
-
-
-    const whenLoad = () => {
-
-        if (propData.caughtToken !== '') {
+        if (caughtToken !== '') {
             userHasAuthenticated(true);
         }
 
+    }, [caughtToken]);
+
+    function updateProp(received){
+        updateCaughtToken(received);
     }
+
+    console.log(caughtToken);
+    console.log(isAuthenticated);
 
     return (
         <BrowserRouter>
@@ -39,13 +35,13 @@ function App() {
                 <Switch>
                     <Route exact path='/' component={Landing} />
                     <Route exact path='/home' component={Home} />
-                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} {...propData} />)} />
-                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} {...propData} />)} />
+                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} caughtToken = {caughtToken} parentCallBack = {updateProp} />)} />
+                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} caughtToken = {caughtToken} />)} />
                     <Route path='/forgotpassword' component={ForgotPass} />
                     <AuthenticatedRoute
                         path="/u/dashboard"
-                        render={(routeProps) => (<Dashboard {...routeProps} {...propData} />)}
-                        appProps={{ isAuthenticated }}
+                        component = {Dashboard}
+                    appProps={ isAuthenticated }
                     />
                 </Switch>
             </div>

@@ -1,16 +1,17 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import {Redirect} from 'react-router';
+// import DashBoard from '../components/Dashboard';
 
-export default function AuthenticatedRoute({ component: C, appProps, ...rest }) {
+export default function AuthenticatedRoute( {component, appProps, ...rest }) {
+    
     return (
         <Route
-            {...rest}
             render={props =>
-                appProps.isAuthenticated
-                    ? <C {...props} {...appProps} />
+                appProps
+                    ? <component{...props} {...appProps} {...rest}/>
                     : <Redirect
-                        to={`/signin?redirect=${props.location.pathname}${props.location.search}`}
+                        to={`/signin?redirect=${props.location.pathname}${props.location.search}`}  
                     />}
         />
     );

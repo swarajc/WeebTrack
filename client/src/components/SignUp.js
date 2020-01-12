@@ -7,7 +7,6 @@ import { useRef, useEffect } from 'react';
 
 export default function SignUp(props) {
 
-    console.log(props[0]);
     const myInput = useRef(null);
 
     const message = '';
@@ -27,6 +26,7 @@ export default function SignUp(props) {
     //SHOW HOOK FOR PWD
     const { value: inputType, show: showinputType } = useShow('password');
 
+    
     //FUNCTION INVOKED AFTER SUBMIT
     const handleSubmit = (e) => {
 

@@ -4,11 +4,11 @@ import { useEffect, useRef } from 'react';
 
 
 
-export default function Dashboard(props) {
+export default function Dashboard({history, caughtToken}) {
 
     const isMounted = useRef(true);
-    console.log(props);
-    const token = props[0].caughtToken;
+    console.log(caughtToken);
+    const token = caughtToken;
 
     useEffect(() => {
 
@@ -47,7 +47,7 @@ export default function Dashboard(props) {
         }
 
         window.onpopstate = (e) => {
-            props.history.push('/u/dashboard');
+            history.push('/u/dashboard');
         }
     })
 

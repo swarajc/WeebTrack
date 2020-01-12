@@ -4,20 +4,21 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Link } from 'react-router-dom';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
-import { useRef, useEffect } from 'react'; 
+import { useRef, useEffect } from 'react';
 
+export default function SignIn({history, caughtToken, parentCallBack}) {
 
-export default function SignIn(props) {
-
+    console.log(history);
+    console.log(caughtToken);
+    console.log(parentCallBack);
+    
     const myInput = useRef(null);
         
     useEffect(() => {
 
         myInput.current.focus();
 
-
     }, []);
-
 
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
     const { value: pass, bind: bindPass, reset: resetPass } = useInput('');
@@ -47,12 +48,13 @@ export default function SignIn(props) {
             .then((info) => {
 
                 if (info.user) {
-
+                                                    
                     resetEmail();
                     resetPass();
-                    props[0].caughtToken = info.token ;
-                    console.log(props[0].caughtToken);
-                    props.history.push('/u/dashboard');                    
+                    caughtToken = info.token;
+                    parentCallBack(info.token);
+                    // console.log(caughtToken);
+                    history.push('/u/dashboard');
                 }
                 else
                     if (info.error) {
