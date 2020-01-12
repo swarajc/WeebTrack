@@ -42,6 +42,7 @@ function App() {
                         path="/u/dashboard"
                         component = {Dashboard}
                     appProps={ isAuthenticated }
+                    caughtToken = {caughtToken}
                     />
                 </Switch>
             </div>
