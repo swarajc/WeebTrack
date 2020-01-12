@@ -53,7 +53,6 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                     resetPass();
                     caughtToken = info.token;
                     parentCallBack(info.token);
-                    // console.log(caughtToken);
                     history.push('/u/dashboard');
                 }
                 else

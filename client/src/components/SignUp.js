@@ -5,7 +5,7 @@ import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
 import { useRef, useEffect } from 'react';
 
-export default function SignUp(props) {
+export default function SignUp({history, caughtToken, parentCallBack}) {
 
     const myInput = useRef(null);
 
@@ -54,11 +54,11 @@ export default function SignUp(props) {
                     resetUsername();
                     resetEmail();
                     resetPass();
-                    props[0].caughtToken = info.token;
-                    console.log(props[0].caughtToken);
+                    caughtToken = info.token;
+                    console.log(caughtToken);
                     redirect = '/signin'
                     console.log(redirect);
-                    props.history.push(redirect);
+                    history.push(redirect);
                     
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {

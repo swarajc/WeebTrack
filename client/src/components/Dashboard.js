@@ -53,7 +53,7 @@ export default function Dashboard({history, caughtToken}) {
 
     return (
         <div>
-
+        
         </div>
     )
 }
