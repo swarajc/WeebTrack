@@ -14,8 +14,10 @@ const Home = () => {
             fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
             .then(res => res.json())
             .then(response => {
+
                 let items = response.top;
-                setAnimeItems(items);   
+                setAnimeItems(items);
+                   
             })
             .catch(error => console.log(error));
         }    

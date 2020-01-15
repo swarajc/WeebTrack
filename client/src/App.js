@@ -8,6 +8,7 @@ import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import { useState, useEffect } from 'react';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
+import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 
 
 function App() {
@@ -20,9 +21,9 @@ function App() {
             userHasAuthenticated(true);
         }
 
-    }, [caughtToken]);
+    }, [caughtToken, isAuthenticated]);
 
-    function updateProp(received){
+    function updateProp(received) {
         updateCaughtToken(received);
     }
 
@@ -33,18 +34,45 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Switch>
-                    <Route exact path='/' component={Landing} />
+                    {/* <Route exact path='/' component={Landing} />
                     <Route exact path='/home' component={Home} />
-                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} caughtToken = {caughtToken} parentCallBack = {updateProp} />)} />
-                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} caughtToken = {caughtToken} />)} />
-                    <Route path='/forgotpassword' component={ForgotPass} />
+                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} caughtToken={caughtToken} parentCallBack={updateProp} />)} />
+                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} caughtToken={caughtToken} />)} />
+                    <Route path='/forgotpassword' component={ForgotPass} /> */}
                     <AuthenticatedRoute
                         path="/u/dashboard"
-                        Component = {Dashboard}
-                    appProps={ isAuthenticated }
-                    caughtToken = {caughtToken}
+                        Component={Dashboard}
+                        appProps={isAuthenticated}
+                        caughtToken={caughtToken}
                     />
-
+                    <UnauthenticatedRoute
+                        exact path='/'
+                        Component={Landing}
+                        appProps={ isAuthenticated }
+                    />
+                    <UnauthenticatedRoute
+                        path='/home'
+                        Component={Home}
+                        appProps={ isAuthenticated }
+                    />
+                    <UnauthenticatedRoute
+                        path='/signin'
+                        Component={SignIn}
+                        appProps={ isAuthenticated }
+                        caughtToken={caughtToken}
+                        parentCallBack={updateProp}
+                    />
+                    <UnauthenticatedRoute
+                        path='/signup'
+                        Component={SignUp}
+                        caughtToken={caughtToken}
+                        appProps={ isAuthenticated }
+                    />
+                    <UnauthenticatedRoute
+                        path="/forgotpassword"
+                        Component={ForgotPass}
+                        appProps={ isAuthenticated }
+                    />
                 </Switch>
             </div>
         </BrowserRouter>

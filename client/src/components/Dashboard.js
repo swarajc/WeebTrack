@@ -13,17 +13,25 @@ export default function Dashboard({history, caughtToken}) {
     useEffect(() => {
 
         if (isMounted.current === true) {
-            if (token !== '') {
+            if (token !== '') 
+            {
+            
                 let url = "http://localhost:5000/users/u";
                 fetch(url, {
+
                     method: 'get',
+
                     headers: {
+
                         'Content-type': 'application/json',
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`
+                    
                     },
+                    
                     user: {},
                     token: ''
+
                 })
                     .then((result) => result.json())
                     .then((info) => {
@@ -53,7 +61,7 @@ export default function Dashboard({history, caughtToken}) {
 
     return (
         <div>
-        
+                    
         </div>
     )
 }

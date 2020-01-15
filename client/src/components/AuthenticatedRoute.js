@@ -7,7 +7,7 @@ export default function AuthenticatedRoute( { Component, appProps, caughtToken }
 
     console.log(appProps);
     console.log(caughtToken);
-    return (
+    return (    
         <Route
             render={props =>
                 appProps === true   
