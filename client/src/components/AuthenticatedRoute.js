@@ -10,7 +10,7 @@ export default function AuthenticatedRoute( { Component, appProps, caughtToken }
     return (    
         <Route
             render={props =>
-                appProps === true   
+                appProps === 'true'   
                     ? <Component {...props} {...appProps} caughtToken = {caughtToken}/>
                     : <Redirect
                         to={`/signin?redirect=${props.location.pathname}${props.location.search}`}  

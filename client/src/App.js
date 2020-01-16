@@ -13,22 +13,35 @@ import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 
 function App() {
 
-    const [isAuthenticated, userHasAuthenticated] = useState(false);
+    // localStorage.setItem('isAuthenticated', 'false');
+
+    var Authenticated = localStorage.getItem('isAuthenticated');
+
+    const [isAuthenticated, userHasAuthenticated] = useState(Authenticated);
+    
     const [caughtToken, updateCaughtToken] = useState('');
+
     useEffect(() => {
 
         if (caughtToken !== '') {
-            userHasAuthenticated(true);
+
+            userHasAuthenticated(Authenticated);
         }
 
-    }, [caughtToken, isAuthenticated]);
+    }, [caughtToken, Authenticated]);
 
     function updateProp(received) {
+        
+        localStorage.setItem('isAuthenticated', 'true');
+        Authenticated = localStorage.getItem('isAuthenticated');
         updateCaughtToken(received);
+
     }
 
     console.log(caughtToken);
-    console.log(isAuthenticated);
+    console.log(Authenticated);  
+    
+
 
     return (
         <BrowserRouter>
