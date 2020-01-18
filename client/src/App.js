@@ -18,7 +18,7 @@ function App() {
     var Authenticated = localStorage.getItem('isAuthenticated');
 
     const [isAuthenticated, userHasAuthenticated] = useState(Authenticated);
-    
+
     const [caughtToken, updateCaughtToken] = useState('');
 
     useEffect(() => {
@@ -27,20 +27,32 @@ function App() {
 
             userHasAuthenticated(Authenticated);
         }
+        else {
+
+            userHasAuthenticated(Authenticated);
+
+        }
 
     }, [caughtToken, Authenticated]);
 
     function updateProp(received) {
-        
-        localStorage.setItem('isAuthenticated', 'true');
-        Authenticated = localStorage.getItem('isAuthenticated');
+
+        if (received === '') {
+            localStorage.setItem('isAuthenticated', 'false');
+            Authenticated = localStorage.getItem('isAuthenticated');
+        }
+        else {
+            localStorage.setItem('isAuthenticated', 'true');
+            Authenticated = localStorage.getItem('isAuthenticated');
+        }
+
         updateCaughtToken(received);
 
     }
 
     console.log(caughtToken);
-    console.log(Authenticated);  
-    
+    console.log(Authenticated);
+
 
 
     return (
@@ -57,34 +69,36 @@ function App() {
                         Component={Dashboard}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                    />
-                    <UnauthenticatedRoute
-                        exact path='/'
-                        Component={Landing}
-                        appProps={ isAuthenticated }
-                    />
-                    <UnauthenticatedRoute
-                        path='/home'
-                        Component={Home}
-                        appProps={ isAuthenticated }
+                        parentCallBack={updateProp}
                     />
                     <UnauthenticatedRoute
                         path='/signin'
                         Component={SignIn}
-                        appProps={ isAuthenticated }
+                        appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
+                    />
+
+                    <UnauthenticatedRoute
+                        exact path='/'
+                        Component={Landing}
+                        appProps={isAuthenticated}
+                    />
+                    <UnauthenticatedRoute
+                        path='/home'
+                        Component={Home}
+                        appProps={isAuthenticated}
                     />
                     <UnauthenticatedRoute
                         path='/signup'
                         Component={SignUp}
                         caughtToken={caughtToken}
-                        appProps={ isAuthenticated }
+                        appProps={isAuthenticated}
                     />
                     <UnauthenticatedRoute
                         path="/forgotpassword"
                         Component={ForgotPass}
-                        appProps={ isAuthenticated }
+                        appProps={isAuthenticated}
                     />
                 </Switch>
             </div>

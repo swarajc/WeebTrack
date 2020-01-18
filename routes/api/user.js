@@ -35,9 +35,9 @@ router.route('/validate').post(async (req, res) => {
 
         const token = await user.generateAuthToken();
         res.send({ user, token });
-        
+
     } catch (error) {
-        res.send({error});
+        res.send({ error });
     }
 
 });
@@ -51,15 +51,18 @@ router.route('/u/').get(auth, async (req, res) => {
 
 
 router.post('/u/logout', auth, async (req, res) => {
-    
+
     try {
-        req.user.tokens = req.user.tokens.filter((token) => {
+
+        let user = await User.findOne({ emailId: req.user.emailId });
+
+        user.tokens = user.tokens.filter((token) => {
             return token.token != req.token;
         })
-        await req.user.save()
-        res.send()
-    } catch (error) {   
-        res.status(500).send(error)
+        await user.save()
+        res.send({ success: 'Logged out' });
+    } catch (error) {
+        res.status(500).send({ error })
     }
 })
 
@@ -75,6 +78,7 @@ router.post('/me/logoutall', auth, async (req, res) => {
         res.status(500).send(error)
     }
 })
+
 
 
 module.exports = router;    
