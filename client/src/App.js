@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import { useState, useEffect } from 'react';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
+import NoMatch from './components/NoMatch';
 
 
 function App() {
@@ -17,9 +18,13 @@ function App() {
 
     var Authenticated = localStorage.getItem('isAuthenticated');
 
+    var holdToken = localStorage.getItem('isToken');
+
     const [isAuthenticated, userHasAuthenticated] = useState(Authenticated);
 
-    const [caughtToken, updateCaughtToken] = useState('');
+    const [caughtToken, updateCaughtToken] = useState(holdToken);
+
+
 
     useEffect(() => {
 
@@ -40,17 +45,22 @@ function App() {
         if (received === '') {
             localStorage.setItem('isAuthenticated', 'false');
             Authenticated = localStorage.getItem('isAuthenticated');
+            localStorage.setItem('isToken', received);
+            holdToken = localStorage.getItem('isToken');
         }
         else {
             localStorage.setItem('isAuthenticated', 'true');
             Authenticated = localStorage.getItem('isAuthenticated');
+            localStorage.setItem('isToken', received);
+            holdToken = localStorage.getItem('isToken');
         }
 
-        updateCaughtToken(received);
+        updateCaughtToken(holdToken);
 
     }
 
     console.log(caughtToken);
+    console.log(holdToken)
     console.log(Authenticated);
 
 
@@ -64,6 +74,13 @@ function App() {
                     <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} caughtToken={caughtToken} parentCallBack={updateProp} />)} />
                     <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} caughtToken={caughtToken} />)} />
                     <Route path='/forgotpassword' component={ForgotPass} /> */}
+
+                    <UnauthenticatedRoute
+                        exact path='/'
+                        Component={Landing}
+                        appProps={isAuthenticated}
+                    />
+
                     <AuthenticatedRoute
                         path="/u/dashboard"
                         Component={Dashboard}
@@ -71,6 +88,7 @@ function App() {
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
                     />
+
                     <UnauthenticatedRoute
                         path='/signin'
                         Component={SignIn}
@@ -79,11 +97,7 @@ function App() {
                         parentCallBack={updateProp}
                     />
 
-                    <UnauthenticatedRoute
-                        exact path='/'
-                        Component={Landing}
-                        appProps={isAuthenticated}
-                    />
+                    
                     <UnauthenticatedRoute
                         path='/home'
                         Component={Home}
@@ -100,6 +114,12 @@ function App() {
                         Component={ForgotPass}
                         appProps={isAuthenticated}
                     />
+
+                    <Route path = "*">
+                        <NoMatch />    
+                    </Route>  
+                     
+                    
                 </Switch>
             </div>
         </BrowserRouter>
