@@ -7,10 +7,9 @@ export default function UnauthenticatedRoute({ Component, appProps, caughtToken,
     console.log(appProps);
     console.log(caughtToken);
     console.log(Component);
-
+    
     return (
         <Route
-
             render={props =>
                 appProps === 'false'
                     ? <Component {...props} {...appProps} caughtToken={caughtToken} parentCallBack={parentCallBack} />

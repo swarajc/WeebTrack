@@ -27,7 +27,7 @@ function App() {
 
 
     useEffect(() => {
-
+    
         if (caughtToken !== '') {
 
             userHasAuthenticated(Authenticated);
@@ -63,7 +63,7 @@ function App() {
     console.log(holdToken)
     console.log(Authenticated);
 
-
+    
 
     return (
         <BrowserRouter>

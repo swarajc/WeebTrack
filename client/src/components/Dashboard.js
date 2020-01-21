@@ -100,7 +100,10 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <button type='submit'>Sign out</button>
+                <div className='logOut'>
+                    <button className = 'b-logOut' type='submit'>Sign out</button>
+                </div>
+
             </form>
         </div>
     )
