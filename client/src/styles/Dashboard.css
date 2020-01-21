@@ -1,7 +1,21 @@
+/* d stands for dashboard */
+.d-buttons{
+    display: flex;
+    flex-direction: row-reverse;    
+}
+
+.profile {
+    display: inline-block;
+}
+
+.b-profile {
+    white-space: nowrap;
+    text-align: center;
+    width: fit-content;
+}
+
 .logOut {
     display: inline-block;
-    position: absolute;
-    right: 5%;
 }
 
 .b-logOut {
