@@ -1,25 +1,27 @@
-.dcontainer {
-    padding-top: 2%;
-    padding-right: 10%;
+.dcontainer {}
+
+.header {
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
+    height: fit-content;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .buttons {
     white-space: nowrap;
     text-align: center;
     width: fit-content;
+    height: fit-content;
 }
 
-
 .searchInput {
-    display: block;
-    position: absolute;
-    left: 7%;
-    height: 45%;
+    display: inline-block;
+    
 }
 
 .inputTag {
-    height: 10%;
+    height: 100%;
 }

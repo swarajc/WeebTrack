@@ -151,16 +151,17 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
     return (
         <div className='dcontainer'>
+            <div className='header'>
+                <div className="searchInput">
+                    <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
+                </div>
 
-            <div className="searchInput">
-                <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
+                <div className='buttons'>
+                    <button>Welcome {UserName}</button>
+                    <button onClick={handleSubmit}>Sign out</button>
+                </div>
+
             </div>
-
-            <div className='buttons'>
-                <button>Welcome {UserName}</button>
-                <button onClick={handleSubmit}>Sign out</button>
-            </div>
-
         </div>
     )
 }
