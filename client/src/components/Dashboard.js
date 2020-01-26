@@ -1,18 +1,32 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
+// import ReactTimeout from 'react-timeout';
 
 
+export default function Dashboard({history, caughtToken, parentCallBack}) {
 
-export default function Dashboard({ history, caughtToken, parentCallBack }) {
+    // var {history, caughtToken, parentCallBack} = props;
 
     const isMounted = useRef(true);
+
     console.log(caughtToken);
+
     const token = caughtToken;
+
     var [UserName, setUserName] = useState('User');
+
+    const myInput = useRef(null);
+
+    const [searchText, setSearchText] = useState('');
+
+
     useEffect(() => {
 
         if (isMounted.current === true) {
+
+            myInput.current.focus();
+
             if (token !== '') {
 
                 let url = "http://localhost:5000/users/u";
@@ -57,7 +71,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
         window.onpopstate = (e) => {
             history.push('/u/dashboard');
         }
-    }, [UserName])
+    }, [UserName, history, token])
 
     const handleSubmit = (e) => {
 
@@ -100,10 +114,39 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
     }
 
+
+    const handleChange = (e) => {
+
+        e.preventDefault();
+        setSearchText(e.target.value);    
+    
+    }
+
+    const handleSearch = (e) => {
+
+        e.preventDefault();
+        setSearchText(e.target.value);
+        console.log(searchText);
+        let url = "https://api.jikan.moe/v3/search/anime?q=" + searchText + "&page=1";
+        fetch(url, {
+            method: 'get',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+            .then((response) => response.json())
+            .then((info) => console.log(info));
+
+
+    }
+
     return (
-        <div>
+        <div className='dcontainer'>
+
             <div className='d-buttons'>
-               
+
                 <form onSubmit={handleSubmit}>
 
                     <div className='logOut'>
@@ -116,7 +159,17 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                         <button className='b-profile'>Welcome {UserName}</button>
                     </div>
                 </form>
+
+                <form action="" onSubmit={handleSearch}>
+                    <div className="searchInput" >
+                        <input type="text" className='inputTag' placeholder="Search Anime" onChange = {handleChange} ref={myInput} name="q" id="searchInputId" />
+                        <input type='submit' />
+                    </div>
+                </form>
+
             </div>
+
+
 
         </div>
     )

@@ -4,6 +4,9 @@
     flex-direction: row-reverse;    
 }
 
+.dcontainer{
+    padding: 2%;
+}
 .profile {
     display: inline-block;
 }
@@ -22,4 +25,15 @@
     white-space: nowrap;
     text-align: center;
     width: fit-content;
+}
+
+.searchInput{
+    display: inline-block;
+    position: relative;
+    right: 50%;
+}
+
+.inputTag{
+    height: 65%;
+
 }

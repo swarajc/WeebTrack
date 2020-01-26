@@ -89,6 +89,15 @@ function App() {
                         parentCallBack={updateProp}
                     />
 
+                    <AuthenticatedRoute 
+                        path = "/u/home"
+                        Component = {Home}
+                        appProps = {isAuthenticated}
+                        caughtToken={caughtToken}
+                    />
+
+                    
+
                     <UnauthenticatedRoute
                         path='/signin'
                         Component={SignIn}

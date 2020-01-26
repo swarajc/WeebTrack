@@ -48,6 +48,9 @@ router.route('/u/').get(auth, async (req, res) => {
     res.send(req.user);
 });
 
+// router.route('/u/:me').get(auth, async (req, res) => {
+
+// });
 
 
 router.post('/u/logout', auth, async (req, res) => {
