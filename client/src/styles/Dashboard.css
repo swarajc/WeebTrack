@@ -1,39 +1,25 @@
-/* d stands for dashboard */
-.d-buttons{
+.dcontainer {
+    padding-top: 2%;
+    padding-right: 10%;
     display: flex;
-    flex-direction: row-reverse;    
+    flex-direction: row;
+    justify-content: flex-end;
 }
 
-.dcontainer{
-    padding: 2%;
-}
-.profile {
-    display: inline-block;
-}
-
-.b-profile {
+.buttons {
     white-space: nowrap;
     text-align: center;
     width: fit-content;
 }
 
-.logOut {
-    display: inline-block;
+
+.searchInput {
+    display: block;
+    position: absolute;
+    left: 7%;
+    height: 45%;
 }
 
-.b-logOut {
-    white-space: nowrap;
-    text-align: center;
-    width: fit-content;
-}
-
-.searchInput{
-    display: inline-block;
-    position: relative;
-    right: 50%;
-}
-
-.inputTag{
-    height: 65%;
-
+.inputTag {
+    height: 10%;
 }

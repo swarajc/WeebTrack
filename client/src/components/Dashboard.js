@@ -1,12 +1,10 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
-// import ReactTimeout from 'react-timeout';
 
 
-export default function Dashboard({history, caughtToken, parentCallBack}) {
+export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
-    // var {history, caughtToken, parentCallBack} = props;
 
     const isMounted = useRef(true);
 
@@ -18,8 +16,9 @@ export default function Dashboard({history, caughtToken, parentCallBack}) {
 
     const myInput = useRef(null);
 
-    const [searchText, setSearchText] = useState('');
+    // const [searchText, setSearchText] = useState('');
 
+    const [Animes, setAnimes] = useState();
 
     useEffect(() => {
 
@@ -65,13 +64,14 @@ export default function Dashboard({history, caughtToken, parentCallBack}) {
                     });
             }
 
-
+            console.log(Animes);
         }
+
 
         window.onpopstate = (e) => {
             history.push('/u/dashboard');
         }
-    }, [UserName, history, token])
+    }, [UserName, history, token, Animes])
 
     const handleSubmit = (e) => {
 
@@ -118,58 +118,48 @@ export default function Dashboard({history, caughtToken, parentCallBack}) {
     const handleChange = (e) => {
 
         e.preventDefault();
-        setSearchText(e.target.value);    
-    
-    }
+        // setSearchText(e.target.value);
 
-    const handleSearch = (e) => {
-
-        e.preventDefault();
-        setSearchText(e.target.value);
-        console.log(searchText);
-        let url = "https://api.jikan.moe/v3/search/anime?q=" + searchText + "&page=1";
-        fetch(url, {
-            method: 'get',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
+        let url = "https://api.jikan.moe/v3/search/anime?q=" + e.target.value + "&page=1";
+        fetch(url)
             .then((response) => response.json())
-            .then((info) => console.log(info));
+            .then((info) => {
 
+                console.log(info);
+                setAnimes(info.results);
+
+            });
 
     }
+
+    // const handleSearch = (e) => {
+
+    //     e.preventDefault();
+
+    //     // let url = "https://api.jikan.moe/v3/search/anime?q=" + searchText + "&page=1";
+    //     // fetch(url)
+    //     //     .then((response) => response.json())
+    //     //     .then((info) => {
+
+    //     //         console.log(info);
+    //     //         setAnimes(info.results);
+
+    //     //     });
+
+
+    // }
 
     return (
         <div className='dcontainer'>
 
-            <div className='d-buttons'>
-
-                <form onSubmit={handleSubmit}>
-
-                    <div className='logOut'>
-                        <button className='b-logOut' type='submit'>Sign out</button>
-                    </div>
-
-                </form>
-                <form action="">
-                    <div className='profile'>
-                        <button className='b-profile'>Welcome {UserName}</button>
-                    </div>
-                </form>
-
-                <form action="" onSubmit={handleSearch}>
-                    <div className="searchInput" >
-                        <input type="text" className='inputTag' placeholder="Search Anime" onChange = {handleChange} ref={myInput} name="q" id="searchInputId" />
-                        <input type='submit' />
-                    </div>
-                </form>
-
+            <div className="searchInput">
+                <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
             </div>
 
-
+            <div className='buttons'>
+                <button>Welcome {UserName}</button>
+                <button onClick={handleSubmit}>Sign out</button>
+            </div>
 
         </div>
     )

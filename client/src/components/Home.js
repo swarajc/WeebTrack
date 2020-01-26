@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
 
         if(isMounted.current === true){
-            fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)
+            fetch(`https://api.jikan.moe/v3/top/anime/1/airing`)    
             .then(res => res.json())
             .then(response => {
 
