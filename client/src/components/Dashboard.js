@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
+import MyFilteringComponent from './NotMyFilteringComponent';
 
 
 export default function Dashboard({ history, caughtToken, parentCallBack }) {
@@ -160,8 +161,8 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                     <button>Welcome {UserName}</button>
                     <button onClick={handleSubmit}>Sign out</button>
                 </div>
-
             </div>
+            <MyFilteringComponent content={Animes} />
         </div>
     )
 }
