@@ -162,7 +162,6 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                     <button onClick={handleSubmit}>Sign out</button>
                 </div>
             </div>
-            <MyFilteringComponent content={Animes} />
         </div>
     )
 }
