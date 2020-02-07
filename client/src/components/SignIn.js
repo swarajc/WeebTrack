@@ -69,7 +69,6 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
             <form onSubmit={handleSubmit}>
                 <div className="card">
                     <div className="card-content">
-
                         <h1 className='header'>Sign in</h1>
                         <div className="form-item-divs">
                             <label htmlFor="emailid">
@@ -100,7 +99,6 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                         <div className="buttonDiv form-item-divs">
                             <button>Sign In</button>
                         </div>
-
                     </div>
                 </div>
             </form>

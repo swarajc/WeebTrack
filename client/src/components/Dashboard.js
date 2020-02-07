@@ -1,11 +1,10 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
-import MyFilteringComponent from './NotMyFilteringComponent';
-
 
 export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
+    // ==========================================================
 
     const isMounted = useRef(true);
 
@@ -17,9 +16,9 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
     const myInput = useRef(null);
 
-    // const [searchText, setSearchText] = useState('');
-
     const [Animes, setAnimes] = useState();
+
+    // ==========================================================   
 
     useEffect(() => {
 
@@ -66,6 +65,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
             }
 
             console.log(Animes);
+
         }
 
 
@@ -112,14 +112,12 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
             })
             .catch((error) => console.log(error));
-
     }
 
 
     const handleChange = (e) => {
 
         e.preventDefault();
-        // setSearchText(e.target.value);
 
         let url = "https://api.jikan.moe/v3/search/anime?q=" + e.target.value + "&page=1";
         fetch(url)
@@ -133,29 +131,23 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
     }
 
-    // const handleSearch = (e) => {
-
-    //     e.preventDefault();
-
-    //     // let url = "https://api.jikan.moe/v3/search/anime?q=" + searchText + "&page=1";
-    //     // fetch(url)
-    //     //     .then((response) => response.json())
-    //     //     .then((info) => {
-
-    //     //         console.log(info);
-    //     //         setAnimes(info.results);
-
-    //     //     });
-
-
-    // }
 
     return (
         <div className='dcontainer'>
-            <div className='header'>
-                <div className="searchInput">
-                    <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
+            <div className='header1'>
+                <div className='searchI'>
+                    <div className="searchInput">
+                        <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId"/>
+                    </div>
+                    <div>
+                        <li>
+                            <ul>
+
+                            </ul>
+                        </li>
+                    </div>
                 </div>
+
 
                 <div className='buttons'>
                     <button>Welcome {UserName}</button>

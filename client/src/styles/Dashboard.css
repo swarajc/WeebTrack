@@ -1,6 +1,8 @@
-.dcontainer {}
+.dcontainer {
+    padding-right: 5%;  
+}
 
-.header {
+.header1 {
     padding-left: 5%;
     padding-right: 5%;
     display: flex;
@@ -8,6 +10,7 @@
     height: fit-content;
     margin-top: 2%;
     margin-bottom: 2%;
+    
 }
 
 .buttons {
