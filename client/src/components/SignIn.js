@@ -73,7 +73,7 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                         <div className="form-item-divs">
                             <label htmlFor="emailid">
                                 Email address
-                                </label>
+                            </label>
                             <div>
                                 <input id="emailid" type="email" ref={myInput}{...bindEmail} required />
                             </div>

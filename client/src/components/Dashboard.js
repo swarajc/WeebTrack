@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
 
+
 export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
     // ==========================================================
@@ -24,7 +25,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
         if (isMounted.current === true) {
 
-            myInput.current.focus();
+            // myInput.current.focus();
 
             if (token !== '') {
 
@@ -118,7 +119,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
     const handleChange = (e) => {
 
         e.preventDefault();
-
+        console.log(e.target.value);
         let url = "https://api.jikan.moe/v3/search/anime?q=" + e.target.value + "&page=1";
         fetch(url)
             .then((response) => response.json())
@@ -128,7 +129,6 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                 setAnimes(info.results);
 
             });
-
     }
 
 
@@ -137,14 +137,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
             <div className='header1'>
                 <div className='searchI'>
                     <div className="searchInput">
-                        <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId"/>
-                    </div>
-                    <div>
-                        <li>
-                            <ul>
-
-                            </ul>
-                        </li>
+                        <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
                     </div>
                 </div>
 
