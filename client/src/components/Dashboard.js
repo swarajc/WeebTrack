@@ -1,6 +1,8 @@
 import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+
 
 
 export default function Dashboard({ history, caughtToken, parentCallBack }) {
@@ -25,7 +27,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
         if (isMounted.current === true) {
 
-            // myInput.current.focus();
+            myInput.current.focus();
 
             if (token !== '') {
 
@@ -121,14 +123,20 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
         e.preventDefault();
         console.log(e.target.value);
         let url = "https://api.jikan.moe/v3/search/anime?q=" + e.target.value + "&page=1";
-        fetch(url)
-            .then((response) => response.json())
-            .then((info) => {
+        if (e.target.value) {
+            fetch(url)
+                .then((response) => response.json())
+                .then((info) => {
 
-                console.log(info);
-                setAnimes(info.results);
+                    console.log(info);
+                    setAnimes(info.results);
 
-            });
+                });
+        }
+        else {
+            setAnimes(null);
+        }
+
     }
 
 
@@ -139,13 +147,35 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                     <div className="searchInput">
                         <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
                     </div>
+                    <div className='buttons'>
+                        <button>Welcome {UserName}</button>
+                        <button onClick={handleSubmit}>Sign out</button>
+                    </div>
                 </div>
+                {
+                    Animes ? (
+                        <div className='dcontent'>
+                            <div className='dwrapper'>
+                                {
+                                    Animes.map(animeItem => (
+                                        <div className="child-wrapper" key={animeItem.mal_id}>
+                                            <div className="spacer">
+                                                <Link to="/signin">
+                                                    <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
+                                                </Link>
 
+                                                <Link to='/signin' className='thumbnail-title'>
+                                                    {animeItem.title}
+                                                </Link>
+                                            </div>
+                                        </div>
 
-                <div className='buttons'>
-                    <button>Welcome {UserName}</button>
-                    <button onClick={handleSubmit}>Sign out</button>
-                </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : (<p className='searchInput'>No Search Yet.</p>)
+                }
             </div>
         </div>
     )

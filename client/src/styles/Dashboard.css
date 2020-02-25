@@ -1,30 +1,43 @@
 .dcontainer {
-    padding-right: 5%;  
+
 }
 
 .header1 {
-    padding-left: 5%;
-    padding-right: 5%;
-    display: flex;
-    justify-content: space-between;
-    height: fit-content;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    
+
+    margin: 5%;
 }
 
 .buttons {
+    display: inline-block;
+    position: relative;
+    left: 56%;
     white-space: nowrap;
     text-align: center;
     width: fit-content;
-    height: fit-content;
+    height: fit-content;    
+    
 }
 
 .searchInput {
     display: inline-block;
-    
+    margin-left: 4%;
+}
+
+.dwrapper {
+    border-radius: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-size: 95%;
 }
 
 .inputTag {
     height: 100%;
+}
+
+
+.child-wrapper1{
+    display: inline-block;
+    margin: 3%;
 }
