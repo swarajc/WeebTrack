@@ -53,7 +53,7 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                     resetPass();
                     caughtToken = info.token;
                     parentCallBack(info.token);
-                    history.push('/u/dashboard');
+                    history.push(`/u/${info.user.username}`);
                 }
                 else
                     if (info.error) {

@@ -82,21 +82,13 @@ function App() {
                     />
 
                     <AuthenticatedRoute
-                        path="/u/dashboard"
+                        path="/u/:username"
                         Component={Dashboard}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
                     />
 
-                    <AuthenticatedRoute 
-                        path = "/u/home"
-                        Component = {Home}
-                        appProps = {isAuthenticated}
-                        caughtToken={caughtToken}
-                    />
-
-                    
 
                     <UnauthenticatedRoute
                         path='/signin'

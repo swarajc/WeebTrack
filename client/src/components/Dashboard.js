@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function Dashboard({ history, caughtToken, parentCallBack }) {
+export default function Dashboard({ history, caughtToken, parentCallBack, match, location }) {
 
     // ==========================================================
+
+    console.log(history);
+    console.log(match);
+    console.log(location);
+
 
     const isMounted = useRef(true);
 
@@ -73,7 +78,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
 
 
         window.onpopstate = (e) => {
-            history.push('/u/dashboard');
+            history.push(`/u/${UserName}`);
         }
     }, [UserName, history, token, Animes])
 
@@ -160,11 +165,11 @@ export default function Dashboard({ history, caughtToken, parentCallBack }) {
                                     Animes.map(animeItem => (
                                         <div className="child-wrapper" key={animeItem.mal_id}>
                                             <div className="spacer">
-                                                <Link to="/signin">
+                                                <Link to= {'/u/' + UserName + '/anime'}>
                                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
-                                                </Link>
+                                                </Link>         
 
-                                                <Link to='/signin' className='thumbnail-title'>
+                                                <Link to={'/u/' + UserName + '/anime'} className='thumbnail-title'>
                                                     {animeItem.title}
                                                 </Link>
                                             </div>
