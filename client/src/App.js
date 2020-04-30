@@ -117,10 +117,8 @@ function App() {
                     />
 
                     <Route path = "*">
-                        <NoMatch />    
-                    </Route>  
-                     
-                    
+                        <NoMatch />
+                    </Route>
                 </Switch>
             </div>
         </BrowserRouter>

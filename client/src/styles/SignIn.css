@@ -5,6 +5,7 @@
     padding-left: 35%;
     padding-right: 35%;
     padding-top: 8%;
+    font-size: 85%;
 }
 
 .forgot-pass-create{
@@ -18,6 +19,8 @@
 .forgot-pass-create:hover{
     text-decoration-line: underline ;
     color: darkblue;
-    
 }
 
+.card-content{
+    
+}

@@ -15,7 +15,7 @@ export default function UnauthenticatedRoute({ Component, appProps, caughtToken,
             render={props =>
                 appProps === 'false'
                     ? <Component {...props} {...appProps} caughtToken={caughtToken} parentCallBack={parentCallBack} />
-                    : <Redirect to={`/u/${props.match.params.username}?redirect=${props.location.pathname}${props.location.search}`} />}
+                    : <Redirect to={`/u/:username?redirect=${props.location.pathname}${props.location.search}`} />}
         />
     );
 }
