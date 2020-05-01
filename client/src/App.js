@@ -11,6 +11,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import NoMatch from './components/NoMatch';
 import Profile from './components/Profile';
+import Anime from './components/Anime';
 
 function App() {
 
@@ -92,6 +93,14 @@ function App() {
                     <AuthenticatedRoute
                         path="/u/:username/p"
                         Component={Profile}
+                        appProps={isAuthenticated}
+                        caughtToken={caughtToken}
+                        parentCallBack={updateProp}
+                    />
+                    
+                    <AuthenticatedRoute
+                        path="/u/:username/a/:id"
+                        Component={Anime}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}

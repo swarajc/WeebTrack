@@ -185,11 +185,11 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                                     Animes.map(animeItem => (
                                         <div className="child-wrapper" key={animeItem.mal_id}>
                                             <div className="spacer">
-                                                <Link to= {'/u/' + UserName + '/anime'}>
+                                                <Link to= {'/u/' + UserName + '/a/' + animeItem.mal_id}>
                                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                                 </Link>         
 
-                                                <Link to={'/u/' + UserName + '/anime'} className='thumbnail-title'>
+                                                <Link to={'/u/' + UserName + '/a/'} className='thumbnail-title'>
                                                     {animeItem.title}
                                                 </Link>
                                             </div>
