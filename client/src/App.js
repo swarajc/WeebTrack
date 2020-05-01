@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import NoMatch from './components/NoMatch';
-
+import Profile from './components/Profile';
 
 function App() {
 
@@ -82,13 +82,20 @@ function App() {
                     />
 
                     <AuthenticatedRoute
-                        path="/u/:username"
+                        exact path="/u/:username/"
                         Component={Dashboard}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
                     />
 
+                    <AuthenticatedRoute
+                        path="/u/:username/p"
+                        Component={Profile}
+                        appProps={isAuthenticated}
+                        caughtToken={caughtToken}
+                        parentCallBack={updateProp}
+                    />
 
                     <UnauthenticatedRoute
                         path='/signin'

@@ -13,6 +13,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
     console.log(match);
     console.log(location);
 
+    
 
     const isMounted = useRef(true);
 
@@ -31,6 +32,17 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
     useEffect(() => {
 
         if (isMounted.current === true) {
+
+            // var id =  match.params.username;
+            
+            // console.log(id);
+            
+            // if(id !== UserName)
+            // {
+            //     history.push(`/u/${UserName}`);           
+            // }
+
+
 
             myInput.current.focus();
 
@@ -80,7 +92,11 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
         window.onpopstate = (e) => {
             history.push(`/u/${UserName}`);
         }
-    }, [UserName, history, token, Animes])
+    }, 
+    
+    // [UserName, history, token, Animes, match.params.username]
+        [UserName, history, token, Animes]
+    )
 
     const handleSubmit = (e) => {
 
@@ -144,6 +160,10 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
 
     }
 
+    // const handleClick = (e) => {
+    //     // history.push(`/u/${UserName}/p`);
+    // }
+
 
     return (
         <div className='dcontainer'>
@@ -153,7 +173,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                         <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
                     </div>
                     <div className='buttons'>
-                        <button>Welcome {UserName}</button>
+                        <Link to = {`/u/${UserName}/p`}><button>Welcome {UserName}</button></Link>
                         <button onClick={handleSubmit}>Sign out</button>
                     </div>
                 </div>
