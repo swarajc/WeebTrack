@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Anime.css';
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 export default function Anime({ history, caughtToken, parentCallBack, match, location }) {
