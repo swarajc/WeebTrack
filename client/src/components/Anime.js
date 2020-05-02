@@ -10,9 +10,11 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
 
     console.log(caughtToken);
 
+    console.log(match);
+
     const token = caughtToken;
 
-    var [UserName, setUserName] = useState('User');
+    const [anime, setAnime] = useState({});
 
     // ==========================================================   
 
@@ -20,13 +22,6 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
 
         if (isMounted.current === true) {
 
-            // var id = match.params.username;
-
-            // console.log(id);
-
-            // if (id !== UserName) {
-            //     history.push(`/u/${UserName}`);
-            // }
 
             if (token !== '') {
 
@@ -53,8 +48,8 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
                         if (info) {
 
                             console.log(info);
-                            setUserName(String(info.username));
-                            console.log(UserName);
+                            // setUserName(String(info.username));
+                            // console.log(UserName);
                         }
                         else
                             if (info.error) {
@@ -66,14 +61,28 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
                     });
             }
 
+            // if(!AnimeId){
+            //     setAnimeId(match.params.id);
+            // }
+
+            let url = "https://api.jikan.moe/v3/anime/" + match.params.id;
+            fetch(url, { mode: 'cors' })
+                .then((response) => response.json())
+                .then((info) => {
+                    console.log(info);
+                    setAnime(info);
+                });
+
         }
     },
 
-        // [UserName, history, token, match.params.username]
-        [UserName, history, token]
+        [history, token, match.params.id]
     )
 
     return (
-        <h1>Anime Page</h1>
+        <div className='acontainer'>
+            <h1>{anime.title}</h1>
+        </div>
+
     )
 }
