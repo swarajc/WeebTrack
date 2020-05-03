@@ -189,7 +189,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                                 </Link>         
 
-                                                <Link to={'/u/' + UserName + '/a/'} className='thumbnail-title'>
+                                                <Link to={'/u/' + UserName + '/a/' + animeItem.mal_id} className='thumbnail-title'>
                                                     {animeItem.title}
                                                 </Link>
                                             </div>
