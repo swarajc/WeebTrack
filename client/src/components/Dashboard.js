@@ -2,18 +2,29 @@ import React from 'react';
 import '../styles/Dashboard.css';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
 
 
 export default function Dashboard({ history, caughtToken, parentCallBack, match, location }) {
 
     // ==========================================================
 
+    const classes = useStyles();
+
     console.log(history);
     console.log(match);
     console.log(location);
 
-    
+
 
     const isMounted = useRef(true);
 
@@ -34,9 +45,9 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
         if (isMounted.current === true) {
 
             // var id =  match.params.username;
-            
+
             // console.log(id);
-            
+
             // if(id !== UserName)
             // {
             //     history.push(`/u/${UserName}`);           
@@ -92,9 +103,9 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
         window.onpopstate = (e) => {
             history.push(`/u/${UserName}`);
         }
-    }, 
-    
-    // [UserName, history, token, Animes, match.params.username]
+    },
+
+        // [UserName, history, token, Animes, match.params.username]
         [UserName, history, token, Animes]
     )
 
@@ -173,8 +184,10 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                         <input type="text" className='inputTag' placeholder="Search Anime" onChange={handleChange} ref={myInput} id="searchInputId" />
                     </div>
                     <div className='buttons'>
-                        <Link to = {`/u/${UserName}/p`}><button>Welcome {UserName}</button></Link>
-                        <button onClick={handleSubmit}>Sign out</button>
+                        <div className={classes.root}>
+                            <Button href={`/u/${UserName}/p`} variant="contained">Welcome {UserName}</Button>
+                            <Button onClick={handleSubmit} variant="contained">Sign out</Button>
+                        </div>
                     </div>
                 </div>
                 {
@@ -185,9 +198,9 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                                     Animes.map(animeItem => (
                                         <div className="child-wrapper" key={animeItem.mal_id}>
                                             <div className="spacer">
-                                                <Link to= {'/u/' + UserName + '/a/' + animeItem.mal_id}>
+                                                <Link to={'/u/' + UserName + '/a/' + animeItem.mal_id}>
                                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
-                                                </Link>         
+                                                </Link>
 
                                                 <Link to={'/u/' + UserName + '/a/' + animeItem.mal_id} className='thumbnail-title'>
                                                     {animeItem.title}
@@ -199,7 +212,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
                                 }
                             </div>
                         </div>
-                    ) : (<p className='searchInput'>No Search Yet.</p>)
+                    ) : (<p className='searchInput'>No Search Yet. (Min. 3 letters)</p>)
                 }
             </div>
         </div>

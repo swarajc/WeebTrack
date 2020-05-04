@@ -1,19 +1,30 @@
 import React from 'react';
 import '../styles/SignIn.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { Link } from 'react-router-dom';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
 import { useRef, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-export default function SignIn({history, caughtToken, parentCallBack}) {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
+
+export default function SignIn({ history, caughtToken, parentCallBack }) {
+
+    const classes = useStyles();
 
     console.log(history);
     console.log(caughtToken);
     console.log(parentCallBack);
-    
+
     const myInput = useRef(null);
-        
+
     useEffect(() => {
 
         myInput.current.focus();
@@ -48,7 +59,7 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
             .then((info) => {
 
                 if (info.user) {
-                                                    
+
                     resetEmail();
                     resetPass();
                     caughtToken = info.token;
@@ -61,7 +72,7 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                     }
 
             });
-        
+
     }
 
     return (
@@ -87,17 +98,21 @@ export default function SignIn({history, caughtToken, parentCallBack}) {
                                 <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
                             </div>
                         </div>
+                        <div className={classes.root}>
+                            <Button href='/forgotpassword'>
+                                Forgot Password?
+                            </Button>
+                        </div>
 
-                        <Link to='/forgotpassword' className='forgot-pass-create form-item-divs'>
-                            Forgot Password?
-                        </Link>
-
-                        <Link to='/signup' className='forgot-pass-create form-item-divs'>
-                            New to WeebTrack? Create an account.
-                        </Link>
-
-                        <div className="buttonDiv form-item-divs">
-                            <button>Sign In</button>
+                        <div className={classes.root}>
+                            <Button href='/signup'>
+                                New to WeebTrack? Create an account.
+                            </Button>
+                        </div>
+                        <div className={`${classes.root} mater-btn`}>
+                            <Button variant="contained" color="primary" type = 'submit' >
+                                Sign In
+                            </Button>
                         </div>
                     </div>
                 </div>

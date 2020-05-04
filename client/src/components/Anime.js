@@ -1,9 +1,21 @@
 import React from 'react';
 import '../styles/Anime.css';
 import { useState, useEffect, useRef } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    },
+}));
 
 
 export default function Anime({ history, caughtToken, parentCallBack, match, location }) {
+
+    const classes = useStyles();
 
     const isMounted = useRef(true);
 
@@ -69,9 +81,19 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
 
     return (
         <div className='acontainer'>
-            <h1>{anime.title}</h1>
+            <div className="detailItems1">
+                <div className="item1">
+                    <div className={classes.root}>
+                        <Button size = 'small' href = {`/u/reaper/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
+                    </div>
+                </div>
+                <div className="item2">
+                    <div className={classes.root}>
+                        <Button variant="contained" >Add to List</Button>
+                    </div>
+                </div>
+            </div>
             <hr />
-
             <div className='detailItems'>
                 <div className='item'>
                     <h4>Episodes</h4>

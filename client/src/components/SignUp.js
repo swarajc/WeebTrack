@@ -4,8 +4,21 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
 import { useRef, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-export default function SignUp({history, caughtToken, parentCallBack}) {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(1),
+        },  
+    },
+}));
+
+
+export default function SignUp({ history, caughtToken, parentCallBack }) {
+
+    const classes = useStyles();
 
     const myInput = useRef(null);
 
@@ -26,7 +39,7 @@ export default function SignUp({history, caughtToken, parentCallBack}) {
     //SHOW HOOK FOR PWD
     const { value: inputType, show: showinputType } = useShow('password');
 
-    
+
     //FUNCTION INVOKED AFTER SUBMIT
     const handleSubmit = (e) => {
 
@@ -48,7 +61,7 @@ export default function SignUp({history, caughtToken, parentCallBack}) {
         })
             .then((result) => result.json())
             .then((info) => {
-            
+
                 if (info.newUser) {
 
                     resetUsername();
@@ -59,7 +72,7 @@ export default function SignUp({history, caughtToken, parentCallBack}) {
                     redirect = '/signin'
                     console.log(redirect);
                     history.push(redirect);
-                    
+
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {
                     console.log('Success?');
@@ -115,7 +128,7 @@ export default function SignUp({history, caughtToken, parentCallBack}) {
                                 </label>
                                 <div className="input-icon-wrap">
                                     <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" pattern = ".{8,}" title = "8 characters minimum" id="password" type={inputType} {...bindPass} required />
+                                    <input className="input-with-icon" pattern=".{8,}" title="8 characters minimum" id="password" type={inputType} {...bindPass} required />
                                 </div>
                             </div>
 
@@ -125,8 +138,10 @@ export default function SignUp({history, caughtToken, parentCallBack}) {
                                 </span>
                             </div>
 
-                            <div className="buttonDiv form-item-divs">
-                                <button>Sign Up</button>
+                            <div className={`${classes.root} mater-btn`}>
+                                <Button variant="contained" color="primary" type='submit'>
+                                    Sign Up
+                            </Button>
                             </div>
 
                         </div>

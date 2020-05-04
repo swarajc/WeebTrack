@@ -1,26 +1,9 @@
 .container{
-    text-align: center;
+    text-align: center;  
     margin-right: auto;
     margin-left: auto;
     padding-left: 35%;
     padding-right: 35%;
     padding-top: 8%;
-    font-size: 85%;
-}
-
-.forgot-pass-create{
-    display: flex;
-    flex-direction: row;
-    text-decoration-line: none;
-    color: black;
-    font-weight: bold;
-}
-
-.forgot-pass-create:hover{
-    text-decoration-line: underline ;
-    color: darkblue;
-}
-
-.card-content{
-    
+    font-size: 100%;
 }
