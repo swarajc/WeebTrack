@@ -81,17 +81,8 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
 
     return (
         <div className='acontainer'>
-            <div className="detailItems1">
-                <div className="item1">
-                    <div className={classes.root}>
-                        <Button size = 'small' href = {`/u/reaper/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
-                    </div>
-                </div>
-                <div className="item2">
-                    <div className={classes.root}>
-                        <Button variant="contained" >Add to List</Button>
-                    </div>
-                </div>
+            <div className={classes.root}>
+                <Button size='small' href={`/u/reaper/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
             </div>
             <hr />
             <div className='detailItems'>
@@ -126,7 +117,11 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
             </div>
             <h2>Synopsis</h2>
             <p>{anime.synopsis}</p>
+            <div className="add-btn">
+                <div className={classes.root}>
+                    <Button variant="contained" >Add to List</Button>
+                </div>
+            </div>
         </div>
-
     )
 }

@@ -28,11 +28,7 @@ img{
     max-height: 200px;
 }
 
-.detailItems1{
+.add-btn{
     display: flex;
-    justify-content: space-around;
-}
-
-.item2{
-    padding-left: 74%;
+    justify-content: center;
 }
