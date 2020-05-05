@@ -79,6 +79,11 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
         [history, token, match.params.id]
     )
 
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+
+    }   
+
     return (
         <div className='acontainer'>
             <div className={classes.root}>
@@ -88,7 +93,7 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
             <div className='detailItems'>
                 <div className='item'>
                     <h4>Episodes</h4>
-                    <p>{anime.episodes}</p>
+                    <p>{anime.episodes ? anime.episodes : 'N/A'}</p>
                 </div>
                 <div className='item'>
                     <h4>Duration</h4>
@@ -118,9 +123,11 @@ export default function Anime({ history, caughtToken, parentCallBack, match, loc
             <h2>Synopsis</h2>
             <p>{anime.synopsis}</p>
             <div className="add-btn">
-                <div className={classes.root}>
-                    <Button variant="contained" >Add to List</Button>
-                </div>
+                <form onSubmit = {handleSubmit}>
+                    <div className={classes.root}>
+                        <Button type = 'submit' variant="contained" >Add to List</Button>
+                    </div>
+                </form>
             </div>
         </div>
     )
