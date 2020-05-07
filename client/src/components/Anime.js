@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({ history, caughtToken, parentCallBack, match, location }) {
+export default function Anime({ history, caughtToken, match}) {
 
     const classes = useStyles();
 

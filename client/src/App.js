@@ -12,6 +12,7 @@ import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import NoMatch from './components/NoMatch';
 import Profile from './components/Profile';
 import Anime from './components/Anime';
+import AList from './components/AList';
 
 function App() {
 
@@ -70,11 +71,6 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Switch>
-                    {/* <Route exact path='/' component={Landing} />
-                    <Route exact path='/home' component={Home} />
-                    <Route path='/signin' render={(routeProps) => (<SignIn {...routeProps} caughtToken={caughtToken} parentCallBack={updateProp} />)} />
-                    <Route path='/signup' render={(routeProps) => (<SignUp {...routeProps} caughtToken={caughtToken} />)} />
-                    <Route path='/forgotpassword' component={ForgotPass} /> */}
 
                     <UnauthenticatedRoute
                         exact path='/'
@@ -101,6 +97,14 @@ function App() {
                     <AuthenticatedRoute
                         path="/u/:username/a/:id"
                         Component={Anime}
+                        appProps={isAuthenticated}
+                        caughtToken={caughtToken}
+                        parentCallBack={updateProp}
+                    />
+
+                    <AuthenticatedRoute
+                        path="/u/:username/l"
+                        Component={AList}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
