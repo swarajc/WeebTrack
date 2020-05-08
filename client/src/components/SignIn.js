@@ -44,7 +44,8 @@ export default function SignIn({ history, caughtToken, parentCallBack }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let url = "http://localhost:5000/users/validate";
+        // let url = "http://localhost:5000/users/validate";
+        let url = "http://localhost:5000/validate";
         fetch(url, {
             method: 'post',
             headers: {

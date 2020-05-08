@@ -47,7 +47,8 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
 
         e.preventDefault();
 
-        let url = "http://localhost:5000/users/add";
+        // let url = "http://localhost:5000/users/add";
+        let url = "http://localhost:5000/add";
         fetch(url, {
             method: 'post',
             headers: {

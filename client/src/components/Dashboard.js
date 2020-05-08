@@ -59,7 +59,8 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/users/u";
+                // let url = "http://localhost:5000/users/u";
+                let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -112,7 +113,8 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        let url = "http://localhost:5000/users/u/logout";
+        // let url = "http://localhost:5000/users/u/logout";
+        let url = "http://localhost:5000/user/u/logout";
         fetch(url, {
             method: 'post',
             headers: {

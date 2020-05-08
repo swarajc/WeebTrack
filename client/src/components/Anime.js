@@ -36,7 +36,8 @@ export default function Anime({ history, caughtToken, match}) {
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/users/u";
+                // let url = "http://localhost:5000/users/u";
+                let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
                     method: 'get',

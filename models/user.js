@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+    // ,
+    // animes: [{
+    //     type: Number
+    // }]
 },
     {
         timestamps: true

@@ -44,9 +44,18 @@ connection
         console.log("MongoDB Connected!");
     });
 
-const usersRouter = require('./routes/api/user');
+// const usersRouter = require('./routes/api/user');
 
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
+
+// =============================TEST==============
+const userRoutes = require('./routes/api/user1');
+const indexRoutes = require('./routes/api/index');
+app.use('/', indexRoutes);
+app.use('/user', userRoutes);
+// app.use('/user/:id/animes', animeRoutes)
+
+//================================================
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
