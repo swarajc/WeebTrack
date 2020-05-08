@@ -99,10 +99,15 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
             console.log(Animes);
 
         }
-
-
+        
         window.onpopstate = (e) => {
             history.push(`/u/${UserName}`);
+        }
+
+        return () => {
+
+            isMounted.current = false;
+
         }
     },
 

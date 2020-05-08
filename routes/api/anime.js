@@ -5,7 +5,7 @@ const router = require('express').Router(),
 router.route('/addAnime').post(auth, async (req, res) => {
 
     try {
-        let anime = Number(req.body.anime);
+        let anime = req.body.anime;
         console.log(anime);
         console.log(typeof(anime));
         let user = await User.findOne({ emailId: req.user.emailId });

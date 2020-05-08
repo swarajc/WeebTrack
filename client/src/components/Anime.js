@@ -92,7 +92,7 @@ export default function Anime({ history, caughtToken, match }) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                anime: match.params.id
+                anime: anime.title
             }),
             user: {},
             token: ''
