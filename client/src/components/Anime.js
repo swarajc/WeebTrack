@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({ history, caughtToken, match}) {
+export default function Anime({ history, caughtToken, match }) {
 
     const classes = useStyles();
 
@@ -80,10 +80,38 @@ export default function Anime({ history, caughtToken, match}) {
         [history, token, match.params.id]
     )
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-    }   
+        let url = "http://localhost:5000/user/animes/addAnime";
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                anime: match.params.id
+            }),
+            user: {},
+            token: ''
+        })
+            .then((result) => result.json())
+            .then((info) => {
+
+                if (info.success) {
+                    console.log(info.success);
+                }
+                else
+                    if (info.error) {
+                        console.log(info.error);
+                    }
+
+            });
+
+
+    }
 
     return (
         <div className='acontainer'>
@@ -124,9 +152,9 @@ export default function Anime({ history, caughtToken, match}) {
             <h2>Synopsis</h2>
             <p>{anime.synopsis}</p>
             <div className="add-btn">
-                <form onSubmit = {handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className={classes.root}>
-                        <Button type = 'submit' variant="contained" >Add to List</Button>
+                        <Button type='submit' variant="contained" >Add to List</Button>
                     </div>
                 </form>
             </div>

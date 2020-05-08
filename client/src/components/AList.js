@@ -12,7 +12,9 @@ export default function AList({ history, caughtToken, parentCallBack, match, loc
     console.log(match);
 
     const token = caughtToken;
-
+    
+    var [animes, setAnimes] = useState([]);
+    
     useEffect(() => {
 
         if (isMounted.current === true) {

@@ -16,7 +16,8 @@ const auth = async(req, res, next) => {
         const sendUser = {
             _id: user._id,
             username: user.username,
-            emailId: user.emailId
+            emailId: user.emailId,
+            animes: user.animes
         }
 
         console.log(sendUser)

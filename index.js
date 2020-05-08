@@ -7,7 +7,6 @@ const express = require('express'),
 
 require('dotenv').config();
 
-
 const app = express();
 const port = process.env.PORT;
 
@@ -51,9 +50,11 @@ connection
 // =============================TEST==============
 const userRoutes = require('./routes/api/user1');
 const indexRoutes = require('./routes/api/index');
+const animeRoutes = require('./routes/api/anime');
+
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
-// app.use('/user/:id/animes', animeRoutes)
+app.use('/user/animes', animeRoutes)
 
 //================================================
 
