@@ -24,8 +24,6 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
     console.log(match);
     console.log(location);
 
-
-
     const isMounted = useRef(true);
 
     console.log(caughtToken);
@@ -52,8 +50,6 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
             // {
             //     history.push(`/u/${UserName}`);           
             // }
-
-
 
             myInput.current.focus();
 

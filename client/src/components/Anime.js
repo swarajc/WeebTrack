@@ -27,6 +27,8 @@ export default function Anime({ history, caughtToken, match }) {
 
     const [anime, setAnime] = useState({});
 
+    const [InsDel, setInsDel] = useState('Loading...');
+
     // ==========================================================   
 
     useEffect(() => {
@@ -58,32 +60,57 @@ export default function Anime({ history, caughtToken, match }) {
                     .then((info) => {
 
                         if (info) {
-                            console.log(info);
+                            console.log(info)
+
+                            let url = "https://api.jikan.moe/v3/anime/" + match.params.id;
+                            fetch(url, { mode: 'cors' })
+                                .then((response) => response.json())
+                                .then((info) => {
+                                    console.log(info);
+                                    setAnime(info);
+                                });
+
+                            var found = false;
+                            for (var i = 0; i < info.animes.length; i++) {
+                                if (info.animes[i].anime === anime.title) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (found === true)
+                                setInsDel('Remove From List')
+                            else
+                                setInsDel('Add To List')
                         }
                         else
                             if (info.error) {
                                 console.log(info.error);
                             }
-
                     });
             }
 
-            let url = "https://api.jikan.moe/v3/anime/" + match.params.id;
-            fetch(url, { mode: 'cors' })
-                .then((response) => response.json())
-                .then((info) => {
-                    console.log(info);
-                    setAnime(info);
-                });
+
         }
+
+        // return () => {
+        //     isMounted.current = false;
+        // }
     },
-        [history, token, match.params.id]
+        [anime.title, match.params.id, token]
     )
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let url = "http://localhost:5000/user/animes/addAnime";
+        let url;
+
+        if (InsDel === 'Add To List') {
+            url = "http://localhost:5000/user/animes/addAnime";
+        }
+        else if (InsDel === 'Remove From List') {
+            url = "http://localhost:5000/user/animes/delAnime";
+        }
+
         fetch(url, {
             method: 'post',
             headers: {
@@ -100,8 +127,12 @@ export default function Anime({ history, caughtToken, match }) {
             .then((result) => result.json())
             .then((info) => {
 
-                if (info.success) {
-                    console.log(info.success);
+                console.log(info.success);
+                if (info.success === 'Anime added') {
+                    setInsDel('Remove From List');
+                }
+                else if (info.success === 'Anime removed') {
+                    setInsDel('Add to List');
                 }
                 else
                     if (info.error) {
@@ -154,7 +185,7 @@ export default function Anime({ history, caughtToken, match }) {
             <div className="add-btn">
                 <form onSubmit={handleSubmit}>
                     <div className={classes.root}>
-                        <Button type='submit' variant="contained" >Add to List</Button>
+                        <Button type='submit' variant="contained" >{InsDel}</Button>
                     </div>
                 </form>
             </div>
