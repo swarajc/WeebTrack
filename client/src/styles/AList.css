@@ -1,3 +1,10 @@
 .lcontainer{
+    display: flex;
+    justify-content: center;
     text-align: center;
+}
+
+.a-list{
+    /* display: inline-block; */
+    background-color: whitesmoke;
 }
