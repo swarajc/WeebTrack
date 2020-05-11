@@ -13,6 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
+
     root: {
         flexGrow: 1,
         maxWidth: 752,
@@ -20,9 +21,14 @@ const useStyles = makeStyles((theme) => ({
     demo: {
         backgroundColor: theme.palette.background.transparent
     },
-    title: {
-        margin: theme.spacing(4, 0, 2),
+    small: {
+        width: theme.spacing(3),
+        height: theme.spacing(3),
     },
+    large: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
+    }
 }));
 
 export default function AList({ history, caughtToken }) {
@@ -92,13 +98,13 @@ export default function AList({ history, caughtToken }) {
                     <div className={`${classes.demo} a-list`}>
                         <List>
                             {
-                                animes.map(anime => (
-                                    <ListItem key={anime.anime}>
+                                animes.map(animeItem => (
+                                    <ListItem key={animeItem.anime.mal_id}>
                                         <ListItemAvatar>
-
+                                            <Avatar variant="square" src={animeItem.anime.image_url}/>
                                         </ListItemAvatar>
                                         <ListItemText
-                                            primary={anime.anime}
+                                            primary={animeItem.anime.title}
                                         />
                                         <ListItemSecondaryAction>
                                             <IconButton edge="end" aria-label="delete">

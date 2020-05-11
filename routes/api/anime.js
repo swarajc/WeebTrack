@@ -5,7 +5,7 @@ const router = require('express').Router(),
 router.route('/addAnime').post(auth, async (req, res) => {
 
     try {
-        let anime = req.body.anime;
+        let anime = req.body.animeObj;
         console.log(anime);
         console.log(typeof (anime));
         let user = await User.findOne({ emailId: req.user.emailId });
@@ -24,7 +24,7 @@ router.route('/delAnime').post(auth, async (req, res) => {
 
         let user = await User.findOne({ emailId: req.user.emailId });
         user.animes = user.animes.filter((anime) => {
-            return anime.anime != req.body.anime;
+            return anime.anime.title !== req.body.animeObj.title;
         })
         await user.save()
         res.send({ success: 'Anime removed' });

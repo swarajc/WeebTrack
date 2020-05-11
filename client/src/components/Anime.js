@@ -72,7 +72,7 @@ export default function Anime({ history, caughtToken, match }) {
 
                             var found = false;
                             for (var i = 0; i < info.animes.length; i++) {
-                                if (info.animes[i].anime === anime.title) {
+                                if (info.animes[i].anime.title === anime.title) {
                                     found = true;
                                     break;
                                 }
@@ -119,7 +119,7 @@ export default function Anime({ history, caughtToken, match }) {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                anime: anime.title
+                animeObj: anime
             }),
             user: {},
             token: ''
