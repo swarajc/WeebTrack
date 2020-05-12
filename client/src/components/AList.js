@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     large: {
         width: theme.spacing(7),
         height: theme.spacing(7),
-    }
+    },
+
 }));
 
 export default function AList({ history, caughtToken }) {
@@ -99,28 +100,26 @@ export default function AList({ history, caughtToken }) {
                         <List>
                             {
                                 animes.map(animeItem => (
-                                    <ListItem key={animeItem.anime.mal_id}>
+                                    <ListItem key={animeItem.anime.mal_id} button divider component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`}>
                                         <ListItemAvatar>
-                                            <Avatar variant="square" src={animeItem.anime.image_url}/>
+                                            <Avatar variant="square" src={animeItem.anime.image_url} />
                                         </ListItemAvatar>
                                         <ListItemText
                                             primary={animeItem.anime.title}
+                                            secondary={`${animeItem.anime.status}${animeItem.anime.airing ? ' | ' + animeItem.anime.broadcast : ''}`}
                                         />
                                         <ListItemSecondaryAction>
                                             <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon />
+                                                <DeleteIcon button />
                                             </IconButton>
                                         </ListItemSecondaryAction>
                                     </ListItem>
                                 ))
                             }
-
                         </List>
                     </div>
                 </Grid>
             </div>
-
-
         </div>
     ) : (<p>Loading...</p>)
 }
