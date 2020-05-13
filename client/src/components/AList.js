@@ -91,7 +91,7 @@ export default function AList({ history, caughtToken }) {
         [history, token, animes]
     )
 
-    return animes ? (
+    return animes.length ? (
         <div className='lcontainer'>
             <div className={classes.root}>
                 <Grid>
@@ -110,7 +110,7 @@ export default function AList({ history, caughtToken }) {
                                         />
                                         <ListItemSecondaryAction>
                                             <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon button />
+                                                <DeleteIcon />
                                             </IconButton>
                                         </ListItemSecondaryAction>
                                     </ListItem>
@@ -121,5 +121,5 @@ export default function AList({ history, caughtToken }) {
                 </Grid>
             </div>
         </div>
-    ) : (<p>Loading...</p>)
+    ) : (<p>You haven't added any anime to your list yet.</p>)
 }

@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({ history, caughtToken, match }) {
+export default function Anime({caughtToken, match }) {
 
     const classes = useStyles();
 
@@ -38,7 +38,6 @@ export default function Anime({ history, caughtToken, match }) {
 
             if (token !== '') {
 
-                // let url = "http://localhost:5000/users/u";
                 let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
@@ -70,14 +69,15 @@ export default function Anime({ history, caughtToken, match }) {
                                     setAnime(info);
                                 });
 
-                            var found = false;
+                            var found = undefined;
                             for (var i = 0; i < info.animes.length; i++) {
                                 if (info.animes[i].anime.title === anime.title) {
                                     found = true;
                                     break;
                                 }
                             }
-                            if (found === true)
+
+                            if (found)
                                 setInsDel('Remove From List')
                             else
                                 setInsDel('Add To List')
@@ -92,9 +92,9 @@ export default function Anime({ history, caughtToken, match }) {
 
         }
 
-        // return () => {
-        //     isMounted.current = false;
-        // }
+        return () => {
+            isMounted.current = false;
+        }
     },
         [anime.title, match.params.id, token]
     )

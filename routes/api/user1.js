@@ -3,8 +3,12 @@ const router = require('express').Router(),
     auth = require('../../middleware/auth');
 
 router.route('/u').get(auth, async (req, res) => {
-    // View logged in user profile
-    res.send(req.user);
+    try {
+        res.send(req.user);
+    } catch (error) {
+        res.status(500).send({error});
+    }
+
 });
 
 router.post('/u/logout', auth, async (req, res) => {
