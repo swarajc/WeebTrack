@@ -92,9 +92,6 @@ export default function Anime({ caughtToken, match }) {
 
         }
 
-        return () => {
-            isMounted.current = false;
-        }
     },
         [anime.title, match.params.id, token]
     )
