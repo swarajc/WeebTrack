@@ -119,7 +119,7 @@ const AList = ({ history, caughtToken}) => {
                 </Grid>
             </div>
         </div>
-    ) : (<p>You haven't added any anime to your list yet.</p>)
+    ) : (<p>List is empty :')</p>)
 }
 
 export default AList
