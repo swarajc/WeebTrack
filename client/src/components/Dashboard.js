@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Dashboard({ history, caughtToken, parentCallBack, match, location }) {
+const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) => {
 
     // ==========================================================
 
@@ -42,20 +42,10 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
 
         if (isMounted.current === true) {
 
-            // var id =  match.params.username;
-
-            // console.log(id);
-
-            // if(id !== UserName)
-            // {
-            //     history.push(`/u/${UserName}`);           
-            // }
-
             myInput.current.focus();
 
             if (token !== '') {
 
-                // let url = "http://localhost:5000/users/u";
                 let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
@@ -95,7 +85,7 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
             console.log(Animes);
 
         }
-        
+
         window.onpopstate = (e) => {
             history.push(`/u/${UserName}`);
         }
@@ -106,15 +96,12 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
 
         }
     },
-
-        // [UserName, history, token, Animes, match.params.username]
         [UserName, history, token, Animes]
     )
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        // let url = "http://localhost:5000/users/u/logout";
         let url = "http://localhost:5000/user/u/logout";
         fetch(url, {
             method: 'post',
@@ -221,3 +208,5 @@ export default function Dashboard({ history, caughtToken, parentCallBack, match,
         </div>
     )
 }
+
+export default Dashboard;

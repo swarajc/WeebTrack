@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({caughtToken, match }) {
+export default function Anime({ caughtToken, match }) {
 
     const classes = useStyles();
 
@@ -98,6 +98,7 @@ export default function Anime({caughtToken, match }) {
     },
         [anime.title, match.params.id, token]
     )
+
 
     const handleSubmit = (e) => {
         e.preventDefault();

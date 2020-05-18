@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
         anime: {
             type: Object,
             unique: true
-        }   
+        }
     }]
 },
     {

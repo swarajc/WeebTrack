@@ -32,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function AList({ history, caughtToken }) {
-
-
+const AList = ({ history, caughtToken}) => {
 
     const isMounted = useRef(true);
 
@@ -50,7 +48,6 @@ export default function AList({ history, caughtToken }) {
 
             if (token !== '') {
 
-                // let url = "http://localhost:5000/users/u";
                 let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
@@ -79,6 +76,7 @@ export default function AList({ history, caughtToken }) {
                             }
 
                     });
+
             }
         }
 
@@ -123,3 +121,5 @@ export default function AList({ history, caughtToken }) {
         </div>
     ) : (<p>You haven't added any anime to your list yet.</p>)
 }
+
+export default AList
