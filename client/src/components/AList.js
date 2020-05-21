@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -32,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const AList = ({ history, caughtToken}) => {
+
+const AList = ({history, caughtToken}) => {
 
     const isMounted = useRef(true);
 
@@ -41,6 +43,63 @@ const AList = ({ history, caughtToken}) => {
     const [animes, setAnimes] = useState([]);
 
     const classes = useStyles();
+
+    const handleClick = (anime) => {
+
+        let url = "http://localhost:5000/user/animes/delAnime";
+
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                animeObj: anime
+            }),
+            user: {},
+            token: ''
+        })
+            .then((result) => result.json())
+            .then((info) => {
+                if (info.success === 'Anime removed') {
+                    console.log(info.success);
+                    window.location.reload();
+                }
+                else
+                    if (info.error) {
+                        console.log(info.error);
+                    }
+
+            });
+        }
+
+    const listItems = animes.map(animeItem => (
+        <ListItem className= 'list-item'  key={animeItem.anime.mal_id} button component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`}>
+            <ListItemAvatar>
+                <Avatar variant="square" src={animeItem.anime.image_url} />
+            </ListItemAvatar>
+            <ListItemText
+                primary={animeItem.anime.title}
+                secondary={`${animeItem.anime.status}${animeItem.anime.airing ? ' | ' + animeItem.anime.broadcast : ''}`}
+            />
+            <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon button onClick = { () => {handleClick(animeItem.anime)}}/>
+                </IconButton>
+            </ListItemSecondaryAction>
+        </ListItem>
+    ))
+
+    const listItemsWithDividers = [];
+
+    listItems.forEach((item, index) => {
+        listItemsWithDividers.push(item)
+        if (listItems[index + 1] !== undefined) {
+        listItemsWithDividers.push(<Divider />)
+        }
+    })
 
     useEffect(() => {
 
@@ -86,9 +145,12 @@ const AList = ({ history, caughtToken}) => {
             isMounted.current = false;
         }
     },
-        [history, token, animes]
+        [token, animes]
     )
 
+    
+    
+    
     return animes.length ? (
         <div className='lcontainer'>
             <div className={classes.root}>
@@ -96,24 +158,7 @@ const AList = ({ history, caughtToken}) => {
                     <h1>Anime List</h1>
                     <div className={`${classes.demo} a-list`}>
                         <List>
-                            {
-                                animes.map(animeItem => (
-                                    <ListItem key={animeItem.anime.mal_id} button divider component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`}>
-                                        <ListItemAvatar>
-                                            <Avatar variant="square" src={animeItem.anime.image_url} />
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary={animeItem.anime.title}
-                                            secondary={`${animeItem.anime.status}${animeItem.anime.airing ? ' | ' + animeItem.anime.broadcast : ''}`}
-                                        />
-                                        <ListItemSecondaryAction>
-                                            <IconButton edge="end" aria-label="delete">
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                ))
-                            }
+                        {listItemsWithDividers}
                         </List>
                     </div>
                 </Grid>

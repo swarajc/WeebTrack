@@ -9,3 +9,7 @@
     background-color: whitesmoke;
 }
 
+.list-item{
+    border-bottom-color: transparent; 
+    border-bottom-width: 0;
+}

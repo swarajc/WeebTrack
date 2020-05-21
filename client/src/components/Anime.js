@@ -124,7 +124,7 @@ export default function Anime({ caughtToken, match }) {
         })
             .then((result) => result.json())
             .then((info) => {
-
+                
                 console.log(info.success);
                 if (info.success === 'Anime added') {
                     setInsDel('Remove From List');
