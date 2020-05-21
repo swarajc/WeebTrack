@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AList = ({history, caughtToken}) => {
+const AList = ({caughtToken}) => {
 
     const isMounted = useRef(true);
 
@@ -61,32 +61,30 @@ const AList = ({history, caughtToken}) => {
             user: {},
             token: ''
         })
-            .then((result) => result.json())
-            .then((info) => {
-                if (info.success === 'Anime removed') {
+            .then(result => result.json())
+            .then(info => {   
                     console.log(info.success);
                     window.location.reload();
-                }
-                else
-                    if (info.error) {
-                        console.log(info.error);
-                    }
-
-            });
+            })
+            .catch( err => {
+                console.log(err);
+                window.location.reload();
+            })
         }
 
     const listItems = animes.map(animeItem => (
-        <ListItem className= 'list-item'  key={animeItem.anime.mal_id} button component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`}>
+        <ListItem className= 'list-item'  key={animeItem.anime.mal_id} >
             <ListItemAvatar>
                 <Avatar variant="square" src={animeItem.anime.image_url} />
             </ListItemAvatar>
             <ListItemText
+                /* button component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`} */
                 primary={animeItem.anime.title}
                 secondary={`${animeItem.anime.status}${animeItem.anime.airing ? ' | ' + animeItem.anime.broadcast : ''}`}
             />
             <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon button onClick = { () => {handleClick(animeItem.anime)}}/>
+                <IconButton edge="end" aria-label="delete" onClick = { () => {handleClick(animeItem.anime)}}>
+                    <DeleteIcon />
                 </IconButton>
             </ListItemSecondaryAction>
         </ListItem>
@@ -125,15 +123,10 @@ const AList = ({history, caughtToken}) => {
 
                 })
                     .then((result) => result.json())
-                    .then((info) => {
-                        if (info) {
-                            setAnimes(info.animes)
-                        }
-                        else
-                            if (info.error) {
-                                console.log(info.error);
-                            }
-
+                    .then((info) => setAnimes(info.animes))
+                    .catch((err) => {
+                        console.log(err);
+                        window.location.reload();
                     });
 
             }

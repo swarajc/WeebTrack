@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({ caughtToken, match }) {
+export default function Anime({ history, caughtToken, match }) {
 
     const classes = useStyles();
 
@@ -124,22 +124,20 @@ export default function Anime({ caughtToken, match }) {
         })
             .then((result) => result.json())
             .then((info) => {
-                
+
                 console.log(info.success);
-                if (info.success === 'Anime added') {
-                    setInsDel('Remove From List');
-                }
-                else if (info.success === 'Anime removed') {
-                    setInsDel('Add to List');
-                }
-                else
-                    if (info.error) {
-                        console.log(info.error);
-                    }
-
+                history.push('/u/reaper/l');
+                // if (info.success === 'Anime added') {
+                //     setInsDel('Remove From List');
+                // }
+                // else if (info.success === 'Anime removed') {
+                //     setInsDel('Add to List');
+                // }
+            })
+            .catch((err) => {
+                console.log(err)
+                window.location.reload();
             });
-
-
     }
 
     return (
