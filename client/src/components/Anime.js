@@ -44,7 +44,7 @@ export default function Anime({ history, caughtToken, match }) {
                     method: 'get',
 
                     headers: {
-
+                        
                         'Content-type': 'application/json',
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`

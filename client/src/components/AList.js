@@ -134,9 +134,9 @@ const AList = ({caughtToken}) => {
 
         console.log(animes);
 
-        return () => {
-            isMounted.current = false;
-        }
+            return () => {
+                isMounted.current = false;
+            }
     },
         [token, animes]
     )

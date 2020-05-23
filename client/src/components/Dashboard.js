@@ -149,10 +149,12 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) =>
             fetch(url)
                 .then((response) => response.json())
                 .then((info) => {
-
                     console.log(info);
                     setAnimes(info.results);
-
+                })
+                .catch(err => {
+                    console.log(err);
+                    // window.location.reload();
                 });
         }
         else {
