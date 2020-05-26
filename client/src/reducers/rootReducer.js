@@ -1,63 +1,25 @@
 
-const fetchFromDB = () => {
-    let url = "http://localhost:5000/user/u";
-    fetch(url, {
-        method: 'get',
-        headers: {
-            'Content-type': 'application/json',
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        user: {},
-        token: ''
-    })
-        .then((result) => result.json())
-        .then((info) => {
-            if (info) {
-                console.log(info);
-                initState = {
-                    ...initState,
-                    animeList: [...animeList, info.animes]
-                }
-            }
-            else
-                if (info.error) {
-                    console.log(info.error);
-                }
-        });
-}
-
 const initState = {
     animeList: []
 }
 
-fetchFromDB();
-console.log(initState);
-
 const rootReducer = (state = initState, action) => {
+    console.log(action);
     switch (action.type) {
-        case 'ADD_ANIME': {
-            return { ...state, animeList: [...animeList, action.anime] }
-        }
-            break;
-
-        case 'REM_ANIME': {
-
-            let newAnimeList = animeList.filter((anime) => {
-                return anime.mal_id !== action.anime.mal_id;    
-            });
-
-            return {
-                ...state,
-                animeList: newAnimeList
-            }
-        }
-            break;
-
+        // case "FETCH_REQUEST":
+        //     return state;
+        // case "FETCH_SUCCESS":
+        //     console.log(state);
+        //     return { ...state, posts: action.payload };
+        case 'INIT_ANIMES':
+            console.log(action.Animes);
+            return {   
+                animeList: action.Animes
+            };   
         default:
-            break;
+            return state;
     }
-    return state;
+    
 }
 
 export default rootReducer;

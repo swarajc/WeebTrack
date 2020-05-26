@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux';
+import initialiseAnimeList from '../actions/initialiseAnimeList';
+// import {fetchPostsWithRedux} from '../fetchMethods/dataToStore';     
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) => {
+const Dashboard = ({ history, caughtToken, parentCallBack, match, location, initialiseAnimeList }) => {
 
     // ==========================================================
 
@@ -70,7 +73,8 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) =>
 
                             console.log(info);
                             setUserName(String(info.username));
-                            console.log(UserName);
+                            console.log(UserName);   
+                            initialiseAnimeList(info.animes);
                         }
                         else
                             if (info.error) {
@@ -96,7 +100,7 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) =>
 
         }
     },
-        [UserName, history, token, Animes]
+        [UserName, history, token, Animes, initialiseAnimeList]
     )
 
     const handleSubmit = (e) => {
@@ -211,4 +215,19 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location }) =>
     )
 }
 
-export default Dashboard;
+// const mapStateToProps = (AnimeList) => {
+//     console.log(AnimeList);
+//     return {
+//         AnimeList: AnimeList
+//     }
+//   }
+
+const mapDispatchToProps = (dispatch, props) => {
+    console.log(props);
+    console.log(dispatch);
+    return {
+      initialiseAnimeList: (Animes) => dispatch(initialiseAnimeList(Animes))
+    }
+  }
+
+export default connect(null, mapDispatchToProps)(Dashboard);

@@ -13,6 +13,7 @@ import NoMatch from './components/NoMatch';
 import Profile from './components/Profile';
 import Anime from './components/Anime';
 import AList from './components/AList';
+import initialiseAnimeList from '../src/actions/initialiseAnimeList'
 
 function App() {
 
@@ -84,6 +85,7 @@ function App() {
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
+                        initialiseAnimeList={initialiseAnimeList}
                     />
 
                     <AuthenticatedRoute
