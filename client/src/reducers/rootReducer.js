@@ -4,6 +4,7 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
+    console.log(state);
     console.log(action);
     switch (action.type) {
         // case "FETCH_REQUEST":
@@ -12,14 +13,35 @@ const rootReducer = (state = initState, action) => {
         //     console.log(state);
         //     return { ...state, posts: action.payload };
         case 'INIT_ANIMES':
-            console.log(action.Animes);
-            return {   
+            return {
+                ...state,
                 animeList: action.Animes
-            };   
+            };
+
+        case 'DEL_ANIME':
+            console.log(action.mal_id)
+            let newAnimes1 = state.animeList.filter(animeItem => {
+                console.log(animeItem);
+                return animeItem.anime.mal_id !== action.mal_id
+            });
+            return {
+                ...state,
+                animeList: newAnimes1
+            };
+
+        case 'ADD_ANIME':
+            let newAnimes2 = [
+                ...state.animeList,
+                { '_id': action.anime.mal_id,'anime': action.anime }
+            ]
+            return {
+                animeList: newAnimes2
+            }
+
         default:
             return state;
     }
-    
+
 }
 
 export default rootReducer;

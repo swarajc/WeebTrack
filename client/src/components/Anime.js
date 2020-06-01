@@ -3,6 +3,10 @@ import '../styles/Anime.css';
 import { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux';
+import addAnime from '../actions/addAnime';
+import deleteAnime from '../actions/deleteAnime';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Anime({ history, caughtToken, match }) {
+const Anime = ({ history, caughtToken, match, addAnime, deleteAnime }) => {
 
     const classes = useStyles();
 
@@ -44,7 +48,7 @@ export default function Anime({ history, caughtToken, match }) {
                     method: 'get',
 
                     headers: {
-                        
+
                         'Content-type': 'application/json',
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -103,9 +107,11 @@ export default function Anime({ history, caughtToken, match }) {
         let url;
 
         if (InsDel === 'Add To List') {
+            addAnime(anime);
             url = "http://localhost:5000/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
+            deleteAnime(anime.mal_id);
             url = "http://localhost:5000/user/animes/delAnime";
         }
 
@@ -188,3 +194,14 @@ export default function Anime({ history, caughtToken, match }) {
         </div>
     )
 }
+
+const mapDispatchToProps = (dispatch, props) => {
+    console.log(props);
+    console.log(dispatch);
+    return {
+        addAnime: (anime) => dispatch(addAnime(anime)),
+        deleteAnime: (mal_id) => dispatch(deleteAnime(mal_id))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Anime)

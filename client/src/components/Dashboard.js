@@ -215,12 +215,12 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location, init
     )
 }
 
-// const mapStateToProps = (AnimeList) => {
-//     console.log(AnimeList);
-//     return {
-//         AnimeList: AnimeList
-//     }
-//   }
+const mapStateToProps = (animeList) => {
+    console.log(animeList);
+    return {
+        animeList: animeList
+    }
+  }
 
 const mapDispatchToProps = (dispatch, props) => {
     console.log(props);
@@ -230,4 +230,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
   }
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

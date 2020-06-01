@@ -13,7 +13,10 @@ import NoMatch from './components/NoMatch';
 import Profile from './components/Profile';
 import Anime from './components/Anime';
 import AList from './components/AList';
-import initialiseAnimeList from '../src/actions/initialiseAnimeList'
+import initialiseAnimeList from '../src/actions/initialiseAnimeList';
+import addAnime from '../src/actions/addAnime';
+import deleteAnime from '../src/actions/deleteAnime';
+
 
 function App() {
 
@@ -102,6 +105,8 @@ function App() {
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
+                        addAnime = {addAnime}
+                        deleteAnime = {deleteAnime}
                     />
 
                     <AuthenticatedRoute
@@ -110,6 +115,7 @@ function App() {
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
                         parentCallBack={updateProp}
+                        deleteAnime={deleteAnime}
                     />
 
                     <UnauthenticatedRoute

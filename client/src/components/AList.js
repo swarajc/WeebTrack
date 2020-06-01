@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
+import {connect} from 'react-redux';
+import deleteAnime from '../actions/deleteAnime';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AList = ({caughtToken}) => {
+const AList = ({caughtToken, deleteAnime}) => {
 
     const isMounted = useRef(true);
 
@@ -45,6 +47,8 @@ const AList = ({caughtToken}) => {
     const classes = useStyles();
 
     const handleClick = (anime) => {
+
+        deleteAnime(anime.mal_id);
 
         let url = "http://localhost:5000/user/animes/delAnime";
 
@@ -72,7 +76,8 @@ const AList = ({caughtToken}) => {
             })
         }
 
-    const listItems = animes.map(animeItem => (
+    const listItems = animes.map(animeItem => {
+        return (
         <ListItem className= 'list-item'  key={animeItem.anime.mal_id} >
             <ListItemAvatar>
                 <Avatar variant="square" src={animeItem.anime.image_url} />
@@ -87,17 +92,19 @@ const AList = ({caughtToken}) => {
                     <DeleteIcon />
                 </IconButton>
             </ListItemSecondaryAction>
-        </ListItem>
-    ))
+        </ListItem>)
+    })
 
     const listItemsWithDividers = [];
 
     listItems.forEach((item, index) => {
         listItemsWithDividers.push(item)
         if (listItems[index + 1] !== undefined) {
-        listItemsWithDividers.push(<Divider />)
+        listItemsWithDividers.push(<Divider key = {`divider${index}`}/>)
         }
     })
+    console.log(listItems);
+    console.log(listItemsWithDividers);
 
     useEffect(() => {
 
@@ -141,23 +148,34 @@ const AList = ({caughtToken}) => {
         [token, animes]
     )
 
-    
-    
-    
     return animes.length ? (
         <div className='lcontainer'>
             <div className={classes.root}>
                 <Grid>
                     <h1>Anime List</h1>
-                    <div className={`${classes.demo} a-list`}>
-                        <List>
+                        <List className={`${classes.demo} a-list`} >
                         {listItemsWithDividers}
                         </List>
-                    </div>
                 </Grid>
             </div>
         </div>
     ) : (<p>List is empty :')</p>)
 }
 
-export default AList
+const mapStateToProps = (animeList) => {
+    console.log(animeList);
+    return {
+        animeList: animeList
+    }
+  }
+
+const mapDispatchToProps = (dispatch, props) => {
+    console.log(props);
+    console.log(dispatch);
+    return {
+        deleteAnime: (mal_id) => dispatch(deleteAnime(mal_id))
+      }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AList)
+// export default AList
