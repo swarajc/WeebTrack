@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AList = ({caughtToken, deleteAnime}) => {
+const AList = ({caughtToken, deleteAnime, animeList}) => {
+    
+    console.log(animeList);
 
     const isMounted = useRef(true);
 
@@ -46,10 +48,17 @@ const AList = ({caughtToken, deleteAnime}) => {
 
     const classes = useStyles();
 
-    const handleClick = (anime) => {
+    const handleClick = (targetAnime) => {
 
-        deleteAnime(anime.mal_id);
+        deleteAnime(targetAnime.mal_id);
 
+        const newAnimes = animes.filter((animeItem) => {
+            // console.log(animeItem, targetAnime)
+            return animeItem.anime.title !== targetAnime.title;
+        })
+
+        setAnimes(newAnimes)    
+        
         let url = "http://localhost:5000/user/animes/delAnime";
 
         fetch(url, {
@@ -60,7 +69,7 @@ const AList = ({caughtToken, deleteAnime}) => {
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                animeObj: anime
+                animeObj: targetAnime
             }),
             user: {},
             token: ''
@@ -68,7 +77,7 @@ const AList = ({caughtToken, deleteAnime}) => {
             .then(result => result.json())
             .then(info => {   
                     console.log(info.success);
-                    window.location.reload();
+                    // window.location.reload();
             })
             .catch( err => {
                 console.log(err);
@@ -122,7 +131,7 @@ const AList = ({caughtToken, deleteAnime}) => {
                         'Content-type': 'application/json',
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`
-
+                        
                     },
 
                     user: {},
@@ -144,7 +153,7 @@ const AList = ({caughtToken, deleteAnime}) => {
             return () => {
                 isMounted.current = false;
             }
-    },
+    },      
         [token, animes]
     )
 

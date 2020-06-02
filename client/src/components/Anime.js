@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Anime = ({ history, caughtToken, match, addAnime, deleteAnime }) => {
+const Anime = ({ caughtToken, match, addAnime, deleteAnime }) => {
 
     const classes = useStyles();
 
@@ -107,15 +107,20 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime }) => {
         let url;
 
         if (InsDel === 'Add To List') {
+
+            setInsDel('Remove From List');
             addAnime(anime);
             url = "http://localhost:5000/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
+
+            setInsDel('Add to List');
             deleteAnime(anime.mal_id);
             url = "http://localhost:5000/user/animes/delAnime";
         }
 
         fetch(url, {
+            mode: 'cors',
             method: 'post',
             headers: {
                 'Content-type': 'application/json',
@@ -132,7 +137,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime }) => {
             .then((info) => {
 
                 console.log(info.success);
-                history.push('/u/reaper/l');
+                // history.push('/u/reaper/l');
                 // if (info.success === 'Anime added') {
                 //     setInsDel('Remove From List');
                 // }
