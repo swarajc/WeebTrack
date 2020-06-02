@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Anime = ({ caughtToken, match, addAnime, deleteAnime }) => {
+const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }) => {
+
+    console.log(animeList)
 
     const classes = useStyles();
 

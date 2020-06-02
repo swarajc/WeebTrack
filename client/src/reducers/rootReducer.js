@@ -13,10 +13,9 @@ const rootReducer = (state = initState, action) => {
         //     console.log(state);
         //     return { ...state, posts: action.payload };
         case 'INIT_ANIMES':
-            return {
-                ...state,
+            return Object.assign({}, state, {
                 animeList: action.Animes
-            };
+            })
 
         case 'DEL_ANIME':
             console.log(action.mal_id)
@@ -24,19 +23,20 @@ const rootReducer = (state = initState, action) => {
                 console.log(animeItem);
                 return animeItem.anime.mal_id !== action.mal_id
             });
-            return {
-                ...state,
+
+            return Object.assign({}, state, {
                 animeList: newAnimes1
-            };
+            })
 
         case 'ADD_ANIME':
             let newAnimes2 = [
                 ...state.animeList,
-                { '_id': action.anime.mal_id,'anime': action.anime }
+                { '_id': action.anime.mal_id, 'anime': action.anime }
             ]
-            return {
+
+            return Object.assign({}, state, {
                 animeList: newAnimes2
-            }
+            })
 
         default:
             return state;

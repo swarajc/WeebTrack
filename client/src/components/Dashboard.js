@@ -17,10 +17,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Dashboard = ({ history, caughtToken, parentCallBack, match, location, initialiseAnimeList }) => {
+const Dashboard = ({ history, caughtToken, parentCallBack, match, location, initialiseAnimeList, animeList }) => {
 
     // ==========================================================
 
+    console.log(animeList);
     const classes = useStyles();
 
     console.log(history);
