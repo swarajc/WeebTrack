@@ -3,7 +3,7 @@ import '../styles/Anime.css';
 import { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import addAnime from '../actions/addAnime';
 import deleteAnime from '../actions/deleteAnime';
 
@@ -110,13 +110,13 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
         if (InsDel === 'Add To List') {
 
-            setInsDel('Remove From List');
+            // setInsDel('Remove From List');
             addAnime(anime);
             url = "http://localhost:5000/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
 
-            setInsDel('Add to List');
+            // setInsDel('Add to List');
             deleteAnime(anime.mal_id);
             url = "http://localhost:5000/user/animes/delAnime";
         }
@@ -140,16 +140,16 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
                 console.log(info.success);
                 // history.push('/u/reaper/l');
-                // if (info.success === 'Anime added') {
-                //     setInsDel('Remove From List');
-                // }
-                // else if (info.success === 'Anime removed') {
-                //     setInsDel('Add to List');
-                // }
+                if (info.success === 'Anime added') {
+                    setInsDel('Remove From List');
+                }
+                else if (info.success === 'Anime removed') {
+                    setInsDel('Add to List');
+                }
             })
             .catch((err) => {
                 console.log(err)
-                window.location.reload();
+                // window.location.reload();
             });
     }
 
