@@ -52,7 +52,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/user/u";
+                let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -109,7 +109,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        let url = "http://localhost:5000/user/u/logout";
+        let url = "/user/u/logout";
         fetch(url, {
             method: 'post',
             headers: {

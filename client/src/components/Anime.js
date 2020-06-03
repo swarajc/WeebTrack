@@ -44,7 +44,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/user/u";
+                let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -112,13 +112,13 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             // setInsDel('Remove From List');
             addAnime(anime);
-            url = "http://localhost:5000/user/animes/addAnime";
+            url = "/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
 
             // setInsDel('Add to List');
             deleteAnime(anime.mal_id);
-            url = "http://localhost:5000/user/animes/delAnime";
+            url = "/user/animes/delAnime";
         }
 
         fetch(url, {

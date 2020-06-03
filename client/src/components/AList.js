@@ -59,7 +59,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
         setAnimes(newAnimes)    
         
-        let url = "http://localhost:5000/user/animes/delAnime";
+        let url = "/user/animes/delAnime";
 
         fetch(url, {
             method: 'post',
@@ -121,7 +121,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/user/u";
+                let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
