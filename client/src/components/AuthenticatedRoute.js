@@ -3,17 +3,17 @@ import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router';
 // import Dashboard from '../components/Dashboard';
 
-export default function AuthenticatedRoute({ Component, appProps, caughtToken, parentCallBack, path, initialiseAnimeList, deleteAnime, addAnime }) {
-    
+export default function AuthenticatedRoute({ Component, appProps, caughtToken, path, initialiseAnimeList, deleteAnime, addAnime, setIsAuthenticated, setIsToken }) {
+
     console.log(path);
     console.log(appProps);
     console.log(caughtToken);
     return (
         <Route
-            path = {path}
+            path={path}
             render={props =>
                 appProps === 'true'
-                    ? <Component {...props} {...appProps} caughtToken={caughtToken} parentCallBack={parentCallBack} initialiseAnimeList={initialiseAnimeList} deleteAnime={deleteAnime} addAnime={addAnime}/>
+                    ? <Component {...props} {...appProps} caughtToken={caughtToken} initialiseAnimeList={initialiseAnimeList} deleteAnime={deleteAnime} addAnime={addAnime} setIsAuthenticated={setIsAuthenticated} setIsToken={setIsToken} />
                     : <Redirect
                         to={`/signin?redirect=${props.location.pathname}${props.location.search}`}
                     />}

@@ -5,6 +5,9 @@ const express = require('express'),
     logger = require('morgan'),
     jwt = require('jsonwebtoken');
 
+const path = require('path');
+
+
 require('dotenv').config();
 
 const app = express();
@@ -47,11 +50,15 @@ const userRoutes = require('./routes/api/user1');
 const indexRoutes = require('./routes/api/index');
 const animeRoutes = require('./routes/api/anime');
 
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 app.use('/user/animes', animeRoutes)
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
 

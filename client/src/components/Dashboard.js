@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import initialiseAnimeList from '../actions/initialiseAnimeList';
+import setIsAuthenticated from '../actions/setIsAuthenticated'
+import setIsToken from '../actions/setIsToken';
 // import {fetchPostsWithRedux} from '../fetchMethods/dataToStore';     
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Dashboard = ({ history, caughtToken, parentCallBack, match, location, initialiseAnimeList, animeList }) => {
+const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList, animeList, setIsAuthenticated, setIsToken }) => {
 
     // ==========================================================
 
@@ -74,7 +76,7 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location, init
 
                             console.log(info);
                             setUserName(String(info.username));
-                            console.log(UserName);   
+                            console.log(UserName);
                             initialiseAnimeList(info.animes);
                         }
                         else
@@ -128,9 +130,8 @@ const Dashboard = ({ history, caughtToken, parentCallBack, match, location, init
                 if (info.success) {
 
                     console.log(info);
-                    caughtToken = '';
-
-                    parentCallBack(caughtToken);
+                    setIsToken('')
+                    setIsAuthenticated('false')
                     history.push('/home');
                 }
                 else
@@ -221,14 +222,16 @@ const mapStateToProps = (animeList) => {
     return {
         animeList: animeList
     }
-  }
+}
 
 const mapDispatchToProps = (dispatch, props) => {
     console.log(props);
     console.log(dispatch);
     return {
-      initialiseAnimeList: (Animes) => dispatch(initialiseAnimeList(Animes))
+        initialiseAnimeList: (Animes) => dispatch(initialiseAnimeList(Animes)),
+        setIsAuthenticated: (value) => dispatch(setIsAuthenticated(value)),
+        setIsToken: (value) => dispatch(setIsToken(value))
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

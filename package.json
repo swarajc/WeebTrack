@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "app": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,5 +35,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
+  },
+  "engines": {
+    "node": "12.16.3"
   }
 }

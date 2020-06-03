@@ -6,6 +6,9 @@ import { useShow } from '../hooks/show-hook';
 import { useRef, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import setIsAuthenticated from '../actions/setIsAuthenticated'
+import setIsToken from '../actions/setIsToken';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,13 +18,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SignIn({ history, caughtToken, parentCallBack }) {
+const SignIn = ({ history, caughtToken, setIsAuthenticated, setIsToken }) => {
 
     const classes = useStyles();
 
     console.log(history);
     console.log(caughtToken);
-    console.log(parentCallBack);
 
     const myInput = useRef(null);
 
@@ -63,8 +65,8 @@ export default function SignIn({ history, caughtToken, parentCallBack }) {
 
                     resetEmail();
                     resetPass();
-                    caughtToken = info.token;
-                    parentCallBack(info.token);
+                    setIsAuthenticated('true')
+                    setIsToken(info.token)
                     history.push(`/u/${info.user.username}`);
                 }
                 else
@@ -111,7 +113,7 @@ export default function SignIn({ history, caughtToken, parentCallBack }) {
                             </Button>
                         </div>
                         <div className={`${classes.root} mater-btn`}>
-                            <Button variant="contained" color="primary" type = 'submit' >
+                            <Button variant="contained" color="primary" type='submit' >
                                 Sign In
                             </Button>
                         </div>
@@ -121,3 +123,13 @@ export default function SignIn({ history, caughtToken, parentCallBack }) {
         </div>
     )
 }
+
+const mapDispatchToProps = (dispatch) => {
+    console.log(dispatch);
+    return {
+        setIsAuthenticated: (value) => dispatch(setIsAuthenticated(value)),
+        setIsToken: (value) => dispatch(setIsToken(value))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignIn)    

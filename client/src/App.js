@@ -16,60 +16,26 @@ import AList from './components/AList';
 import initialiseAnimeList from '../src/actions/initialiseAnimeList';
 import addAnime from '../src/actions/addAnime';
 import deleteAnime from '../src/actions/deleteAnime';
+import { connect } from 'react-redux';
 
+function App(props) {
 
-function App() {
+    console.log(props);
 
-    // localStorage.setItem('isAuthenticated', 'false');
+    const [isAuthenticated, userHasAuthenticated] = useState(props.isAuthenticated);
 
-    var Authenticated = localStorage.getItem('isAuthenticated');
-
-    var holdToken = localStorage.getItem('isToken');
-
-    const [isAuthenticated, userHasAuthenticated] = useState(Authenticated);
-
-    const [caughtToken, updateCaughtToken] = useState(holdToken);
-
+    const [caughtToken, updateCaughtToken] = useState(props.isToken);
 
 
     useEffect(() => {
-    
-        if (caughtToken !== '') {
 
-            userHasAuthenticated(Authenticated);
-        }
-        else {
+        userHasAuthenticated(props.isAuthenticated)
+        updateCaughtToken(props.isToken)
 
-            userHasAuthenticated(Authenticated);
-
-        }
-
-    }, [caughtToken, Authenticated]);
-
-    function updateProp(received) {
-
-        if (received === '') {
-            localStorage.setItem('isAuthenticated', 'false');
-            Authenticated = localStorage.getItem('isAuthenticated');
-            localStorage.setItem('isToken', received);
-            holdToken = localStorage.getItem('isToken');
-        }
-        else {
-            localStorage.setItem('isAuthenticated', 'true');
-            Authenticated = localStorage.getItem('isAuthenticated');
-            localStorage.setItem('isToken', received);
-            holdToken = localStorage.getItem('isToken');
-        }
-
-        updateCaughtToken(holdToken);
-
-    }
+    }, [props.isAuthenticated, props.isToken]);
 
     console.log(caughtToken);
-    console.log(holdToken)
-    console.log(Authenticated);
-
-    
+    console.log(isAuthenticated)
 
     return (
         <BrowserRouter>
@@ -87,7 +53,6 @@ function App() {
                         Component={Dashboard}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                        parentCallBack={updateProp}
                         initialiseAnimeList={initialiseAnimeList}
                     />
 
@@ -96,17 +61,15 @@ function App() {
                         Component={Profile}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                        parentCallBack={updateProp}
                     />
-                    
+
                     <AuthenticatedRoute
                         path="/u/:username/a/:id"
                         Component={Anime}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                        parentCallBack={updateProp}
-                        addAnime = {addAnime}
-                        deleteAnime = {deleteAnime}
+                        addAnime={addAnime}
+                        deleteAnime={deleteAnime}
                     />
 
                     <AuthenticatedRoute
@@ -114,7 +77,6 @@ function App() {
                         Component={AList}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                        parentCallBack={updateProp}
                         deleteAnime={deleteAnime}
                     />
 
@@ -123,28 +85,29 @@ function App() {
                         Component={SignIn}
                         appProps={isAuthenticated}
                         caughtToken={caughtToken}
-                        parentCallBack={updateProp}
                     />
 
-                    
+
                     <UnauthenticatedRoute
                         path='/home'
                         Component={Home}
                         appProps={isAuthenticated}
                     />
+
                     <UnauthenticatedRoute
                         path='/signup'
                         Component={SignUp}
                         caughtToken={caughtToken}
                         appProps={isAuthenticated}
                     />
+
                     <UnauthenticatedRoute
                         path="/forgotpassword"
                         Component={ForgotPass}
                         appProps={isAuthenticated}
                     />
 
-                    <Route path = "*">
+                    <Route path="*">
                         <NoMatch />
                     </Route>
                 </Switch>
@@ -153,4 +116,14 @@ function App() {
     )
 }
 
-export default App;
+const mapStateToProps = ({ isAuthenticated, isToken }) => {
+    console.log(isAuthenticated, isToken);
+    return {
+        isAuthenticated: isAuthenticated,
+        isToken: isToken
+    }
+}
+
+export default connect(mapStateToProps, null)(App)
+
+// export default App;

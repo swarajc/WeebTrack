@@ -1,7 +1,7 @@
 const router = require('express').Router(),
     User = require('../../models/user'),
     auth = require('../../middleware/auth');
-
+    
 
 router.route('/add').post(async (req, res) => {
 

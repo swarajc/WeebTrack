@@ -149,7 +149,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
             })
             .catch((err) => {
                 console.log(err)
-                // window.location.reload();
+                window.location.reload();
             });
     }
 
