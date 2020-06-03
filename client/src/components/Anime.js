@@ -110,13 +110,13 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
         if (InsDel === 'Add To List') {
 
-            // setInsDel('Remove From List');
+            setInsDel('Remove From List');
             addAnime(anime);
             url = "/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
 
-            // setInsDel('Add to List');
+            setInsDel('Add to List');
             deleteAnime(anime.mal_id);
             url = "/user/animes/delAnime";
         }
