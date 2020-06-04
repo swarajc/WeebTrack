@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import setIsAuthenticated from '../actions/setIsAuthenticated'
 import setIsToken from '../actions/setIsToken';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -101,17 +102,17 @@ const SignIn = ({ history, caughtToken, setIsAuthenticated, setIsToken }) => {
                                 <input className="input-with-icon" id="password" type={inputType} {...bindPass} required />
                             </div>
                         </div>
-                        <div className={classes.root}>
-                            <Button href='/forgotpassword'>
+                        <Link to='/forgotpassword' className='btns'>
+                            <Button>
                                 Forgot Password?
-                            </Button>
-                        </div>
+                                </Button>
+                        </Link>
 
-                        <div className={classes.root}>
-                            <Button href='/signup'>
+                        <Link to='/signup' className='btns'>
+                            <Button>
                                 New to WeebTrack? Create an account.
-                            </Button>
-                        </div>
+                                    </Button>
+                        </Link>
                         <div className={`${classes.root} mater-btn`}>
                             <Button variant="contained" color="primary" type='submit' >
                                 Sign In

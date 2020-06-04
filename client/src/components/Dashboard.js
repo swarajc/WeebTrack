@@ -183,7 +183,9 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
                     </div>
                     <div className='buttons'>
                         <div className={classes.root}>
-                            <Button href={`/u/${UserName}/p`} variant="contained">Welcome {UserName}</Button>
+                            <Link to={`/u/${UserName}/p`} className='btns'>
+                                <Button variant="contained">Welcome {UserName}</Button>
+                            </Link>
                             <Button onClick={handleSubmit} variant="contained">Sign out</Button>
                         </div>
                     </div>

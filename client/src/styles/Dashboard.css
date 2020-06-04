@@ -3,7 +3,6 @@
 }
 
 .header1 {
-
     margin: 5%;
 }
 
@@ -14,7 +13,7 @@
     white-space: nowrap;
     text-align: center;
     width: fit-content;
-    height: fit-content;    
+    height: fit-content;
 }
 
 .searchInput {
@@ -35,8 +34,12 @@
     height: 100%;
 }
 
-
-.child-wrapper1{
+.child-wrapper1 {
     display: inline-block;
     margin: 3%;
+}
+
+.btns {
+    color: #FFFFFF;
+    text-decoration: none;
 }
