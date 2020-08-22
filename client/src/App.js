@@ -4,7 +4,7 @@ import Home from './components/Home'
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import ForgotPass from './components/ForgotPass';
-import Landing from './components/Landing';
+// import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import { useState, useEffect } from 'react';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
@@ -44,7 +44,7 @@ function App(props) {
 
                     <UnauthenticatedRoute
                         exact path='/'
-                        Component={Landing}
+                        Component={Home}
                         appProps={isAuthenticated}
                     />
 
@@ -88,11 +88,11 @@ function App(props) {
                     />
 
 
-                    <UnauthenticatedRoute
+                    {/* <UnauthenticatedRoute
                         path='/home'
                         Component={Home}
                         appProps={isAuthenticated}
-                    />
+                    /> */}
 
                     <UnauthenticatedRoute
                         path='/signup'
