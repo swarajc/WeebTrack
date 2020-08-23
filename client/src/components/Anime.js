@@ -6,14 +6,15 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import addAnime from '../actions/addAnime';
 import deleteAnime from '../actions/deleteAnime';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
+        display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
     },
+    }
 }));
 
 
@@ -33,7 +34,9 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
     const [anime, setAnime] = useState({});
 
-    const [InsDel, setInsDel] = useState('Loading...');
+    const [InsDel, setInsDel] = useState('');
+
+    const [loaded, setLoaded] = useState(false);
 
     // ==========================================================   
 
@@ -44,7 +47,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             if (token !== '') {
 
-                let url = "/user/u";
+                let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -87,6 +90,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
                                 setInsDel('Remove From List')
                             else
                                 setInsDel('Add To List')
+                            setLoaded(true)
                         }
                         else
                             if (info.error) {
@@ -99,7 +103,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
         }
 
     },
-        [anime.title, match.params.id, token]
+        [anime.title, match.params.id, token, loaded]
     )
 
 
@@ -112,13 +116,13 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             setInsDel('Remove From List');
             addAnime(anime);
-            url = "/user/animes/addAnime";
+            url = "http://localhost:5000/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
 
             setInsDel('Add to List');
             deleteAnime(anime.mal_id);
-            url = "/user/animes/delAnime";
+            url = "http://localhost:5000/user/animes/delAnime";
         }
 
         fetch(url, {
@@ -153,7 +157,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
             });
     }
 
-    return (
+    return loaded ? (
         <div className='acontainer'>
             <div className={classes.root}>
                 <Button size='small' href={`/u/reaper/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
@@ -199,7 +203,9 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
                 </form>
             </div>
         </div>
-    )
+    ) : (<div className='loader'>
+            <CircularProgress />
+        </div>)
 }
 
 const mapDispatchToProps = (dispatch, props) => {

@@ -3,6 +3,8 @@ import season from './Season.js';
 import '../styles/Home.css';
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const Home = () => {
 
@@ -45,7 +47,7 @@ const Home = () => {
                                 <Link to="/signin">
                                     <img className='thumbnail' title={animeItem.title} src={animeItem.image_url} alt={animeItem.title + " cover"} />
                                 </Link>
-                                
+
                                 <Link to='/signin' className='thumbnail-title'>
                                     {animeItem.title}
                                 </Link>
@@ -56,7 +58,9 @@ const Home = () => {
                 }
             </div>
         </div>
-    ) : (<p>Loading...</p>)
+    ) : (<div className='loader'>
+        <CircularProgress />
+    </div>)
 }
 
 export default Home;

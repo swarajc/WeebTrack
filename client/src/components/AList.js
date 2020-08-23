@@ -14,6 +14,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Divider from '@material-ui/core/Divider';
 import {connect} from 'react-redux';
 import deleteAnime from '../actions/deleteAnime';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -48,6 +50,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
     const classes = useStyles();
 
+    const [loaded, setLoaded] = useState(false);
+
     const handleClick = (targetAnime) => {
 
         deleteAnime(targetAnime.mal_id);
@@ -59,7 +63,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
         setAnimes(newAnimes)    
         
-        let url = "/user/animes/delAnime";
+        let url = "http://localhost:5000/user/animes/delAnime";
 
         fetch(url, {
             method: 'post',
@@ -121,7 +125,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
             if (token !== '') {
 
-                let url = "/user/u";
+                let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -139,7 +143,10 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
                 })
                     .then((result) => result.json())
-                    .then((info) => setAnimes(info.animes))
+                    .then((info) => {
+                        setAnimes(info.animes);
+                        setLoaded(true);
+                    })
                     .catch((err) => {
                         console.log(err);
                         window.location.reload();
@@ -157,7 +164,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
         [token, animes]
     )
 
-    return animes.length ? (
+    return loaded && animes.length ? (
         <div className='lcontainer'>
             <div className={classes.root}>
                 <Grid>
@@ -168,7 +175,11 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 </Grid>
             </div>
         </div>
-    ) : (<p>List is empty :')</p>)
+    ) : loaded ?(
+    <p>List is empty :')</p>
+    ):(<div className='loader'>
+    <CircularProgress />
+</div>)
 }
 
 const mapStateToProps = (animeList) => {

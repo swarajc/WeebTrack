@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 import initialiseAnimeList from '../actions/initialiseAnimeList';
 import setIsAuthenticated from '../actions/setIsAuthenticated'
 import setIsToken from '../actions/setIsToken';
-// import {fetchPostsWithRedux} from '../fetchMethods/dataToStore';     
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({  
     root: {
         '& > *': {
             margin: theme.spacing(1),
@@ -42,17 +42,16 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
 
     const [Animes, setAnimes] = useState();
 
+    const [loaded, setLoaded] = useState(false);
     // ==========================================================   
 
     useEffect(() => {
 
         if (isMounted.current === true) {
 
-            myInput.current.focus();
-
             if (token !== '') {
 
-                let url = "/user/u";
+                let url = "http://localhost:5000/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -78,6 +77,8 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
                             setUserName(String(info.username));
                             console.log(UserName);
                             initialiseAnimeList(info.animes);
+                            setLoaded(true)
+                            myInput.current.focus();
                         }
                         else
                             if (info.error) {
@@ -109,7 +110,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        let url = "/user/u/logout";
+        let url = "http://localhost:5000/user/u/logout";
         fetch(url, {
             method: 'post',
             headers: {
@@ -132,7 +133,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
                     console.log(info);
                     setIsToken('')
                     setIsAuthenticated('false')
-                    history.push('/home');
+                    history.push('/');
                 }
                 else
                     if (info.error) {
@@ -174,7 +175,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
     // }
 
 
-    return (
+    return loaded?(
         <div className='dcontainer'>
             <div className='header1'>
                 <div className='searchI'>
@@ -216,7 +217,9 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
                 }
             </div>
         </div>
-    )
+    ): (<div className='loader'>
+    <CircularProgress />
+</div>)
 }
 
 const mapStateToProps = (animeList) => {

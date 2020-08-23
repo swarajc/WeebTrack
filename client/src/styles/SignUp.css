@@ -64,7 +64,6 @@
   .input-with-icon {
     border: none;
     flex: 1;
-    
   }
   
   .input-icon, .input-with-icon {
@@ -77,9 +76,10 @@
     flex-direction: row
   }
 
-  #message{
+  .message{
     padding: 2%;
     display: flex;
     flex-direction: row;
-    font-size: 98%;
+    font-size: 100%;
+    color: crimson;
   }

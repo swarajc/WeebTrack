@@ -1,6 +1,7 @@
 import React from 'react';
 import {useRef, useEffect, useState} from 'react';
 import '../styles/Profile.css';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function Profile({ history, caughtToken, match, location }){
 
@@ -17,6 +18,8 @@ export default function Profile({ history, caughtToken, match, location }){
     const token = caughtToken;
 
     var [UserName, setUserName] = useState('User');
+
+    const [loaded, setLoaded] = useState(false);
 
     // const myInput = useRef(null);
 
@@ -40,8 +43,8 @@ export default function Profile({ history, caughtToken, match, location }){
 
             if (token !== '') {
 
-                // let url = "http://localhost:5000/users/u";
-                let url = "/user/u";
+                let url = "http://localhost:5000/user/u";
+                // let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -66,6 +69,7 @@ export default function Profile({ history, caughtToken, match, location }){
                             console.log(info);
                             setUserName(String(info.username));
                             console.log(UserName);
+                            setLoaded(true)
                         }
                         else
                             if (info.error) {
@@ -93,9 +97,11 @@ export default function Profile({ history, caughtToken, match, location }){
         return str.charAt(0).toUpperCase() + str.slice(1);
         }
     
-    return(
+    return loaded?(
         <div className='pcontainer'>
             <h1>{Capitalize(UserName)}'s Profile</h1>
         </div>
-    )
+    ):(<div className='loader'>
+    <CircularProgress />
+</div>)
 }

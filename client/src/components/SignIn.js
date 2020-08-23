@@ -47,8 +47,8 @@ const SignIn = ({ history, caughtToken, setIsAuthenticated, setIsToken }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // let url = "http://localhost:5000/users/validate";
-        let url = "/validate";
+        let url = "http://localhost:5000/validate";
+        // let url = "/validate";
         fetch(url, {
             method: 'post',
             headers: {

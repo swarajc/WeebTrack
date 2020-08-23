@@ -3,7 +3,7 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
@@ -22,7 +22,7 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
 
     const myInput = useRef(null);
 
-    const message = '';
+    const [message, setMessage] = useState(' ');
 
     useEffect(() => {
 
@@ -47,8 +47,8 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
 
         e.preventDefault();
 
-        // let url = "http://localhost:5000/users/add";
-        let url = "/add";
+        let url = "http://localhost:5000/add";
+        // let url = "/add";
         fetch(url, {
             method: 'post',
             headers: {
@@ -76,7 +76,11 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
 
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {
-                    console.log('Success?');
+                    console.log(info);
+                    if(info.keyValue.username)
+                        setMessage('Username already in use, maybe the email too');
+                    else if(info.keyValue.emailId)
+                        setMessage('Email address already in use');
                 }
                 else {
 
@@ -134,7 +138,7 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
                             </div>
 
                             <div>
-                                <span>
+                                <span className = 'message'>
                                     {message}
                                 </span>
                             </div>

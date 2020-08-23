@@ -1,13 +1,17 @@
 const router = require('express').Router(),
     User = require('../../models/user'),
     auth = require('../../middleware/auth');
-    
+
+
+require('dotenv').config();
+
 
 router.route('/add').post(async (req, res) => {
 
     try {
 
         let { username, emailId, password } = req.body
+        
 
         let newUser = new User({ username, emailId, password });
 
@@ -17,6 +21,7 @@ router.route('/add').post(async (req, res) => {
         res.status(201).send({ newUser, token })
 
     } catch (error) {
+        console.log(error);
         res.status(400).send(error);
     }
 });

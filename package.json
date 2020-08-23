@@ -23,6 +23,7 @@
     "config": "^3.2.2",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
+    "email-verifier": "^0.4.1",
     "env-cmd": "^10.0.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
