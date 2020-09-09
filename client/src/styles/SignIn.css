@@ -12,3 +12,10 @@
     color: #FFFFFF;
     text-decoration: none;
 }
+
+.breadCrumb{
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 9%;
+    margin-right: 7%;
+}

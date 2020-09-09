@@ -2,14 +2,26 @@
     display: flex;
     justify-content: center;
     text-align: center;
+
 }
 
 .a-list{    
     /* display: inline-block; */
-    background-color: whitesmoke;
+    background-color: darkgray;
+    opacity: 0.8;
 }
 
 .list-item{
     border-bottom-color: transparent; 
     border-bottom-width: 0;
+}
+
+.counterInput{
+    width: 5%;
+    position: relative;
+    right: 2%;
+}
+
+.aList-header{
+    padding: 5%;
 }

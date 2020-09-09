@@ -3,15 +3,18 @@ import '../styles/SignUp.css';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { useInput } from '../hooks/input-hook';
 import { useShow } from '../hooks/show-hook';
-import { useRef, useEffect, useState} from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import { default as MatLink } from '@material-ui/core/Link';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(1),
-        },  
+        },
     },
 }));
 
@@ -47,8 +50,8 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
 
         e.preventDefault();
 
-        let url = "http://localhost:5000/add";
-        // let url = "/add";
+        // let url = "http://localhost:5000/add";
+        let url = "/add";
         fetch(url, {
             method: 'post',
             headers: {
@@ -77,9 +80,9 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {
                     console.log(info);
-                    if(info.keyValue.username)
+                    if (info.keyValue.username)
                         setMessage('Username already in use, maybe the email too');
-                    else if(info.keyValue.emailId)
+                    else if (info.keyValue.emailId)
                         setMessage('Email address already in use');
                 }
                 else {
@@ -101,58 +104,75 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
     }
 
     return (
-        <div className="scontainer">
-            <div>
-                <form onSubmit={handleSubmit}>
+        <div>
+            <span className='breadCrumb'>
+                <div className={classes.root}>
+                    <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+                        <MatLink color="textPrimary" href="/">
+                            Home
+                                </MatLink>
+                        <MatLink color="textPrimary" href="/signup">
+                            Sign Up
+                                </MatLink>
+                        <MatLink color="textPrimary" href="/signin">
+                            Sign In
+                                </MatLink>
+                    </Breadcrumbs>
+                </div>
+            </span>
+            <div className="scontainer">
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="card">
+                            <div className="card-content">
+                                <h1 className='header'>Create an account</h1>
 
-                    <div className="card">
-                        <div className="card-content">
-                            <h1 className='header'>Create an account</h1>
-
-                            <div className="form-item-divs">
-                                <label htmlFor="username">
-                                    Username
+                                <div className="form-item-divs">
+                                    <label htmlFor="username">
+                                        Username
                                 </label>
+                                    <div>
+                                        <input id="username" type="text" ref={myInput} {...bindUsername} required />
+                                    </div>
+                                </div>
+
+                                <div className="form-item-divs">
+                                    <label htmlFor="emailid">
+                                        Email address
+                                </label>
+                                    <div>
+                                        <input id="emailid" type="email" {...bindEmail} required />
+                                    </div>
+                                </div>
+
+                                <div className="form-item-divs">
+                                    <label htmlFor="password">
+                                        Password
+                                </label>
+                                    <div className="input-icon-wrap">
+                                        <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
+                                        <input className="input-with-icon" pattern=".{7,}" title="7 characters minimum" id="password" type={inputType} {...bindPass} required />
+                                    </div>
+                                </div>
+
                                 <div>
-                                    <input id="username" type="text" ref={myInput} {...bindUsername} required />
+                                    <span className='message'>
+                                        {message}
+                                    </span>
                                 </div>
-                            </div>
 
-                            <div className="form-item-divs">
-                                <label htmlFor="emailid">
-                                    Email address
-                                </label>
-                                <div>
-                                    <input id="emailid" type="email" {...bindEmail} required />
-                                </div>
-                            </div>
-
-                            <div className="form-item-divs">
-                                <label htmlFor="password">
-                                    Password
-                                </label>
-                                <div className="input-icon-wrap">
-                                    <span className="input-icon"><VisibilityIcon type="button" onClick={handleClick} className="Icon"></VisibilityIcon></span>
-                                    <input className="input-with-icon" pattern=".{8,}" title="8 characters minimum" id="password" type={inputType} {...bindPass} required />
-                                </div>
-                            </div>
-
-                            <div>
-                                <span className = 'message'>
-                                    {message}
-                                </span>
-                            </div>
-
-                            <div className={`${classes.root} mater-btn`}>
-                                <Button variant="contained" color="primary" type='submit'>
-                                    Sign Up
+                                <div className={`${classes.root} mater-btn`}>
+                                    <Button variant="contained" color="primary" type='submit'>
+                                        Sign Up
                             </Button>
-                            </div>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+
     );
 }

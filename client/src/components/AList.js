@@ -15,16 +15,19 @@ import Divider from '@material-ui/core/Divider';
 import {connect} from 'react-redux';
 import deleteAnime from '../actions/deleteAnime';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import SaveIcon from '@material-ui/icons/Save';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
 
+    button: {
+        margin: theme.spacing(1),
+      },
     root: {
         flexGrow: 1,
-        maxWidth: 752,
     },
     demo: {
-        backgroundColor: theme.palette.background.transparent
+        backgroundColor: theme.palette.background 
     },
     small: {
         width: theme.spacing(3),
@@ -45,13 +48,13 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
     const isMounted = useRef(true);
 
     const token = caughtToken;
-
     const [animes, setAnimes] = useState([]);
 
     const classes = useStyles();
-
+    var username = useRef('');
     const [loaded, setLoaded] = useState(false);
 
+    var wepisodes = useRef('');
     const handleClick = (targetAnime) => {
 
         deleteAnime(targetAnime.mal_id);
@@ -63,7 +66,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
         setAnimes(newAnimes)    
         
-        let url = "http://localhost:5000/user/animes/delAnime";
+        // let url = "http://localhost:5000/user/animes/delAnime";
+        let url = "/user/animes/delAnime";
 
         fetch(url, {
             method: 'post',
@@ -88,6 +92,38 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 window.location.reload();
             })
         }
+    const handleChange = (e) =>{
+        wepisodes.current = e.target.value;
+    }
+    const handleSave = (animeId) =>{
+        // let url = "http://localhost:5000/user/animes/saveEpisodes";
+        let url = "/user/animes/saveEpisodes"
+        console.log(wepisodes)
+        fetch(url, {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                animeId:animeId,
+                username: username.current,
+                wepisodes: wepisodes.current
+            }),
+            user: {},
+            token: ''
+        })
+            .then(result => result.json())
+            .then(info => {   
+                    console.log(info);
+                    window.location.reload(true);
+            })
+            .catch( err => {
+                console.log(err);
+                window.location.reload();
+            })
+    }
 
     const listItems = animes.map(animeItem => {
         return (
@@ -96,14 +132,16 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 <Avatar variant="square" src={animeItem.anime.image_url} />
             </ListItemAvatar>
             <ListItemText
-                /* button component='a' href={`/u/reaper/a/${animeItem.anime.mal_id}`} */
                 primary={animeItem.anime.title}
-                secondary={`${animeItem.anime.status}${animeItem.anime.airing ? ' | ' + animeItem.anime.broadcast : ''}`}
+                secondary={`${animeItem.anime.status} | Episodes watched: ${animeItem.watched?animeItem.watched:0}`}
             />
-            <ListItemSecondaryAction>
+            {/* <Icon path={mdiContentSave}/> */}
+            <input id = 'episodesWatched' className= 'counterInput' onChange = {handleChange}placeholder = {animeItem.watched?animeItem.watched:0}type = 'number' min={animeItem.watched?animeItem.watched:0} max={`${animeItem.anime.episodes}`}/>
+            <Button variant="contained" color="textPrimary" size="small" className={classes.button} onClick = {() => handleSave(animeItem.anime.mal_id)}><SaveIcon /></Button>
+            <ListItemSecondaryAction>  
                 <IconButton edge="end" aria-label="delete" onClick = { () => {handleClick(animeItem.anime)}}>
                     <DeleteIcon />
-                </IconButton>
+                </IconButton>   
             </ListItemSecondaryAction>
         </ListItem>)
     })
@@ -125,7 +163,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/user/u";
+                // let url = "http://localhost:5000/user/u";
+                let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -144,8 +183,11 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 })
                     .then((result) => result.json())
                     .then((info) => {
+                        console.log(info.animes)
                         setAnimes(info.animes);
                         setLoaded(true);
+                        username.current = info.username
+                        console.log(username)
                     })
                     .catch((err) => {
                         console.log(err);
@@ -167,11 +209,11 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
     return loaded && animes.length ? (
         <div className='lcontainer'>
             <div className={classes.root}>
+                <h1 className = 'aList-header'>Anime List</h1>
                 <Grid>
-                    <h1>Anime List</h1>
-                        <List className={`${classes.demo} a-list`} >
+                    <List className={`${classes.demo} a-list`} >
                         {listItemsWithDividers}
-                        </List>
+                    </List>
                 </Grid>
             </div>
         </div>

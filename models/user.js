@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema({
         anime: {
             type: Object,
             unique: true
+        }, 
+        watched: {
+            type: Number,
+            default: 0
         }
     }]
 },

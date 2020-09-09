@@ -15,10 +15,10 @@ router.route('/add').post(async (req, res) => {
 
         let newUser = new User({ username, emailId, password });
 
-        await newUser.save()
+        await newUser.save();
 
         const token = await newUser.generateAuthToken();
-        res.status(201).send({ newUser, token })
+        res.status(201).send({ newUser, token });
 
     } catch (error) {
         console.log(error);
@@ -34,15 +34,11 @@ router.route('/validate').post(async (req, res) => {
 
         let user = await User.findByCredentials(emailId, password);
 
-        if (!user) {
-            return res.status(401).send({ error: 'Login Failed! Check authentication credentials' });
-        }
-
         const token = await user.generateAuthToken();
         res.send({ user, token });
 
     } catch (error) {
-        res.send({ error });
+        res.send({ error: 'Login Failed! Check login credentials'});
     }
 
 });

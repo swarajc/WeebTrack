@@ -34,4 +34,30 @@ router.route('/delAnime').post(auth, async (req, res) => {
     }
 });
 
+router.route('/saveEpisodes').post(auth, async (req, res) => {
+
+    try {
+
+        let user = await User.findOne({ username: req.body.username });
+        console.log(req.body.username, user);
+        console.log(user.animes.length);
+        for(var i = 0; i < user.animes.length; i++)
+        {   
+            
+            if(user.animes[i].anime.mal_id === req.body.animeId)
+                user.animes[i]['watched']= req.body.wepisodes
+                console.log(user.animes[i].toObject()['watched'])
+                break;
+            
+        }
+
+        await user.save()
+        res.send({ success: 'Watched updated' });
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).send(error);
+    }
+});
+
 module.exports = router;

@@ -31,7 +31,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
     console.log(match);
 
     const token = caughtToken;
-
+    const [UserName, setUserName] = useState('');
     const [anime, setAnime] = useState({});
 
     const [InsDel, setInsDel] = useState('');
@@ -47,7 +47,8 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             if (token !== '') {
 
-                let url = "http://localhost:5000/user/u";
+                // let url = "http://localhost:5000/user/u";
+                let url = "/user/u";
                 fetch(url, {
 
                     method: 'get',
@@ -69,6 +70,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
                         if (info) {
                             console.log(info)
+                            setUserName(info.username);
 
                             let url = "https://api.jikan.moe/v3/anime/" + match.params.id;
                             fetch(url, { mode: 'cors' })
@@ -116,13 +118,15 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 
             setInsDel('Remove From List');
             addAnime(anime);
-            url = "http://localhost:5000/user/animes/addAnime";
+            // url = "http://localhost:5000/user/animes/addAnime";
+            url = "/user/animes/addAnime";
         }
         else if (InsDel === 'Remove From List') {
 
             setInsDel('Add to List');
             deleteAnime(anime.mal_id);
-            url = "http://localhost:5000/user/animes/delAnime";
+            // url = "http://localhost:5000/user/animes/delAnime";
+            url = "/user/animes/delAnime";
         }
 
         fetch(url, {
@@ -160,7 +164,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
     return loaded ? (
         <div className='acontainer'>
             <div className={classes.root}>
-                <Button size='small' href={`/u/reaper/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
+                <Button size='small' href={`/u/${UserName}/a/${match.params.id}`}><h1>{anime.title}</h1></Button>
             </div>
             <hr />
             <div className='detailItems'>
@@ -199,6 +203,7 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
                 <form onSubmit={handleSubmit}>
                     <div className={classes.root}>
                         <Button type='submit' variant="contained" >{InsDel}</Button>
+                        <Button href={`/u/${UserName}/l`}variant="contained">Check List</Button>
                     </div>
                 </form>
             </div>
