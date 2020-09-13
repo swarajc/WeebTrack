@@ -34,7 +34,6 @@ const rootReducer = (state = initState, action) => {
         case 'DEL_ANIME':
             // console.log(action.mal_id)
             let newAnimes1 = state.animeList.filter(animeItem => {
-                console.log(animeItem);
                 return animeItem.anime.mal_id !== action.mal_id
             });
 
