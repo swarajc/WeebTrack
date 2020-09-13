@@ -23,7 +23,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
 
     // ==========================================================
 
-    console.log(animeList);
+    // console.log(animeList);  
     const classes = useStyles();
 
     // console.log(history);
