@@ -26,13 +26,13 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
     console.log(animeList);
     const classes = useStyles();
 
-    console.log(history);
-    console.log(match);
-    console.log(location);
+    // console.log(history);
+    // console.log(match);
+    // console.log(location);
 
     const isMounted = useRef(true);
 
-    console.log(caughtToken);
+    // console.log(caughtToken);
 
     const token = caughtToken;
 
@@ -74,24 +74,22 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
 
                         if (info) {
 
-                            console.log(info);
+                            // console.log(info);
                             setUserName(String(info.username));
-                            console.log(UserName);
+                            // console.log(UserName);
                             initialiseAnimeList(info.animes);
                             setLoaded(true)
                             myInput.current.focus();
                         }
                         else
                             if (info.error) {
-
                                 console.log(info.error);
-
                             }
 
                     });
             }
 
-            console.log(Animes);
+            // console.log(Animes);
 
         }
 
@@ -128,11 +126,11 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
             .then((result) => result.json())
             .then((info) => {
 
-                console.log(info);
+                // console.log(info);
 
                 if (info.success) {
 
-                    console.log(info);
+                    // console.log(info);
                     setIsToken('')
                     setIsAuthenticated('false')
                     history.push('/');
@@ -148,7 +146,6 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
             .catch((error) => console.log(error));
     }
 
-
     const handleChange = (e) => {
 
         e.preventDefault();
@@ -158,7 +155,7 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
             fetch(url)
                 .then((response) => response.json())
                 .then((info) => {
-                    console.log(info);
+                    // console.log(info);
                     setAnimes(info.results);
                 })
                 .catch(err => {
@@ -225,15 +222,15 @@ const Dashboard = ({ history, caughtToken, match, location, initialiseAnimeList,
 }
 
 const mapStateToProps = (animeList) => {
-    console.log(animeList);
+    // console.log(animeList);
     return {
         animeList: animeList
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    console.log(props);
-    console.log(dispatch);
+    // console.log(props);
+    // console.log(dispatch);
     return {
         initialiseAnimeList: (Animes) => dispatch(initialiseAnimeList(Animes)),
         setIsAuthenticated: (value) => dispatch(setIsAuthenticated(value)),

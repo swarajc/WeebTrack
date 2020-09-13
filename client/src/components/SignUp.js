@@ -72,14 +72,14 @@ export default function SignUp({ history, caughtToken, parentCallBack }) {
                     resetEmail();
                     resetPass();
                     caughtToken = info.token;
-                    console.log(caughtToken);
+                    // console.log(caughtToken);
                     redirect = '/signin'
-                    console.log(redirect);
+                    // console.log(redirect);
                     history.push(redirect);
 
                 }
                 else if (info.code === 11000 && info.name === 'MongoError') {
-                    console.log(info);
+                    // console.log(info);
                     if (info.keyValue.username)
                         setMessage('Username already in use, maybe the email too');
                     else if (info.keyValue.emailId)

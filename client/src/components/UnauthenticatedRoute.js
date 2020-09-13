@@ -4,11 +4,6 @@ import { Redirect } from 'react-router';
 
 export default function UnauthenticatedRoute({ Component, appProps, caughtToken, parentCallBack, path }) {
 
-    console.log(appProps);
-    console.log(caughtToken);
-    console.log(Component);
-    console.log(path);
-
     return (
         <Route
             path={path}

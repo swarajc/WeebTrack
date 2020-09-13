@@ -33,7 +33,7 @@ const ForgotPass = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
+        // console.log(email);
         resetEmail();
     }
 

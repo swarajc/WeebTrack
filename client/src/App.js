@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 
 function App(props) {
 
-    console.log(props);
+    // console.log(props);
 
     const [isAuthenticated, userHasAuthenticated] = useState(props.isAuthenticated);
 
@@ -34,8 +34,8 @@ function App(props) {
 
     }, [props.isAuthenticated, props.isToken]);
 
-    console.log(caughtToken);
-    console.log(isAuthenticated)
+    // console.log(caughtToken);
+    // console.log(isAuthenticated)
 
     return (
         <BrowserRouter>
@@ -117,7 +117,7 @@ function App(props) {
 }
 
 const mapStateToProps = ({ isAuthenticated, isToken }) => {
-    console.log(isAuthenticated, isToken);
+    // console.log(isAuthenticated, isToken);
     return {
         isAuthenticated: isAuthenticated,
         isToken: isToken

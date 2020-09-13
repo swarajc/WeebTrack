@@ -26,7 +26,7 @@ const SignIn = ({ history, caughtToken, setIsAuthenticated, setIsToken }) => {
 
     const classes = useStyles();
 
-    console.log(history);
+    // console.log(history);
 
     const myInput = useRef(null);
 
@@ -155,7 +155,7 @@ const SignIn = ({ history, caughtToken, setIsAuthenticated, setIsToken }) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log(dispatch);
+    // console.log(dispatch);
     return {
         setIsAuthenticated: (value) => dispatch(setIsAuthenticated(value)),
         setIsToken: (value) => dispatch(setIsToken(value))

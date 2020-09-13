@@ -20,15 +20,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }) => {
 
-    console.log(animeList)
+    // console.log(animeList)
 
     const classes = useStyles();
 
     const isMounted = useRef(true);
 
-    console.log(caughtToken);
+    // console.log(caughtToken);
 
-    console.log(match);
+    // console.log(match);
 
     const token = caughtToken;
     const [UserName, setUserName] = useState('');
@@ -69,14 +69,14 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
                     .then((info) => {
 
                         if (info) {
-                            console.log(info)
+                            // console.log(info)
                             setUserName(info.username);
 
                             let url = "https://api.jikan.moe/v3/anime/" + match.params.id;
                             fetch(url, { mode: 'cors' })
                                 .then((response) => response.json())
                                 .then((info) => {
-                                    console.log(info);
+                                    // console.log(info);
                                     setAnime(info);
                                 });
 
@@ -214,8 +214,8 @@ const Anime = ({ history, caughtToken, match, addAnime, deleteAnime, animeList }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    console.log(props);
-    console.log(dispatch);
+    // console.log(props);
+    // console.log(dispatch);
     return {
         addAnime: (anime) => dispatch(addAnime(anime)),
         deleteAnime: (mal_id) => dispatch(deleteAnime(mal_id))

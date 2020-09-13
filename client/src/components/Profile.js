@@ -6,9 +6,9 @@ import Button from '@material-ui/core/Button';
 
 export default function Profile({ history, caughtToken, match, location }) {
 
-    console.log(history);
-    console.log(match);
-    console.log(location);
+    // console.log(history);
+    // console.log(match);
+    // console.log(location);
 
     const isMounted = useRef(true);
 
@@ -72,16 +72,14 @@ export default function Profile({ history, caughtToken, match, location }) {
 
                         if (info) {
 
-                            console.log(info);
+                            // console.log(info);
                             setUserName(String(info.username));
                             setEmailId(String(info.emailId));
                             setLoaded(true)
                         }
                         else
                             if (info.error) {
-
                                 console.log(info.error);
-
                             }
 
                     });
@@ -110,13 +108,13 @@ export default function Profile({ history, caughtToken, match, location }) {
             password: pass
         }
 
-        console.log(updates);
+        // console.log(updates);
 
         let updateObj = {};
         updateObj.updates = updates;
         updateObj.checker = emailId;
 
-        console.log(updateObj);
+        // console.log(updateObj);
         fetch(url, {
             method: 'post',
             headers: {
@@ -128,7 +126,7 @@ export default function Profile({ history, caughtToken, match, location }) {
         })
             .then((result) => result.json())
             .then((info) => {
-                console.log(info);
+                // console.log(info);
                 setMessage(info.message);
                 history.push(`/u/${UserName}/p`)
                 // if (info.newUser) {
@@ -147,7 +145,7 @@ export default function Profile({ history, caughtToken, match, location }) {
 
         if (e.target['id'] === 'username') {
             updateUserName = e.target.value
-            console.log(updateUserName);
+            // console.log(updateUserName);
         }
 
         // if (e.target['id'] === 'emailId') {
@@ -157,7 +155,7 @@ export default function Profile({ history, caughtToken, match, location }) {
 
         if (e.target['id'] === 'password') {
             pass = e.target.value
-            console.log(pass);
+            // console.log(pass);
         }
     }
 

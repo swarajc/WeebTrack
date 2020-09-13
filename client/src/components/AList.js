@@ -98,7 +98,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
     const handleSave = (animeId) =>{
         // let url = "http://localhost:5000/user/animes/saveEpisodes";
         let url = "/user/animes/saveEpisodes"
-        console.log(wepisodes)
+        // console.log(wepisodes)
         fetch(url, {
             method: 'post',
             headers: {
@@ -116,8 +116,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
         })
             .then(result => result.json())
             .then(info => {   
-                    console.log(info);
-                    window.location.reload(true);
+                    // console.log(info);
+                    window.location.reload();
             })
             .catch( err => {
                 console.log(err);
@@ -154,8 +154,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
         listItemsWithDividers.push(<Divider key = {`divider${index}`}/>)
         }
     })
-    console.log(listItems);
-    console.log(listItemsWithDividers);
+    // console.log(listItems);
+    // console.log(listItemsWithDividers);
 
     useEffect(() => {
 
@@ -183,11 +183,11 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 })
                     .then((result) => result.json())
                     .then((info) => {
-                        console.log(info.animes)
+                        // console.log(info.animes)
                         setAnimes(info.animes);
                         setLoaded(true);
                         username.current = info.username
-                        console.log(username)
+                        // console.log(username)
                     })
                     .catch((err) => {
                         console.log(err);
@@ -232,8 +232,8 @@ const mapStateToProps = (animeList) => {
   }
 
 const mapDispatchToProps = (dispatch, props) => {
-    console.log(props);
-    console.log(dispatch);
+    // console.log(props);
+    // console.log(dispatch);
     return {
         deleteAnime: (mal_id) => dispatch(deleteAnime(mal_id))
       }

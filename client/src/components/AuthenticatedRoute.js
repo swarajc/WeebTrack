@@ -5,9 +5,6 @@ import { Redirect } from 'react-router';
 
 export default function AuthenticatedRoute({ Component, appProps, caughtToken, path, initialiseAnimeList, deleteAnime, addAnime, setIsAuthenticated, setIsToken }) {
 
-    console.log(path);
-    console.log(appProps);
-    console.log(caughtToken);
     return (
         <Route
             path={path}
