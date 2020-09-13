@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AList = ({caughtToken, deleteAnime, animeList}) => {
     
-    console.log(animeList);
+    // console.log(animeList);
 
     const isMounted = useRef(true);
 
@@ -197,7 +197,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
             }
         }
 
-        console.log(animes);
+        // console.log(animes);
 
             return () => {
                 isMounted.current = false;
@@ -225,7 +225,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
 }
 
 const mapStateToProps = (animeList) => {
-    console.log(animeList);
+    // console.log(animeList);
     return {
         animeList: animeList
     }

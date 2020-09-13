@@ -12,8 +12,6 @@ export default function Profile({ history, caughtToken, match, location }) {
 
     const isMounted = useRef(true);
 
-    console.log(caughtToken);
-
     const token = caughtToken;
 
     const [UserName, setUserName] = useState('');
