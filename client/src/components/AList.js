@@ -55,6 +55,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
     const [loaded, setLoaded] = useState(false);
 
     var wepisodes = useRef('');
+    console.log(wepisodes)
     const handleClick = (targetAnime) => {
 
         deleteAnime(targetAnime.mal_id);
@@ -85,7 +86,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
             .then(result => result.json())
             .then(info => {   
                     console.log(info.success);
-                    // window.location.reload();
+                    window.location.reload();
             })
             .catch( err => {
                 console.log(err);
@@ -94,6 +95,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
         }
     const handleChange = (e) =>{
         wepisodes.current = e.target.value;
+        console.log(e.target.value)
     }
     const handleSave = (animeId) =>{
         // let url = "http://localhost:5000/user/animes/saveEpisodes";
@@ -120,7 +122,7 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                     window.location.reload();
             })
             .catch( err => {
-                console.log(err);
+                // console.log(err);
                 window.location.reload();
             })
     }
@@ -136,8 +138,8 @@ const AList = ({caughtToken, deleteAnime, animeList}) => {
                 secondary={`${animeItem.anime.status} | Episodes watched: ${animeItem.watched?animeItem.watched:0}`}
             />
             {/* <Icon path={mdiContentSave}/> */}
-            <input id = 'episodesWatched' className= 'counterInput' onChange = {handleChange}placeholder = {animeItem.watched?animeItem.watched:0}type = 'number' min={animeItem.watched?animeItem.watched:0} max={`${animeItem.anime.episodes}`}/>
-            <Button variant="contained" color="textPrimary" size="small" className={classes.button} onClick = {() => handleSave(animeItem.anime.mal_id)}><SaveIcon /></Button>
+            <input id = 'episodesWatched' className= 'counterInput' onChange = {handleChange} placeholder = {animeItem.watched?animeItem.watched:0}type = 'number' min={animeItem.watched?animeItem.watched:0} max={`${animeItem.anime.episodes}`}/>
+            <Button variant="contained" color="primary" size="small" className={classes.button} onClick = {() => handleSave(animeItem.anime.mal_id)}><SaveIcon /></Button>
             <ListItemSecondaryAction>  
                 <IconButton edge="end" aria-label="delete" onClick = { () => {handleClick(animeItem.anime)}}>
                     <DeleteIcon />

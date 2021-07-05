@@ -45,10 +45,11 @@ router.route('/saveEpisodes').post(auth, async (req, res) => {
         {   
             
             if(user.animes[i].anime.mal_id === req.body.animeId)
+            {
                 user.animes[i]['watched']= req.body.wepisodes
                 console.log(user.animes[i].toObject()['watched'])
                 break;
-            
+            }   
         }
 
         await user.save()
