@@ -29,7 +29,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
-    "npm-upgrade": "^2.0.3",
+    "npm-upgrade": "^3.1.0",
     "passport": "^0.4.1",
     "validation": "0.0.1",
     "validator": "^13.7.0"
